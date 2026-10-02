@@ -1,0 +1,1274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KnowMe｜AI Product Case Study</title>
+<script>
+document.documentElement.classList.toggle("is-embedded", new URLSearchParams(location.search).has("embed"));
+</script>
+<style>
+:root {
+  --bg:#fbf7f3;
+  --paper:#fffdfb;
+  --ink:#1f2937;
+  --muted:#758094;
+  --line:#eadfd7;
+  --accent:#ff7d5f;
+  --accent-2:#ffb49f;
+  --accent-soft:#fff0ea;
+  --accent-border:#ffc6b7;
+  --accent-ink:#a13f2b;
+  --blue:#5c78a6;
+  --shadow:0 18px 60px rgba(74,54,42,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;overflow-x:hidden}
+button{font:inherit}
+.deck{width:100%;position:relative;padding-bottom:96px}
+.slide{position:relative;display:flex;justify-content:center;padding:0 36px;scroll-margin-top:88px}
+.slide-shell{width:min(1500px,100%);min-width:0;padding:70px 64px;position:relative}
+.slide + .slide .slide-shell{border-top:1px solid var(--line)}
+.slide-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.kicker{font-size:15px;letter-spacing:.08em;color:var(--accent);font-weight:800;text-transform:uppercase}
+.slide-meta{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:11px;font-weight:500;opacity:.75}
+.slide-icon{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+h1{font-size:46px;line-height:1.12;margin:18px 0 26px;letter-spacing:-.035em;max-width:1200px}
+h2{font-size:34px;line-height:1.35;margin:0}
+h3{font-size:22px;line-height:1.3;margin:6px 0 10px}
+p{font-size:17px;line-height:1.65;margin:8px 0}
+small{font-size:13px;line-height:1.4;color:var(--muted)}
+b,strong{font-weight:800}
+.slide-body{position:relative;z-index:2}
+.lead{font-size:23px;max-width:920px;color:#4b5563}
+.grid{display:grid;gap:18px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:20px;padding:22px 24px;box-shadow:0 8px 30px rgba(93,75,63,.04)}
+.card p{font-size:16px}
+.num{font-size:12px;color:var(--accent);font-weight:900;letter-spacing:.12em}
+.quote-box,.notice,.principle-banner,.statement{margin-top:18px;border-radius:16px;padding:16px 20px;border:1px solid #f2d9cf;background:var(--accent-soft);font-size:17px;line-height:1.55}
+.statement{font-size:21px}
+.slide-body > :is(.statement,.notice,.quote-box,.principle-banner,.hypothesis,.insight-card,.bottom-points):first-child:not(:last-child){margin-bottom:24px}
+.wide-card{display:flex;justify-content:space-between;align-items:center;gap:22px;margin-top:18px;padding:18px 22px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.wide-card span{color:var(--muted);font-size:15px;text-align:right}
+.wide-card.accent{border-color:#ffd8cc;background:var(--accent-soft)}
+.flow{display:flex;align-items:stretch;gap:10px;margin-top:34px}
+.flow-node{flex:1;min-width:0;border:1px solid var(--line);border-radius:18px;background:#fff;padding:18px;display:flex;flex-direction:column;gap:6px}
+.flow-node span{color:var(--accent);font-size:12px;font-weight:900}
+.flow-node b{font-size:18px}
+.flow-node.strong{background:var(--accent-soft);border-color:#ffc6b7}
+.flow-arrow{align-self:center;font-size:25px;color:#c9b6aa}
+.flow-6{gap:6px}
+.flow-6 .flow-node{padding:16px 12px}
+.flow-6 .flow-node b{font-size:16px}
+.flow-6 .flow-arrow{display:none}
+.hero-copy{margin-top:18px}
+.icon-card .icon-bubble{width:46px;height:46px;border-radius:14px;background:var(--accent-soft);display:grid;place-items:center;color:var(--accent);font-weight:900;margin-bottom:10px}
+.hypothesis{margin-top:24px;padding:22px 26px;border-radius:20px;background:var(--accent-soft);color:var(--ink);border:1px solid var(--accent-border);display:flex;align-items:center;gap:24px}
+.hypothesis .label{background:var(--accent);color:#fff;padding:8px 12px;border-radius:999px;font-weight:800;font-size:13px;white-space:nowrap;width:fit-content;flex-shrink:0;align-self:flex-start}
+.hypothesis p{font-size:21px;margin:0}
+.question-stack{display:grid;gap:24px;padding:8px 0 0 8px}
+.question-group{min-width:0}
+.question-group>small{display:block;margin:0 0 9px 6px;font-size:12px;line-height:1.4;color:var(--muted)}
+.question-bubble{position:relative;width:fit-content;max-width:100%;padding:16px 20px;background:#fff5ef;border:1px solid #f0ddd2;border-radius:5px 20px 20px 20px;box-shadow:0 3px 10px rgba(93,75,63,.035)}
+.question-bubble:before{content:"";position:absolute;left:-6px;top:13px;width:10px;height:10px;background:#fff5ef;border-left:1px solid #f0ddd2;border-bottom:1px solid #f0ddd2;transform:rotate(45deg)}
+.question-bubble p{margin:0;font-size:16px;line-height:1.65;overflow-wrap:anywhere}
+.question-bubble p+p{margin-top:12px}
+.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:900;margin-bottom:10px}
+.insight-card{padding:24px;background:var(--accent-soft);color:var(--ink);border:1px solid var(--accent-border);border-radius:20px}
+.insight-card h3{font-size:23px}
+.slide[data-index="4"] .insight-card h3{font-size:18px;line-height:1.5}
+.pill-row,.governance-tags,.validation-row,.bottom-points,.hard-constraints,.eval-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.pill-row span,.governance-tags span,.bottom-points span,.hard-constraints span,.eval-meta span,.validation-row span{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:13px}
+.insight-card .pill-row span{background:var(--paper);border-color:var(--accent-border);color:var(--accent-ink)}
+.definition{margin-top:14px;padding:20px 22px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.definition strong{color:var(--accent);font-size:18px}
+.redefinition-steps{list-style:none;padding:0;margin:24px 0 0;counter-reset:reason}
+.redefinition-steps li{position:relative;padding:0 0 26px 42px;counter-increment:reason}
+.redefinition-steps li:before{content:counter(reason,decimal-leading-zero);position:absolute;left:0;top:0;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);font-size:11px;font-weight:800}
+.redefinition-steps li:not(:last-child):after{content:"";position:absolute;left:13px;top:34px;bottom:6px;width:1px;background:var(--accent-border)}
+.redefinition-steps li:last-child{padding-bottom:0}
+.redefinition-steps h3{margin:0 0 8px;font-size:17px;line-height:1.6}
+.redefinition-steps p{margin:0;font-size:15px;line-height:1.75}
+.definition .redefinition-note{margin:22px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:13px;line-height:1.7;color:var(--muted)}
+.definition .redefinition-result{display:block;margin-top:16px;padding:16px;background:var(--accent-soft);border:1px solid var(--accent-border);border-radius:12px;color:var(--accent-ink);font-size:18px;line-height:1.5}
+.grid.evidence-to-definition{grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);align-items:center}
+.evidence-arrow{display:flex;justify-content:center;color:var(--accent);font-size:32px;line-height:1}
+.evidence-to-definition .definition{margin-top:0}
+@media(max-width:700px){
+  .grid.evidence-to-definition{grid-template-columns:minmax(0,1fr)}
+  .evidence-arrow{transform:rotate(90deg)}
+}
+.persona{padding:22px;border:1px solid var(--line);border-radius:20px;background:#fff}
+.persona .tag{display:inline-block;background:var(--accent-soft);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800}
+.validation-row{align-items:center;margin-top:18px;padding:14px 16px;border-radius:14px;background:#fff;border:1px solid var(--line)}
+.validation-row em{margin-left:auto;color:var(--blue);font-style:normal;font-weight:800}
+.journey-card blockquote{margin:12px 0;font-size:17px;line-height:1.55;color:#3f4755}
+.journey-icon{font-size:30px;color:var(--accent)}
+.capability{margin-top:16px;font-size:13px;font-weight:800;color:var(--blue)}
+.comparison,.memory-table,.eval-table{display:grid;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
+.comparison>div,.memory-table>div,.eval-table>div{display:grid;grid-template-columns:1fr 1.2fr 1.35fr;border-top:1px solid var(--line)}
+.comparison>div:first-child,.memory-table>div:first-child,.eval-table>div:first-child{border-top:0}
+.comparison span,.comparison b,.memory-table span,.memory-table b,.eval-table span,.eval-table b{padding:13px 16px;font-size:14px}
+.comparison-head,.memory-head,.eval-head{background:#f8f2ee;font-weight:900}
+.accent-text{color:var(--accent)}
+.bottom-points{margin-top:18px}
+.bottom-points span{background:#fffdfb}
+.reasons .card{min-height:160px}
+.transition{display:grid;grid-template-columns:1fr auto 1.7fr;gap:18px;align-items:center;margin-top:24px}
+.transition>div:not(.big-arrow){padding:20px;border-radius:18px;border:1px solid var(--line);background:#fff;display:flex;flex-direction:column;gap:8px}
+.transition .strong{background:var(--accent-soft);border-color:#ffd0c1}
+.transition.positioning-transition{margin:0 0 24px}
+.positioning-transition + .statement{margin:0 0 24px}
+@media(max-width:700px){.positioning-transition .big-arrow{justify-self:center;transform:rotate(90deg);line-height:1}}
+.big-arrow{font-size:32px;color:var(--accent)}
+.mvp-list{display:grid;gap:14px}
+.mvp-item{display:grid;grid-template-columns:58px 1fr;gap:18px;padding:18px 20px;border:1px solid var(--line);background:#fff;border-radius:18px}
+.mvp-num{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:13px;white-space:nowrap;font-weight:900}
+.mvp-item h3{margin:0 0 6px}
+.mvp-item p{margin:0;font-size:15px}
+.design-question{margin:0 0 24px;font-size:14px;line-height:1.6}
+.design-question>b{color:var(--muted);font-weight:500}
+.design-question p{font-size:14px;color:var(--muted);margin:6px 0 0}
+.design-parent{font-size:13px;color:var(--muted);margin:0 0 12px}
+.design-parent a{color:inherit;text-decoration:underline;text-underline-offset:4px}
+.design-outline{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 24px;font-size:14px;line-height:1.7}
+.design-outline a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:4px}
+.design-outline a:focus-visible,.design-parent a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.strategy-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.strategy-map .card{display:flex;flex-direction:column;min-height:160px}
+.strategy-map .num{margin-bottom:10px}
+.strategy-map h3{margin:0 0 10px}
+.strategy-map p{margin:0;color:var(--muted)}
+.strategy-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+.strategy-tags span{padding:5px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-size:11px;font-weight:700}
+.strategy-page{margin-top:12px;color:var(--muted);font-size:12px}
+@media(max-width:1100px){.strategy-map{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.strategy-map{grid-template-columns:minmax(0,1fr)}.strategy-map .card{min-height:0}}
+.strategy-index{margin:24px 0;font-size:14px;line-height:1.7}
+.strategy-index h3{font-size:16px;margin:0 0 12px}
+.strategy-index p{font-size:14px;margin:8px 0}
+.not-now{margin-top:16px;color:var(--muted);font-size:15px}
+.big-list{padding-left:20px;font-size:18px;line-height:1.7}
+.vertical-flow{display:flex;align-items:center;justify-content:flex-start;gap:9px;flex-wrap:wrap}
+.vertical-flow div{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fff;font-weight:700}
+.vertical-flow .accent-block{background:var(--accent-soft);border-color:#ffd2c5}
+.system-overview{display:grid;gap:28px}
+.system-design-card{display:grid;gap:28px;padding:28px;border:1px solid var(--line);border-radius:24px;background:#fff}
+.system-design-card .system-stage{background:var(--paper)}
+.system-design-card .system-stage li{background:#fff}
+.system-design-card .system-note{margin:0}
+.system-cause{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;color:var(--muted);font-size:14px;line-height:1.7}
+.system-cause span{font-size:32px;line-height:1;color:var(--accent)}
+.system-design-intro{font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 22px}
+@media(max-width:700px){.system-design-card{padding:18px;gap:24px;border-radius:20px}}
+.system-journey{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.system-stage{position:relative;min-width:0;padding:18px;background:#fff;border:1px solid var(--line);border-radius:18px}
+.system-stage:not(:last-child)::after{content:"→";position:absolute;right:-23px;top:50%;color:var(--accent);font-size:22px}
+.system-stage h3{font-size:16px;line-height:1.5;margin:0 0 18px}
+.system-stage h3 small{display:block;color:var(--muted);font-size:12px;font-weight:500;margin-top:4px}
+.system-stage ol{list-style:none;padding:0;margin:0;display:grid;gap:28px}
+.system-stage li{position:relative;border:1px solid var(--line);border-radius:10px;padding:12px 10px;font-size:14px;line-height:1.6;background:var(--paper)}
+.system-stage li+li::before{content:"↓";position:absolute;top:-27px;left:50%;color:var(--accent)}
+.system-foundation{padding:22px;border:1px solid var(--accent-border);border-radius:18px;background:var(--accent-soft)}
+.system-foundation h3{font-size:17px;margin:0 0 6px}
+.system-foundation>p,.system-overview .system-note{font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 18px}
+.system-modules{display:grid;grid-template-columns:1.3fr 1fr 1.4fr .9fr .9fr;gap:12px}
+.system-module{min-width:0;background:#fff;padding:16px;border:1px solid var(--line);border-radius:12px}
+.system-module h4{font-size:14px;margin:0 0 10px;line-height:1.5}
+.system-module p{font-size:13px;line-height:1.7;margin:6px 0;overflow-wrap:anywhere}
+.system-module code{font-size:12px}
+@media(max-width:1100px){.system-modules{grid-template-columns:repeat(2,minmax(0,1fr))}.system-module:last-child{grid-column:1/-1}}
+@media(max-width:700px){.system-journey,.system-modules{grid-template-columns:minmax(0,1fr)}.system-stage:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-29px}.system-foundation{padding:18px}.system-stage h3{font-size:17px}}
+.principle-banner{font-size:18px}
+.context-card{padding:24px;border-radius:22px;border:1px solid var(--line);min-height:300px}
+.context-card.stable{background:#fff;border-color:#fff}
+.context-card.dynamic{background:#fff4ef;border-color:#ffd9ce}
+.context-card ul{font-size:17px;line-height:1.8}
+.mini-flow{margin-top:14px;padding:10px 12px;border-radius:12px;background:#f7f2ef;color:#576071;font-size:14px;font-weight:700}
+.mini-flow.stack{line-height:1.8}
+.hard-constraints{align-items:center;padding:16px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.hard-constraints b{margin-right:4px}
+.hard-constraints small{flex-basis:100%;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;line-height:1.6}
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.checklist span{padding:12px;border-radius:12px;background:#f8f4f1;font-size:14px}
+.muted{color:var(--muted)}
+.persona-tone{margin-top:20px;padding:16px;border-radius:14px;background:var(--accent-soft)}
+.lower-grid{margin-top:16px}
+.accent-card{background:var(--accent-soft);color:var(--ink);border-color:var(--accent-border)}
+.kb-card{padding:24px;border-radius:22px;border:1px solid var(--line);min-height:220px}
+.kb-card>span{font-size:12px;font-weight:900;letter-spacing:.12em}
+.kb-card.level1{background:#eef7f2;border-color:#cce6d6}
+.kb-card.level2{background:#fff8e9;border-color:#f4dfb0}
+.kb-card.level3{background:#f9eeee;border-color:#ebcaca}
+.example-scale{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.example-scale>div{padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.example-scale span{font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--accent)}
+.example-scale p{font-size:14px;line-height:1.5}
+.trust-flow{display:flex;align-items:center;gap:12px}
+.trust-flow>div:not(:nth-child(even)){flex:1;padding:14px 16px;border:1px solid var(--line);background:#fff;border-radius:14px;display:flex;flex-direction:column;gap:4px}
+.trust-flow .strong{background:var(--accent-soft);border-color:#ffd4c8}
+.trust-grid{margin-top:18px}
+.warning{margin-top:16px;padding:14px 16px;border-radius:14px;background:#fff7ea;border:1px solid #f2dbac;font-size:14px}
+.before-after{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch}
+.before,.after{padding:22px;border-radius:20px;border:1px solid var(--line);background:#fff}
+.after{background:var(--accent-soft);border-color:#ffd4c8}
+.before .label,.after .label{font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--accent)}
+.evidence{margin-top:14px;padding:12px;border-radius:12px;background:#f6f3f1;font-size:14px}
+.fixed-question-groups{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.fixed-question-group{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.fixed-question-group>b{display:block;margin-bottom:8px;color:var(--accent);font-size:12px;letter-spacing:.08em}
+.fixed-question-group span{display:block;font-size:13px;line-height:1.55;color:var(--ink)}
+.decision-arrow{align-self:center;font-size:32px;color:var(--accent)}
+.dynamic-inputs{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.dynamic-inputs span{padding:8px 10px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:13px}
+.dynamic-inputs b{color:var(--accent)}
+.iteration-story{display:flex;flex-direction:column;gap:14px}
+.iteration-step{padding:22px;border:1px solid var(--line);border-radius:20px;background:#fff}
+.iteration-step.decision{background:var(--accent-soft);border-color:#ffd4c8}
+.iteration-step .label{display:block;margin-bottom:8px;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.1em}
+.iteration-step h3{margin-bottom:8px}
+.iteration-arrow{align-self:center;color:var(--accent);font-size:28px;line-height:1}
+.iteration-input-label{margin-top:16px;font-size:13px;font-weight:800;color:var(--muted)}
+.followup-examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.followup-example{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.followup-example b{display:block;margin-bottom:5px;color:var(--ink)}
+.followup-example small{display:block;margin-bottom:8px;color:var(--muted)}
+.followup-example p{margin:0;font-size:13px;line-height:1.55}
+.eval-thesis{padding:20px 22px;border:1px solid var(--accent-border);border-radius:18px;background:var(--accent-soft);font-size:17px;line-height:1.65}
+.eval-phase-head{display:flex;align-items:flex-start;gap:16px;margin:20px 0 14px}
+.eval-phase-number{flex:0 0 auto;padding:7px 10px;border-radius:999px;background:var(--accent);color:#fff;font-size:12px;font-weight:900;letter-spacing:.08em}
+.eval-phase-head h3{margin:0 0 4px}
+.eval-phase-head p{margin:0;color:var(--muted)}
+.eval-spec{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.eval-spec>div{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.eval-spec b{display:block;margin-bottom:5px;color:var(--accent);font-size:12px;letter-spacing:.06em}
+.eval-spec span{font-size:13px;line-height:1.5}
+.eval-spec small{display:block;margin-top:5px;color:var(--muted);font-size:10px;line-height:1.45}
+.eval-sample{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:14px 0;padding:13px 16px;border-radius:14px;background:#f6f3f1}
+.eval-sample b{font-size:14px}
+.eval-sample span{color:var(--muted);font-size:13px;text-align:right}
+.eval-results{display:grid;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
+.eval-results>div{display:grid;grid-template-columns:1.45fr 1fr 1fr;border-top:1px solid var(--line)}
+.eval-results>div:first-child{border-top:0;background:#f8f2ee;font-weight:900}
+.eval-results span,.eval-results b{padding:12px 14px;font-size:13px}
+.eval-rate{color:var(--accent);font-weight:900}
+.eval-process{display:grid;grid-template-columns:1fr auto 1.25fr auto 1.25fr;gap:12px;align-items:stretch}
+.eval-process-step{padding:17px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.eval-process-step:last-child{background:var(--accent-soft);border-color:var(--accent-border)}
+.eval-process-step>span{display:block;margin-bottom:7px;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.08em}
+.eval-process-step h3{margin-bottom:6px;font-size:17px}
+.eval-process-step p{margin:0;font-size:13px}
+.eval-process-arrow{align-self:center;color:var(--accent);font-size:24px}
+.formula{margin:18px 0;padding:14px 18px;border-radius:14px;background:var(--accent-soft);color:var(--accent-ink);border:1px solid var(--accent-border);font-size:19px;font-weight:800;text-align:center}
+.evaluator-story{display:grid;grid-template-columns:1fr auto 1.2fr auto 1fr auto 1.2fr;gap:10px;align-items:center}
+.story-step{min-height:170px;padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff}
+.story-step>span{color:var(--accent);font-size:12px;font-weight:900}
+.story-step.strong{background:var(--accent-soft);border-color:#ffd3c7}
+.story-arrow{font-size:26px;color:#c7b4a9}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.metric{padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff;display:flex;flex-direction:column}
+.metric b{font-size:32px;color:var(--accent)}
+.metric span{font-weight:800;margin-top:4px}
+.not-proven{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px 16px;border-radius:14px;background:#f8f2ee}
+.not-proven span{padding:6px 9px;border-radius:999px;background:#fff;font-size:12px}
+.cost-highlight{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cost-highlight>div{padding:22px;border-radius:20px;background:var(--accent-soft);color:var(--ink);border:1px solid var(--accent-border)}
+.cost-highlight small{color:#785c52}
+.cost-highlight b{display:block;font-size:38px;margin-top:4px;color:var(--accent-ink)}
+.commercial-flow{margin-top:6px}
+.constraint-grid{margin-top:20px}
+.constraint-grid .card{padding:18px}
+.business-section-title{margin:24px 0 10px}
+.business-section-title:first-child{margin-top:0}
+.defense-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.defense-list>div{display:grid;grid-template-columns:40px 1fr;column-gap:12px;padding:15px 18px;border-radius:16px;border:1px solid var(--line);background:#fff}
+.defense-list>div:last-child{grid-column:1/-1}
+.defense-list span{grid-row:1/3;color:var(--accent);font-weight:900}
+.defense-list h3,.defense-list p{margin:0}
+.defense-list p{font-size:14px;color:var(--muted)}
+.slide[data-index="26"] .slide-shell{width:min(1700px,100%);padding-left:40px;padding-right:40px}
+.funnel{display:flex;align-items:stretch;justify-content:center;gap:6px;padding-right:54px}
+.funnel>div{position:relative;isolation:isolate;flex:1;padding:36px 22px 22px 26px;background:var(--line);border:0;clip-path:polygon(0 0,94% 0,100% 50%,94% 100%,0 100%,6% 50%);display:flex;flex-direction:column;justify-content:flex-start;min-height:260px}
+.funnel>div::before{content:"";position:absolute;z-index:-1;inset:1px;background:#fff;clip-path:inherit}
+.funnel>div:first-child{clip-path:polygon(0 0,94% 0,100% 50%,94% 100%,0 100%)}
+.funnel b{color:var(--accent);font-size:15px}
+.funnel span{font-size:19px;font-weight:800;margin:8px 0}
+.no-grid .card{display:flex;align-items:center;gap:14px}
+.no-grid .card span{font-size:12px;color:var(--accent);font-weight:900}
+.no-grid .card h3{font-size:18px;margin:0}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.principles>div{padding:18px;border-radius:18px;background:#fff;border:1px solid var(--line);min-height:175px}
+.principles span{font-size:11px;color:var(--accent);font-weight:900}
+.principles h3{font-size:18px}
+.principles p{font-size:14px;color:var(--muted)}
+.final-hero{position:relative;width:100%;max-width:1180px;margin:72px auto 0;padding:38px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:0 18px 50px rgba(68,48,38,.06)}
+.final-title-card{position:relative;width:100%;max-width:1180px;margin:12px auto 0;padding:24px 30px 28px;border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 12px 34px rgba(68,48,38,.05)}
+.final-title-card h1{margin:0;max-width:1050px}
+.final-title-card strong{color:var(--accent);font-weight:900}
+.final-title-arrow{position:absolute;left:50%;bottom:-57px;width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--accent-border);border-radius:50%;background:var(--accent);color:#fff;font-size:22px;font-weight:800;line-height:1;transform:translateX(-50%);box-shadow:0 8px 18px rgba(255,122,89,.22);z-index:2}
+.final-label{display:block;margin-bottom:14px;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.14em}
+.final-lead{margin:0 0 8px;color:var(--muted);font-size:16px;text-align:center}
+.final-hero h2{max-width:1000px;margin:0;font-size:31px;line-height:1.48}
+.final-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:28px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fcfaf8}
+.final-path span{position:relative;padding:13px 18px;text-align:center;font-size:13px;font-weight:800;border-left:1px solid var(--line)}
+.final-path span:first-child{border-left:0}
+.final-path span:not(:last-child)::after{content:"";position:absolute;z-index:1;right:-5px;top:50%;width:9px;height:9px;background:#fcfaf8;border-top:1px solid var(--line);border-right:1px solid var(--line);transform:translateY(-50%) rotate(45deg)}
+.final-connector{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;max-width:1180px;margin:24px auto;color:var(--muted);font-size:12px;letter-spacing:.08em}
+.final-connector span{height:1px;background:var(--line)}
+.final-value{position:relative;width:100%;max-width:1180px;margin:0 auto;padding:26px 28px 28px;border:1px solid var(--line);border-radius:20px;background:#fff;box-shadow:0 14px 34px rgba(68,48,38,.05)}
+.final-value>p{margin:0 0 8px;color:var(--muted);font-size:16px;text-align:center}
+.final-value h3{max-width:980px;margin:0;font-size:25px;line-height:1.55;color:var(--accent)}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.check-grid .card{min-height:185px}
+code{background:#f2ece8;padding:2px 6px;border-radius:6px}
+.control-tag{display:inline-flex;align-items:center;margin-left:8px;padding:3px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);font-size:10px;font-weight:900;letter-spacing:.04em;vertical-align:middle}
+.input-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.input-examples span{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-size:12px;line-height:1.3}
+.input-examples-label{display:block;margin-top:18px;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.08em}
+.stagebar{position:fixed;left:50%;top:16px;transform:translateX(-50%);display:flex;flex-direction:row;gap:8px;padding:8px;background:rgba(255,253,251,.88);backdrop-filter:blur(18px);border:1px solid rgba(220,208,198,.85);border-radius:18px;box-shadow:0 12px 40px rgba(71,54,44,.12);z-index:20}
+.stage-item{position:relative;display:flex;align-items:center;justify-content:center;padding:8px;border-radius:12px;color:#9aa1ab;transition:.25s}
+.stage-item:not(:last-child)::after{content:"";position:absolute;top:50%;right:-8px;width:8px;height:1px;background:#d7d2ce;pointer-events:none}
+.stage-item span{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#f3ece8;font-size:11px;font-weight:900}
+.stage-item b{display:none}
+.stage-item.active{background:var(--accent-soft);color:var(--ink)}
+.stage-item.active span{background:var(--accent);color:#fff}
+.nav{position:fixed;right:28px;bottom:26px;display:flex;gap:8px;z-index:30}
+.nav button,.fullscreen-btn{width:44px;height:44px;border:1px solid var(--line);background:rgba(255,255,255,.9);border-radius:14px;cursor:pointer;color:var(--ink);box-shadow:0 8px 24px rgba(71,54,44,.08)}
+.fullscreen-btn{position:fixed;left:28px;bottom:26px;z-index:30}
+.nav button:hover,.fullscreen-btn:hover{border-color:#f1b7a4;color:var(--accent)}
+.progress{position:fixed;left:0;right:0;top:0;height:4px;background:rgba(0,0,0,.04);z-index:40}
+.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#ffb49f);transition:width .25s}
+@media(max-width:1100px){
+  .slide{padding:0 16px}
+  .slide-shell{width:100%;padding:50px 38px}
+  h1{font-size:34px;margin:12px 0 18px}
+  h3{font-size:18px} p{font-size:14px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .funnel>div{min-height:210px}
+}
+@media(max-width:700px){
+  .slide{padding:0 10px}
+  .slide-shell{width:100%;padding:40px 20px}
+  .grid-2,.grid-3,.grid-4,.checklist,.example-scale,.metric-grid,.cost-highlight,.defense-list,.principles,.check-grid,.transition,.before-after,.evaluator-story{grid-template-columns:minmax(0,1fr)}
+  .followup-examples{grid-template-columns:minmax(0,1fr)}
+  .eval-spec{grid-template-columns:1fr 1fr}
+  .eval-process{grid-template-columns:minmax(0,1fr)}
+  .eval-process-arrow{justify-self:center;transform:rotate(90deg)}
+  .eval-sample{align-items:flex-start;flex-direction:column}
+  .eval-sample span{text-align:left}
+  .final-hero{margin-top:66px;padding:26px 20px}
+  .final-title-card{padding:20px 22px 24px;border-radius:18px}
+  .final-title-card h1{font-size:29px}
+  .final-title-arrow{bottom:-52px;width:38px;height:38px;font-size:20px}
+  .final-hero h2{font-size:24px}
+  .final-path{grid-template-columns:1fr 1fr}
+  .final-path span:nth-child(3){border-left:0;border-top:1px solid var(--line)}
+  .final-path span:nth-child(4){border-top:1px solid var(--line)}
+  .final-path span::after{display:none}
+  .final-value{padding:22px 20px}
+  .final-value h3{font-size:21px}
+  .flow,.funnel,.hypothesis,.wide-card{flex-direction:column;align-items:stretch}
+  .flow-arrow{align-self:center;transform:rotate(90deg)}
+  .funnel{padding-right:42px}
+  .slide[data-index="26"] .slide-shell{width:100%;padding:40px 20px}
+  .funnel>div,.funnel>div:first-child{clip-path:none;min-height:0;border:1px solid var(--line);border-radius:18px;background:#fff}
+  .funnel>div::before{display:none}
+  .stagebar{left:50%;right:auto;top:10px;transform:translateX(-50%);padding:6px;border-radius:16px;gap:4px}
+  .stage-item{padding:6px}
+  .fullscreen-btn{left:auto;right:12px;bottom:88px}
+  .slide-top{flex-wrap:wrap;gap:10px}
+  h1{font-size:30px;overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.product-hero{min-height:100svh;padding:0 36px;overflow:hidden}
+.product-hero-inner{width:min(1500px,100%);min-height:100svh;margin:auto;padding:64px 64px 0;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;gap:clamp(40px,5vw,88px);border-bottom:1px solid var(--line)}
+.product-brand{display:flex;align-items:center;gap:18px;margin-bottom:42px}
+.product-icon-placeholder{width:78px;height:72px;flex-shrink:0;display:block;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(114,82,170,.16))}
+.product-brand-name{font-size:32px;font-weight:650;letter-spacing:-.04em}
+.product-brand-name span{display:block;margin-top:4px;font-size:17px;font-weight:500;letter-spacing:0;color:var(--muted)}
+.product-hero h1{font-size:clamp(38px,4.1vw,60px);line-height:1.35;letter-spacing:-.04em;margin:0 0 22px;font-weight:650}
+.product-hero h1 span{color:var(--accent)}
+.product-hero-copy>p{color:var(--muted);font-size:18px;line-height:1.7;margin:0}
+.product-hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:30px}
+.product-web-cta{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;background:var(--accent);color:#fff;font-size:15px;font-weight:800;text-decoration:none;box-shadow:0 14px 30px rgba(255,125,95,.22);transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.product-web-cta:hover{transform:translateY(-1px);background:#ff6f50;box-shadow:0 18px 38px rgba(255,125,95,.28)}
+.product-web-cta:focus-visible{outline:3px solid rgba(255,125,95,.28);outline-offset:3px}
+.product-web-cta span{font-size:18px;line-height:1}
+.product-app-note{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,253,251,.78);color:var(--muted);font-size:13px;font-weight:700}
+.product-device{width:88%;max-width:560px;height:72svh;max-height:790px;margin:0;align-self:end;justify-self:center;display:block}
+.product-phone{position:relative;width:100%;height:100%;min-width:0;padding:0;border:0;background:transparent;overflow:visible;box-shadow:none}
+.product-phone::before{display:none}
+.product-phone img{display:block;width:100%;height:100%;border-radius:0;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 28px 38px rgba(48,37,65,.18))}
+@media(max-width:1100px){.product-hero{padding:0 16px}.product-hero-inner{padding:56px 38px 0;gap:36px}.product-device{height:70svh}}
+@media(max-width:700px){.product-hero{padding:0 10px}.product-hero-inner{grid-template-columns:1fr;min-height:auto;padding:104px 20px 0;gap:36px}.product-brand{margin-bottom:28px;gap:14px}.product-icon-placeholder{width:63px;height:58px}.product-brand-name{font-size:28px}.product-hero-copy>p{font-size:16px}.product-hero-actions{margin-top:24px}.product-web-cta{min-height:46px;padding:0 18px}.product-app-note{font-size:12px}.product-device{width:88%;max-width:430px;height:68svh;max-height:740px}.product-phone{padding:0;border:0;border-radius:0}.product-phone img{border-radius:0}}
+.portfolio-back{position:fixed;z-index:100;top:18px;left:22px;display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border:1px solid rgba(234,223,215,.92);border-radius:999px;background:rgba(255,253,251,.9);box-shadow:0 8px 26px rgba(74,54,42,.09);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--ink);font-size:13px;font-weight:750;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.portfolio-back:hover{transform:translateY(-1px);border-color:var(--accent-border);box-shadow:0 10px 30px rgba(74,54,42,.13)}
+.portfolio-back:focus-visible{outline:3px solid rgba(255,125,95,.28);outline-offset:3px}
+.is-embedded .portfolio-back{display:none!important}
+@media(max-width:700px){.portfolio-back{top:12px;left:12px;min-height:38px;padding:0 13px;font-size:12px}}
+</style>
+</head>
+<body>
+
+<a class="portfolio-back" href="../../" aria-label="返回全部项目">← 全部项目</a>
+
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2z"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 8 4-8 4-8-4 8-4z"/><path d="m4 12 8 4 8-4"/><path d="m4 17 8 4 8-4"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2l1.4 5.6L19 9l-5.6 1.4L12 16l-1.4-5.6L5 9l5.6-1.4L12 2z"/><path d="m19 15 .8 3.2L23 19l-3.2.8L19 23l-.8-3.2L15 19l3.2-.8L19 15z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.8-4 3-6 6-6s5.2 2 6 6"/><path d="M14 15c2.8-.5 5 1 6 4"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20 5c-3-3-6-1-8 1-2-2-5-4-8-1-4 4 1 10 8 16 7-6 12-12 8-16z"/></symbol>
+    <symbol id="i-compare" viewBox="0 0 24 24"><path d="M7 4v16"/><path d="m3 8 4-4 4 4"/><path d="M17 20V4"/><path d="m13 16 4 4 4-4"/></symbol>
+    <symbol id="i-strategy" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 2v3M22 12h-3"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+    <symbol id="i-prompt" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m7 10 3 2-3 2M12 15h5"/></symbol>
+    <symbol id="i-memory" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 3v6h6V3M9 14h6"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h7M15 6h5M4 12h3M11 12h9M4 18h9M17 18h3"/><circle cx="13" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="18" r="2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M19 12a7 7 0 0 0-12-5l-3 3M5 12a7 7 0 0 0 12 5l3-3"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20V7"/></symbol>
+    <symbol id="i-cost" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-1-1.8-1.5-3-1.5-2 0-3 1-3 2.4 0 3.6 6 1.7 6 5.2 0 1.4-1.2 2.4-3.2 2.4-1.5 0-2.7-.5-3.6-1.6M12 5v14"/></symbol>
+    <symbol id="i-money" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M7 9H5M19 15h-2"/></symbol>
+    <symbol id="i-moat" viewBox="0 0 24 24"><path d="M4 20h16V9l-4-3-4 3-4-3-4 3z"/><path d="M8 20v-6h8v6M3 4h18"/></symbol>
+    <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4z"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><path d="M9 3h6l6 6v6l-6 6H9l-6-6V9z"/><path d="M8 8l8 8M16 8l-8 8"/></symbol>
+    <symbol id="i-principles" viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+  </defs>
+</svg>
+
+<div class="progress"><span id="progressFill"></span></div>
+<header class="product-hero" aria-label="知己 KnowMe 产品展示">
+  <div class="product-hero-inner">
+    <div class="product-hero-copy">
+      <div class="product-brand">
+        <img class="product-icon-placeholder" src="assets/knowme-brand-orange-custom.png?v=20260916-1" width="1254" height="1254" alt="知己图标：微笑的橙色伙伴">
+        <div class="product-brand-name">知己<span>KnowMe</span></div>
+      </div>
+      <h1>当看不清方向时<br><span>先看清自己</span></h1>
+      <p>懂你的命理知己，陪你看懂命运</p>
+      <div class="product-hero-actions" aria-label="产品体验入口">
+        <a class="product-web-cta" href="https://knowme.llc/" target="_blank" rel="noopener noreferrer">体验 Web 端 <span aria-hidden="true">↗</span></a>
+        <span class="product-app-note">App 端正在开发</span>
+      </div>
+    </div>
+    <figure class="product-device">
+      <div class="product-phone"><img src="assets/knowme-hero-login-phone.png?v=20260912-2" width="886" height="1776" alt="知己 KnowMe 手机登录欢迎页" fetchpriority="high"></div>
+    </figure>
+  </div>
+</header>
+<div class="deck" id="deck">
+
+    <section class="slide" data-stage="1" data-index="1">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">01 · Product Discovery</div>
+          <div class="slide-meta"><span>01 / 29</span></div>
+        </div>
+        <h1>Product Discovery 总流程</h1>
+        <div class="slide-body">
+    <div class="hero-copy">
+      <p class="lead">从一个“AI 命理解读”的机会假设出发，用真实用户行为不断修正产品方向。</p>
+    </div>
+    <div class="flow flow-6">
+      <div class="flow-node"><span>01</span><b>User Evidence</b><small>真实用户问题</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>02</span><b>初始产品假设</b><small>命理 × 自我探索 × AI</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>03</span><b>用户修正</b><small>真实行为推翻预设</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>04</span><b>Product Insight</b><small>真正需求是什么</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>05</span><b>重新定义产品</b><small>一次解读 → 长期陪伴</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>06</span><b>验证与迭代</b><small>用真实行为持续验证</small></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="1" data-index="2">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="slide-meta" style="margin-left:auto"><span>02 / 29</span></div>
+        </div>
+        <h1>在这个项目中，我创造的价值</h1>
+        <div class="slide-body">
+    <div class="grid grid-2 value-grid">
+      <div class="card"><div class="num">01</div><h3>重新定义产品方向</h3><p>把一个天然偏“一次性消费”的命理解读工具，重新定义为具有长期关系可能性的个性化陪伴产品。</p><div class="mini-flow">第一次理解 → 现实追问 → Context 累积 → 再次回来 → 长期关系</div></div>
+      <div class="card"><div class="num">02</div><h3>定义 AI 的能力边界</h3><p>把“确定性事实”从 LLM 中剥离：出生资料 → 确定性引擎 → 命盘事实 → 规则解释 → LLM 负责解读与表达。</p></div>
+      <div class="card"><div class="num">03</div><h3>真实用户行为推动迭代</h3><p>从固定问题转向动态追问，不把“给更多问题”当答案，而是帮助用户把报告结论映射回现实处境。</p></div>
+      <div class="card"><div class="num">04</div><h3>建立可验证的 AI 质量框架</h3><p>不优先评价“像不像、好不好听”，先验证事实是否真实存在，并继续验证 Evaluator 本身。</p></div>
+      <div class="card"><div class="num">05</div><h3>把模型能力变成产品系统</h3><p>Context 分层 · Prompt 模块化 · Memory 生命周期 · Fallback · Trust Boundary · Knowledge Governance · Eval</p></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="1" data-index="3">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">01 · Product Discovery</div>
+          <div class="slide-meta"><span>03 / 29</span></div>
+        </div>
+        <h1>为什么做 KnowMe，而不是一个 AI 算命产品</h1>
+        <div class="slide-body">
+    <div class="hypothesis" style="margin:0 0 24px">
+      <span class="label">初始产品假设</span>
+      <p>命理天然具有自我探索属性，而 AI 可以降低个性化解读成本。</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card icon-card"><div class="icon-bubble">?</div><h3>天然兴趣</h3><p>对命理、八字、星盘和未知探索感兴趣。</p></div>
+      <div class="card icon-card"><div class="icon-bubble">◎</div><h3>长期观察</h3><p>过往占星经验让我意识到，用户想“预测未来”，往往源于对不确定性的担忧。但未来也由当下的选择与行动塑造。因此，产品应帮助用户先理解自己，把对未来的不安转化为当下更清晰的选择，逐步走向想要的未来。</p></div>
+      <div class="card icon-card"><div class="icon-bubble">AI</div><h3>AI 模型发展</h3><p>AI 的生成与对话能力，让低成本、个性化地探索自我成为可能。</p></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="1" data-index="4">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">01 · Product Discovery</div>
+          <div class="slide-meta"><span>04 / 29</span></div>
+        </div>
+        <h1>真实用户修正了最初假设</h1>
+        <div class="slide-body">
+    <div class="insight-card" style="margin-bottom:24px">
+      <div class="eyebrow">Product Insight</div>
+      <h3>这些提问提示：用户不仅关心预测，也在寻求当下的选择确认与支持。</h3>
+      <div class="pill-row"><span>选择确认</span><span>情绪支持</span><span>现实决策</span></div>
+    </div>
+    <div class="grid grid-2 split evidence-to-definition">
+      <div>
+        <div class="eyebrow">真实提问 · 原话节选</div>
+        <div class="question-stack">
+          <div class="question-group"><small>寻求确定感</small><div class="question-bubble"><p>“但是我现在停下来的话，不找实习了吗？就业怎么办”</p><p>“决定放弃考研先养好自己的决定做对了吗”</p><p>“今年9月我的工作会有变动吗”</p></div></div>
+          <div class="question-group"><small>自我探索</small><div class="question-bubble"><p>“工作的时候，时间安排有问题，说明我整个人在规划和策略上都有问题。比方说，我的日程表就没做好。”</p></div></div>
+          <div class="question-group"><small>城市选择</small><div class="question-bubble"><p>“上海是喜金水木 杭州喜木水火 哪个更适合我发展一些啊”</p></div></div>
+          <div class="question-group"><small>人生意义探索</small><div class="question-bubble"><p>“希望看到人生各种脉络 想从还不确定当中超脱出来 生何生，死何死 死后当真有魂灵吗？”</p></div></div>
+        </div>
+      </div>
+      <div class="evidence-arrow" aria-hidden="true">→</div>
+      <div>
+        <div class="definition">
+          <b>为什么重新定义 KnowMe</b>
+          <ol class="redefinition-steps">
+            <li><h3>初始产品假设</h3><p>命理天然具有自我探索属性，而 AI 可以降低个性化解读成本。</p></li>
+            <li><h3>真实用户修正假设</h3><p>用户不只想获得解读，还会围绕就业、城市选择、自我困惑和人生意义继续提问。</p></li>
+            <li><h3>Product Insight</h3><p>用户表面在问命理，实际是在不确定状态下寻找确定感、自我解释和下一步行动。</p></li>
+            <li><h3>重新定义 KnowMe</h3><p>不是替用户预测未来，而是通过稳定、个性化的解释框架，帮助用户理解自己，并把自我认知转化为现实中的判断与行动。</p></li>
+          </ol>
+          <p class="redefinition-note">不是一开始就知道正确答案，而是带着假设进入市场，再通过真实用户反馈修正产品方向。</p>
+          <strong class="redefinition-result">最懂你的命理人生陪伴者</strong>
+        </div>
+      </div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="1" data-index="5">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">01 · Product Discovery</div>
+          <div class="slide-meta"><span>05 / 29</span></div>
+        </div>
+        <h1>三类核心需求假设</h1>
+        <div class="slide-body">
+    <div class="notice" style="margin-bottom:24px">基于上述用户问答，我初步归纳出以下三类<strong>需求假设</strong>。由于用户样本量有限，它们尚不是经过充分验证的稳定用户画像。</div>
+    <div class="grid grid-3 persona-grid">
+      <div class="persona"><span class="tag">确定感</span><h3>在选择中寻求支持</h3><p><b>场景：</b>迷茫，不知道下一步怎么走</p><p><b>真正需要：</b>一个有分量的外部视角</p><p><b>报告之后：</b>仍需结合具体处境，讨论眼前的选择。</p></div>
+      <div class="persona"><span class="tag">自我理解</span><h3>自我反思转向者</h3><p><b>场景：</b>想理解自己为什么会这样</p><p><b>真正需要：</b>一面能照见行为模式的镜子</p><p><b>报告之后：</b>需要用真实经历检视解读，在追问中逐步理解自己。</p></div>
+      <div class="persona"><span class="tag">长期探索</span><h3>意义驱动探索者</h3><p><b>场景：</b>对人生与生命本身的探寻</p><p><b>真正需要：</b>一个能长期对话的伙伴</p><p><b>报告之后：</b>新的经历会带来新的问题，探索不会在一次解读后结束。</p></div>
+    </div>
+    <div aria-hidden="true" style="display:flex;justify-content:center;margin:20px 0;color:var(--accent);font-size:32px;line-height:1">↓</div>
+    <div class="notice" style="margin-top:0"><b>共同指向：需求不会随着报告交付而结束。</b><br>如果这些假设成立，报告只是理解自己的起点。用户还需要结合当下处境继续追问，并在经历变化后重新理解与调整——这正是一次静态报告难以承接的部分。</div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="1" data-index="6">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">01 · Product Discovery</div>
+          <div class="slide-meta"><span>06 / 29</span></div>
+        </div>
+      <h1>从一次解读，到持续对话</h1>
+        <div class="slide-body">
+    <p style="margin:0 0 24px">因此，产品需要从“一次性交付解读”延伸到“承接后续问题”。以下是围绕持续解释、情绪支持与上下文延续提出的体验方向，是否能形成长期陪伴，仍需进一步验证。</p>
+    <div class="grid grid-3">
+      <div class="card journey-card"><div class="journey-icon">◷</div><h3>人生节点的陪伴顾问</h3><blockquote>“大运换柱了、流年到了，它会提醒我。”</blockquote><blockquote>“站在人生的岔路口，它会陪我理清选择，找到适合自己的方向。”</blockquote><div class="capability">时间线感知 + 主动触达</div></div>
+      <div class="card journey-card"><div class="journey-icon">♡</div><h3>有命理视角的情绪出口</h3><blockquote>“我焦虑的时候有个地方可以说。”</blockquote><div class="capability">稳定人格 + 安全边界 + 随时可达</div></div>
+      <div class="card journey-card"><div class="journey-icon">☰</div><h3>有记忆的长期对话伙伴</h3><blockquote>“它记得我是谁，也记得我上次说什么。”</blockquote><div class="capability">恒定身份 Context + 连续对话 + 状态更新</div></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="2" data-index="7">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">02 · Product Strategy</div>
+          <div class="slide-meta"><span>07 / 29</span></div>
+        </div>
+        <h1>如何承接持续对话：KnowMe 的定位探索</h1>
+        <div class="slide-body">
+    <div class="bottom-points" style="margin:0 0 24px">
+      <span>稳定、结构化、具有个人相关性的命理视角</span>
+      <span>第一次使用就能产生连接感</span>
+      <span>天然时间线带来再次回来的理由</span>
+      <span>建议中肯、可执行 → 可能持续追问</span>
+    </div>
+    <div class="comparison">
+      <div class="comparison-head"><span>维度</span><span>通用陪伴 AI</span><span class="accent-text">KnowMe</span></div>
+      <div><b>冷启动 Context</b><span>主要依赖用户主动表达</span><span>首次即可获得结构化个人 Context</span></div>
+      <div><b>稳定身份层</b><span>场景变化，依赖对话逐步建立</span><span>出生资料形成稳定 Context Anchor</span></div>
+      <div><b>现实状态层</b><span>从历史对话中推断</span><span>结合当前问题持续更新</span></div>
+      <div><b>基础事实</b><span>依赖上下文生成</span><span>确定性计算，可重复生成</span></div>
+      <div><b>个性化成本</b><span>随对话逐渐积累</span><span>首次交互即可启动个性化</span></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="2" data-index="8">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">02 · Product Strategy</div>
+          <div class="slide-meta"><span>08 / 29</span></div>
+        </div>
+        <h1>核心产品定位：从一次解读到长期陪伴</h1>
+        <div class="slide-body">
+    <div class="transition positioning-transition">
+      <div><small>旧产品</small><b>一次解读 → 结束</b></div>
+      <div class="big-arrow" aria-hidden="true">→</div>
+      <div><small>KnowMe</small><b>第一次理解 → 现实追问 → Context 累积 → 再次回来 → 长期关系</b></div>
+    </div>
+    <h2 class="eyebrow" style="margin:0 0 16px">支撑长期陪伴的三项策略</h2>
+    <div class="grid grid-3 reasons">
+      <div class="card"><div class="num">01</div><h3>避免内容同质化</h3><p>同类一次性命理解读产品较多，内容生成容易同质化。</p></div>
+      <div class="card"><div class="num">02</div><h3>不只比拼报告生成能力</h3><p>基础模型能力持续提升，单纯依赖“生成一份更好的报告”难以形成长期差异。</p></div>
+      <div class="card"><div class="num">03</div><h3>持续积累对用户的理解</h3><p>用户第一次愿意输入出生信息、现实困境并有效对话，本身已形成稀缺 Context。</p></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="2" data-index="9">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">02 · Product Strategy</div>
+          <div class="slide-meta"><span>09 / 29</span></div>
+        </div>
+        <h1>MVP 阶段：只优先验证三个问题</h1>
+        <div class="slide-body">
+    <div class="mvp-list">
+      <div class="mvp-item"><div class="mvp-num">问题1</div><div><h3>第一次使用时，它能不能快速“理解我”？</h3><p>出生信息 → 稳定结构化 Context → 确定性命盘事实作为第一层用户信息 → 降低冷启动“自我介绍成本”。</p></div></div>
+      <div class="mvp-item"><div class="mvp-num">问题2</div><div><h3>它说的话能不能可信？</h3><p>命理 + LLM 容易产生“高可信幻觉”，因此模型引用的事实必须真实存在。</p></div></div>
+      <div class="mvp-item"><div class="mvp-num">问题3</div><div><h3>用户看完报告后，为什么还要继续留下？</h3><p>关键是把报告里的抽象结论继续转化成现实生活中的问题，推动动态追问与长期 Context。</p></div></div>
+    </div>
+    <div class="not-now"><b>暂不优先：</b>长期 Memory · 主动提醒 · 更多命理体系 · 大规模知识库 · 主动 Agent。后文涉及这些能力时，展示的是设计边界与后续方向，不代表已在 MVP 中验证。</div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="2" data-index="10">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">02 · Product Strategy</div>
+          <div class="slide-meta"><span>10 / 29</span></div>
+        </div>
+        <h1>六项关键设计，回应三个 MVP 问题</h1>
+        <div class="design-question"><b>从问题进入设计：每项策略都有明确目标，并在后续页面逐项展开。</b></div>
+        <div class="slide-body">
+          <div class="strategy-map">
+            <div class="card"><div class="num">01</div><h3>事实与解释分离</h3><p>让确定性引擎负责事实，LLM 负责解释与表达。</p></div>
+            <div class="card"><div class="num">02</div><h3>恒定层 + 易变层</h3><p>以稳定身份背景降低冷启动成本，用现实处境延续对话。</p></div>
+            <div class="card"><div class="num">03</div><h3>AI 行为设计</h3><p>用 Prompt 规则、Memory、Structured Rules 与可控表达，定义稳定的系统行为。</p></div>
+            <div class="card"><div class="num">04</div><h3>Trust Boundary</h3><p>区分事实、推测与建议，建立信任但不替用户决策。</p></div>
+            <div class="card"><div class="num">05</div><h3>事实优先的 Eval</h3><p>先验证是否引用了错误事实，再评价表达是否流畅。</p></div>
+            <div class="card"><div class="num">06</div><h3>动态追问</h3><p>把报告结论继续映射为与现实处境相关的下一步问题。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-stage="3" data-index="11">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>11 / 29</span></div>
+        </div>
+        <h1>关键设计一：把“确定性事实”和“模型解释”拆开</h1>
+        <div class="design-question"><b>对应问题2：提高回答的可信度与精准度</b></div>
+        <div class="principle-banner" style="margin:0 0 24px">原则：<strong>算事实 / 写解读分离。LLM 不负责重新“发明”事实。</strong></div>
+        <div class="slide-body">
+    <div class="system-overview">
+      <div class="problem-box">
+        <div class="eyebrow">如果全部交给 LLM</div>
+        <ul class="big-list"><li>事实容易算错</li><li>Prompt 不稳定</li><li>幻觉难以控制</li><li>同一输入可能出现不同基础事实</li></ul>
+      </div>
+      <div class="system-cause"><div>因此，将事实计算与模型解释分离，用事实和规则约束生成</div><span aria-hidden="true">↓</span></div>
+      <div class="system-design-card">
+      <div class="solution-box">
+        <div class="eyebrow">系统拆分 · 降低幻觉风险的架构设计</div>
+        <p class="system-design-intro">确定性引擎提供基础事实，规则与分层 Prompt 约束解释；关系与时间层承接后续对话和陪伴。</p>
+        <div class="system-journey">
+          <section class="system-stage"><h3>事实层 · 确定性计算<small>从用户意图到个人资料</small></h3><ol><li>判断用户意图</li><li>建立初步连接</li><li>填写个人信息</li></ol></section>
+          <section class="system-stage"><h3>解读层 · LLM<small>生成解读，观察阅读行为</small></h3><ol><li>生成个性化报告</li><li>记录报告阅读深度</li></ol></section>
+          <section class="system-stage"><h3>关系层 · 记忆与身份<small>延续对话，沉淀用户背景</small></h3><ol><li>追问行为与历史问答</li><li>账号绑定与跨设备同步</li><li>建立用户摘要与偏好</li></ol></section>
+          <section class="system-stage"><h3>时间层 · 主动陪伴<small>在相关时间节点再次连接</small></h3><ol><li>流年 / 大运节点触发<br>周期性触达</li></ol></section>
+        </div>
+      </div>
+      <div class="system-foundation">
+        <h3>底层算法与生成链路</h3>
+        <p>为上层流程提供事实计算、规则映射、上下文装配与输出能力。</p>
+        <div class="system-modules">
+          <div class="system-module"><h4>确定性计算引擎</h4><p><code>facts.json</code></p><p>pyswisseph（星盘）/ 四柱八字算法</p><p>命盘、十神、大运流年、相位等由程序计算。</p></div>
+          <div class="system-module"><h4>规则表</h4><p>八字：神煞 / 十神等符号化映射。</p><p>星盘：星座 / 行星 / 宫位 / 相位的含义与组合解读规则。</p></div>
+          <div class="system-module"><h4>分层 Prompt</h4><p><b>静态层：</b>SKILL.md + 人格 + 规则 + 输出模板</p><p><b>动态层：</b>facts.json + 用户问题</p></div>
+          <div class="system-module"><h4>LLM 流式生成</h4><p>SSE 持续传输生成内容。</p></div>
+          <div class="system-module"><h4>Markdown 解析与渲染</h4><p>将生成内容呈现为可阅读的报告。</p></div>
+        </div>
+      </div>
+      <p class="system-note">完整架构方向：长期用户摘要、跨设备同步与主动触达按阶段推进；此图不代表所有模块均已在 MVP 中验证。</p>
+      </div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="3" data-index="12">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>12 / 29</span></div>
+        </div>
+        <h1>关键设计二：建立「恒定层 + 易变层」</h1>
+        <div class="design-question"><b>对应问题1 · 快速理解我 ／ 问题3 · 持续留下</b></div>
+        <div class="quote-box" style="margin:0 0 24px">以恒定层建立初始背景，用易变层承接现实处境与后续追问，<strong>让 KnowMe 持续理解同一个人，而不只记住一份报告。</strong><small style="display:block;margin-top:10px;color:var(--muted);font-size:14px">跨报告长期摘要属于后续设计方向。</small></div>
+        <div class="slide-body">
+    <div class="grid grid-2 context-grid">
+      <div class="context-card stable">
+        <div class="eyebrow">恒定层 · 我是谁</div>
+        <h3>稳定、可重算、不依赖 LLM 记忆</h3>
+        <ul><li>出生资料</li><li>确定性引擎输出</li><li>命盘事实</li><li>基础报告原文</li></ul>
+        <div class="mini-flow">出生资料 → 确定性引擎 → 命盘事实</div>
+      </div>
+      <div class="context-card dynamic">
+        <div class="eyebrow">易变层 · 我最近在经历什么</div>
+        <h3>随现实处境持续更新</h3>
+        <ul><li>最近在烦什么</li><li>同报告下历史回答</li><li>主动补充的现实处境</li><li>跨报告长期摘要</li><li>用户偏好</li></ul>
+      </div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="3" data-index="13">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>13 / 29</span></div>
+        </div>
+        <h1>关键设计三：AI 行为设计——Prompt 不是“提示词”</h1>
+        <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
+        <div class="slide-body">
+    <div class="quote-box" style="margin:0 0 24px">输入层先规范出生资料，Prompt 层负责装配人格、Intent 与领域规则；高风险输出再由独立 <strong>Trust Boundary</strong> 约束。</div>
+    <div class="grid grid-2">
+      <div class="card"><div class="eyebrow">3.1</div><h3>Prompt 规则系统</h3><p>将分层 System Prompt、Intent Prompt 与 Tone Rules 分开维护，用统一人格承接不同用户意图。</p></div>
+      <div class="card"><div class="eyebrow">3.2</div><h3>Memory 生命周期</h3><p>按信息未来是否仍有助于理解用户，决定长期、短期或不存，兼顾连续性与记忆信任。</p></div>
+      <div class="card"><div class="eyebrow">3.3</div><h3>Structured Knowledge Rules</h3><p>把领域知识整理为可审查的规则表，让同一事实跨轮次、跨报告保持一致口径。</p></div>
+      <div class="card"><div class="eyebrow">3.4</div><h3>可控表达</h3><p>允许调整沟通风格与回答直接度，但不改变事实本身的确定性。</p></div>
+    </div>
+    <div class="hard-constraints">
+      <b>Hard Constraints</b>
+      <span>事实必须来自引擎</span><span>禁止伪精确预测</span><span>不补不存在事实</span><span>不确定内容必须作为推测</span>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="3" data-index="14">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>14 / 29</span></div>
+        </div>
+        <h1>3.1 Prompt 规则系统：分层维护，而不是堆成一条提示词</h1>
+        <div class="design-question"><b>对应问题1 · 快速理解我 ／ 问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
+        <div class="notice" style="margin:0 0 24px"><b>输入与规则装配：</b>先用结构化表单填写并校验出生日期、时间和地点，避免格式问题造成计算错误或流程卡死；再根据 Intent 装配对应规则，并以统一 Tone 保持稳定的人格与关系感。</div>
+        <div class="slide-body">
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="eyebrow">分层 System Prompt</div>
+        <h3>规则各自独立维护</h3>
+        <p>人格 / 风格 / 拒绝规则 / 领域规则 / 输出模板分别装配，改风格不触碰领域知识。</p>
+        <p><b>bazi</b>：四柱、十神、五行旺衰、格局、大运、流年</p>
+        <p><b>astrology</b>：行星、星座、宫位、相位（Tropical + Placidus）</p>
+        <p><b>synastry</b>：两人比较盘 + 组合盘</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Intent Prompt</div>
+        <h3>按提问状态选择处理规则</h3>
+        <p><b>没有明确问题：</b>从自我探索报告开始引导。</p>
+        <p><b>有明确问题：</b>直接承接个性化追问，并识别是否属于高风险问题。</p>
+        <p><b>问题模糊：</b>先澄清关键条件，再提供带不确定性标记的试探性回答。</p>
+        <div class="checklist"><span>合并重叠 Intent</span><span>补充真实用户语言</span><span>识别安全风险</span><span>设置独立 Fallback</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Tone Rules</div>
+        <h3>温柔、克制的陪伴者</h3>
+        <p>用户常在迷茫、焦虑或面临选择时来到 KnowMe。人格需要承接情绪，但不能借命理制造权威感与依赖。</p>
+        <p><b>温柔：</b>先理解处境，不评判、不说教，让用户愿意继续表达。</p>
+        <p><b>克制：</b>不夸大确定性、不渲染恐惧，不用“只有我懂你”强化依赖。</p>
+        <p><b>陪伴者：</b>提供视角、问题和行动建议，把重大决定留给用户。</p>
+        <div class="persona-tone"><strong>稳定人格 + 随场景变化的行为规则</strong></div>
+      </div>
+    </div>
+    <div class="hard-constraints"><b>不变项 · Hard Constraints</b><span>事实来自引擎</span><span>不解释内部方法论</span><span>禁止伪精确预测</span><span>推测必须标记</span><span>失败必须降级</span><span>长度由代码保证</span><small><b>Fallback：</b>模型或输出失败时进入降级路径；使用 <code>MIN_CHARS + 续写循环</code>保证长度。<br><b>维护收益：</b>风格、Intent、拒绝规则与领域知识独立修改，影响范围可预测。</small></div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="3" data-index="15">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>15 / 29</span></div>
+        </div>
+        <h1>3.2 Memory：按生命周期管理，而不是全部记住</h1>
+        <div class="design-question"><b>对应问题3 · 持续留下（后续设计）／ 问题2 · 回答可信</b></div>
+        <div class="quote-box" style="margin:0 0 24px">为了让长期对话既能延续、又不越过信任边界，记忆的取舍标准不是“信息有没有出现”，而是<strong>未来是否仍然有助于正确理解用户。</strong></div>
+        <div class="slide-body">
+    <div class="eyebrow" style="margin:0 0 12px">01 · 记忆内容与生命周期</div>
+    <div class="memory-table">
+      <div class="memory-head"><span>Memory</span><span>用途</span><span>生命周期</span></div>
+      <div><b>Birth facts</b><span>身份锚点</span><span>长期</span></div>
+      <div><b>系统识别的长期背景</b><span>个性化</span><span>长期</span></div>
+      <div><b>当前现实困境</b><span>当前对话连续性</span><span>中期</span></div>
+      <div><b>当前情绪状态</b><span>当前响应适配</span><span>短期</span></div>
+      <div><b>AI 自动推断出的性格</b><span>不直接写入长期记忆</span><span>默认不存</span></div>
+    </div>
+    <div class="card" style="margin-top:24px"><div class="eyebrow">02 · 记忆写入与控制</div><h3>长期记忆必须可解释、可控制</h3><p><b>写入：</b>系统从对话中自动识别未来仍有帮助的长期背景，并写入长期 Memory，无需用户逐条确认。</p><p><b>控制：</b>用户可以查看、修改和删除长期 Memory。</p><p><b>敏感信息：</b>采用更高写入阈值，不因一次对话自动沉淀。</p></div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="3" data-index="16">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>16 / 29</span></div>
+        </div>
+        <h1>3.3 Structured Rules：为什么当前优先结构化规则</h1>
+        <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
+        <div class="quote-box" style="margin:0 0 24px">当追问超出原报告的覆盖范围，真正的风险不是模型“答不出来”，而是它会回到预训练知识临场发挥，导致<strong>解释口径在不同轮次和报告间漂移。</strong>因此选择 Structured Rules，是为了获得<strong>跨轮、跨报告的一致性</strong>，而不是让单次回答显得更聪明。</div>
+        <div class="slide-body">
+    <div class="flow" style="margin-top:0">
+      <div class="flow-node"><span>01 · 问题出现</span><b>追问超出原报告</b><small>报告讲事业，用户继续问亲子关系；原报告没有可复用的解释材料。</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>02 · 原有结果</span><b>模型临场发挥</b><small>依赖预训练知识也能回答，但跨轮次会出现口径与人格漂移。</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>03 · 产品决策</span><b>全量注入结构化规则</b><small>模型根据 facts 中真实出现的字段，反查同一套知识规则。</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>04 · 得到结果</span><b>解释稳定且有条件</b><small>报告与追问共享口径，并能先判断条件是否成立，再解释含义。</small></div>
+    </div>
+    <div class="grid grid-2" style="margin-top:28px">
+      <div class="card"><div class="eyebrow">为什么不是 Vector RAG</div><h3>这里需要精确反查，不是语义相似</h3><p>命盘符号和条件已经结构化。向量召回会增加错召回与漏召回的不确定性，而不能替代 facts 的精确匹配。</p></div>
+      <div class="card"><div class="eyebrow">为什么现在可行</div><h3>规则规模可控，并且可缓存</h3><p>三套规则约 80.3K 字，位于静态 Prompt 前缀。持续注入能换取一致性，边际推理成本接近于零。</p></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="3" data-index="17">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>17 / 29</span></div>
+        </div>
+        <h1>如何建立 Structured Rules 并生成链路</h1>
+        <div class="quote-box" style="margin:0 0 24px">规则表的生成，是把古籍与领域资料提炼为包含<strong>知识含义、适用条件和使用边界</strong>的结构化规则，再接入生成链路。</div>
+        <div class="slide-body">
+    <div class="flow" style="margin-top:0">
+      <div class="flow-node"><span>01 · 知识来源</span><b>古籍与领域资料</b><small>八字、星盘、合盘资料，以及 KnowMe 明确选择的产品解释口径。</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>02 · 规则化</span><b>定义含义、条件和限制</b><small>把知识整理为 meaning、key_conditions 与 usage_note。</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>03 · 运行时</span><b>静态全量注入</b><small>规则进入可缓存的 Prompt 前缀；模型只反查 facts 中真实存在的字段。</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node"><span>04 · 输出</span><b>条件化解释</b><small>先判断规则是否成立，再按统一口径生成，并遵守使用边界。</small></div>
+    </div>
+    <div class="grid grid-2" style="margin-top:28px">
+      <div class="card"><div class="eyebrow">一条规则的结构</div><h3>Meaning + Conditions + Usage</h3><p><b>meaning：</b>符号在 KnowMe 中如何解释。<br><b>key_conditions：</b>什么盘面条件下解释成立。<br><b>usage_note：</b>可以讲到什么程度，哪些内容不能延伸。</p></div>
+      <div class="card"><div class="eyebrow">一个实际判断</div><h3>不是看到正财，就输出通用性格</h3><p>模型先检查正财是否真实存在，以及旺衰、藏露、有无制化；条件成立后，才解释它在这个人身上的具体含义。</p><div class="mini-flow">facts → 正财存在 → 条件成立 → 个性化解释</div></div>
+    </div>
+    <div class="card" style="margin-top:24px"><div class="eyebrow">规则的使用边界</div><h3>规则不只提供解释，也约束不能怎么讲</h3><p>没有 facts 支撑的符号不引用；不同盘型不混读；知识覆盖不足时不硬编；争议观点不强行合并；次要信息不扩写成主线。</p></div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="3" data-index="18">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>18 / 29</span></div>
+        </div>
+        <h1>3.4 可控表达：调整沟通风格，不改变事实确定性</h1>
+        <div class="design-question"><b>对应问题2 · 回答可信</b></div>
+        <div class="slide-body">
+    <div class="statement">用户可以控制 <strong>Communication Style</strong>，获得个性化表达；但不能控制 <strong>Epistemic Certainty</strong>，用户偏好不会改变或夸大结论的确定性。</div>
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="eyebrow">style_mode <span class="control-tag">可控</span></div><h3>表达方式</h3>
+        <p>控制回答的语气与措辞偏好，不改变结论本身。</p>
+        <p><b>conservative：</b>“保守一点说 / 别说太满 / 给个参考” → 多用倾向、容易、建议关注。</p>
+        <span class="input-examples-label">用户输入示例</span>
+        <div class="input-examples">
+          <span>“说得温和一点”</span>
+          <span>“不要讲得太绝对”</span>
+          <span>“像朋友一样和我说”</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">response_directness</div><h3>表达直接度</h3>
+        <p>控制结论放多前、铺垫多少，以及信息展开到什么程度。</p>
+        <div class="example-scale" style="grid-template-columns:1fr">
+          <div><span>LOW</span><p>“财星偏弱，整体倾向稳健积累。”</p></div>
+          <div><span>MEDIUM · 默认</span><p>“财运是稳健积累型，35 岁前后可能有提级窗口。”</p></div>
+          <div><span>HIGH</span><p>“33–43 岁值得重点关注职业与财务变化；2026 决策压力更明显。但这不意味着某件事一定发生。”</p></div>
+        </div>
+        <p><strong>边界：</strong>表达可以更直接、更具体，但事实本身的确定性不变。</p>
+      </div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="3" data-index="19">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">03 · AI System Design</div>
+          <div class="slide-meta"><span>19 / 29</span></div>
+        </div>
+        <h1>关键设计四：Trust Boundary——信任越深，产品越不能替用户做决定</h1>
+        <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b><p>为持续陪伴设置事实、推测与决策边界，同时避免用关系依赖换取留存：不强化“只有我懂你”，不鼓励 AI 替代现实关系；危机类内容进入独立安全流程。</p></div>
+        <div class="slide-body">
+    <div class="grid grid-2 trust-grid">
+      <div class="card" style="grid-column:1/-1"><h3>事实边界</h3><p>从事实到建议，表达强度必须随信息层级逐级收敛。</p><div class="trust-flow">
+        <div><b>L0</b><span>计算事实</span><small>可直接陈述</small></div>
+        <div>→</div><div><b>L1</b><span>规则解释</span><small>注明依据</small></div>
+        <div>→</div><div><b>L2</b><span>行为推断</span><small>概率语言</small></div>
+        <div>→</div><div class="strong"><b>L3</b><span>建议</span><small>不可代替决策</small></div>
+      </div><div class="mini-flow stack">只能引用 facts 中真实存在的信息：先看事实 → 再找规则解释</div></div>
+      <div class="card"><h3>推测边界</h3><p>区分“系统知道的事实”和“基于事实的行为推测”；凡是由 LLM 延伸出的判断，都必须明确标注。</p><div class="mini-flow stack">输出提示：以下为 LLM 基于事实的推测，并非系统已知事实。</div><div class="pill-row"><span>【推测】</span><span>可能</span><span>倾向</span><span>往往</span></div></div>
+      <div class="card"><h3>决策边界</h3><p>医疗 / 投资 / 结婚 / 辞职 / 生育等重大决定：帮助整理与分析，但最终选择属于用户。</p></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="4" data-index="22" data-slide-topic="dynamic-followup">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">04 · Iteration &amp; Eval</div>
+          <div class="slide-meta"><span>22 / 29</span></div>
+        </div>
+        <h1>关键设计六：从固定问题到动态追问</h1>
+        <div class="design-question"><b>对应问题3 · 持续留下（待验证迭代）</b><p>把报告结论映射到现实问题；是否能提升追问与复访，仍需验证。</p></div>
+        <div class="slide-body">
+    <div class="iteration-story">
+      <div class="iteration-step before">
+        <span class="label">BEFORE · 固定入口</span>
+        <h3>用通用问题引导用户开始</h3>
+        <div class="evidence"><b>真实行为：</b>固定问题点击率为 0，大部分用户选择自己输入；同时也有用户反馈，首次使用时不知道该问什么。</div>
+        <div class="fixed-question-groups">
+          <div class="fixed-question-group"><b>个人解读</b><span>看懂我的命局</span><span>找到事业方向</span><span>看清人生运势</span></div>
+          <div class="fixed-question-group"><b>关系解读</b><span>完整了解这段关系</span><span>我们适合在一起吗</span><span>TA 对我的感觉</span><span>我们的未来走向</span></div>
+        </div>
+      </div>
+      <div class="iteration-arrow">↓</div>
+      <div class="iteration-step decision">
+        <span class="label">DECISION · 行为洞察</span>
+        <h3>用户缺的不是更多问题，而是下一步</h3>
+        <p>真实提问显示：通用问题无法承接用户当下的关切，需要把报告结论转化成与其现实处境相关的下一步。</p>
+      </div>
+      <div class="iteration-arrow">↓</div>
+      <div class="iteration-step after">
+        <span class="label">AFTER · 动态追问</span>
+        <h3>结合当前 Context 生成推荐问题</h3>
+        <div class="iteration-input-label">系统综合四类信息</div>
+        <div class="dynamic-inputs">
+          <span>当前报告核心结论</span><span>正在阅读的章节</span><span>用户补充的现实处境</span><span>此前已问问题</span>
+          <b>→ 生成当下更相关的追问</b>
+        </div>
+        <div class="followup-examples">
+          <div class="followup-example"><b>理解与校准</b><small>帮助理解或检验报告结论</small><p>为什么我心里已经有答案了，还是不敢行动？</p></div>
+          <div class="followup-example"><b>现实与选择</b><small>把报告结论连接到当前处境</small><p>这种特点会怎样影响我现在的工作选择？</p></div>
+          <div class="followup-example"><b>行动与调整</b><small>帮助识别可执行的下一步</small><p>我怎样判断自己是在谨慎，还是因为害怕拖延？</p></div>
+        </div>
+      </div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="4" data-index="20" data-slide-topic="eval-product">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">04 · Iteration &amp; Eval</div>
+          <div class="slide-meta"><span>20 / 29</span></div>
+        </div>
+        <h1>关键设计五：Eval——不先评价“好不好听”，而是“有没有说错事实”</h1>
+        <div class="design-question"><b>对应问题2 · 回答可信（验证）</b></div>
+        <div class="slide-body">
+    <div class="eval-thesis"><strong>要测的不是“读起来对不对”，而是“引用的盘面是否真实存在”。</strong><br>读感好却引用错盘最危险：它看起来最可信、伤害最大，而且用户几乎无法自己发现。</div>
+    <div class="eval-phase-head"><span class="eval-phase-number">阶段一</span><div><h3>Product Eval</h3><p>评估产品输出有没有引用不存在的盘面事实。</p></div></div>
+    <div class="eval-spec">
+      <div><b>主指标</b><span>事实性错误率</span><small>错误事实引用数 ÷ 全部事实引用数</small></div>
+      <div><b>方法</b><span>抽样人工标注</span></div>
+      <div><b>辅助指标</b><span>Fallback 覆盖率、长度兜底触发率</span></div>
+      <div><b>原则</b><span>能量化检测的约束，不只依赖模型自觉</span></div>
+    </div>
+    <div class="eval-sample"><b>生成 30 份报告，给出真实的事实性错误率</b><span>5 个独立用户样本 × 3 个事实引用 × 2 轮 = 30 个模型输出</span></div>
+    <div class="eval-results">
+      <div><span>检测版本</span><span>四柱事实错误</span><span>十神引用错误</span></div>
+      <div><b>V1 Prompt-only</b><span class="eval-rate">40% （2 / 5）</span><span class="eval-rate">1.6% （6 / 373）</span></div>
+      <div><b>V2 Deterministic Facts + Rules</b><span>0%</span><span>0%</span></div>
+      <div><b>V3 + Output Validator</b><span>0%</span><span>0%</span></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="4" data-index="21" data-slide-topic="eval-evaluator">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">04 · Iteration &amp; Eval</div>
+          <div class="slide-meta"><span>21 / 29</span></div>
+        </div>
+        <h1>关键设计五：Eval——检测器本身也必须被验证</h1>
+        <div class="design-question"><b>对应问题2 · 回答可信（验证）</b></div>
+        <div class="slide-body">
+    <div class="eval-phase-head"><span class="eval-phase-number">阶段二</span><div><h3>Evaluator Eval</h3><p>不直接相信检测结果，先验证检测器能否区分误报与真幻觉。</p></div></div>
+    <div class="eval-sample"><b>沿用同一组 30 个模型输出</b><span>5 个独立用户样本 × 3 个事实引用 × 2 轮</span></div>
+    <div class="eval-process">
+      <div class="eval-process-step"><span>01 · 首轮检测</span><h3>标记 5 份报告错误</h3><p>V2 与 V3 都出现报错。</p></div>
+      <div class="eval-process-arrow">→</div>
+      <div class="eval-process-step"><span>02 · 人工复核</span><h3>5 份全部是误报</h3><p>原因是豁免规则的作用范围写得过窄。</p></div>
+      <div class="eval-process-arrow">→</div>
+      <div class="eval-process-step"><span>03 · 修正与复测</span><h3>误报归零，真幻觉仍可检出</h3><p>修正规则后标记归零，再用 5 个构造幻觉样本验证检出能力。</p></div>
+    </div>
+    <div class="eval-results" style="margin-top:16px">
+      <div><span>检测版本</span><span>第一轮结果</span><span>第二轮结果</span></div>
+      <div><b>V2 Deterministic Facts + Rules</b><span class="eval-rate">误报 5 份报告</span><span>0 误报</span></div>
+      <div><b>V3 + Output Validator</b><span class="eval-rate">误报 5 份报告</span><span>0 误报</span></div>
+    </div>
+    <div class="principle-banner" style="margin:18px 0 0">结果：<strong>量化检测器本身也需要被验证，否则只是把“相信模型”换成“相信一个没测过的正则”。</strong></div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="5" data-index="23">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">05 · Validation &amp; Business</div>
+          <div class="slide-meta"><span>23 / 29</span></div>
+        </div>
+        <h1>目前证明了什么，又还没有证明什么</h1>
+        <div class="slide-body">
+    <div class="metric-grid">
+      <div class="metric"><b>50 人</b><span>参与内测用户</span><small>招募渠道：小红书 + Threads</small></div>
+      <div class="metric"><b>83%</b><span>首次报告生成成功率</span><small>多数用户可以走通核心生成链路</small></div>
+      <div class="metric"><b>33%</b><span>7 日复访率</span><small>出现一定再次使用行为</small></div>
+      <div class="metric"><b>35%</b><span>主动追问率</span><small>50 人中约 18 人，仍属于 Early Signal</small></div>
+      <div class="metric"><b>有</b><span>付费意愿</span><small>有用户主动询问未来收费方式</small></div>
+      <div class="metric"><b>4.9 元</b><span>20 轮高峰成本</span><small>闲置约 2.4 元</small></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="5" data-index="24">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">05 · Validation &amp; Business</div>
+          <div class="slide-meta"><span>24 / 29</span></div>
+        </div>
+        <h1>商业化：先证明价值，再要求身份与付费</h1>
+        <div class="slide-body">
+    <div class="eyebrow business-section-title">商业化路径</div>
+    <div class="flow commercial-flow">
+      <div class="flow-node"><span>01</span><b>匿名免费体验</b><small>降低冷启动摩擦</small></div><div class="flow-arrow">→</div>
+      <div class="flow-node"><span>02</span><b>产生价值</b><small>用户觉得“还想继续用”</small></div><div class="flow-arrow">→</div>
+      <div class="flow-node"><span>03</span><b>身份沉淀</b><small>第二次 / 深度使用建立账号</small></div><div class="flow-arrow">→</div>
+      <div class="flow-node"><span>04</span><b>长期使用</b><small>Context / Memory 累积</small></div><div class="flow-arrow">→</div>
+      <div class="flow-node strong"><span>05</span><b>订阅 / 付费</b><small>边际成本约 4.9 元，下一步验证定价能否覆盖。</small></div>
+    </div>
+    <div class="eyebrow business-section-title">商业化约束</div>
+    <div class="grid grid-4 constraint-grid">
+      <div class="card"><h3>模型商品化</h3><p>单次生成质量越来越难成为壁垒。</p></div>
+      <div class="card"><h3>Token / Memory</h3><p>深度用户的推理成本会持续增长。</p></div>
+      <div class="card"><h3>合规与 Trust</h3><p>医疗、投资、婚姻、辞职、生育等高风险问题。</p></div>
+      <div class="card"><h3>平台依赖</h3><p>模型升级可能快速抹平单纯的能力差异。</p></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="5" data-index="25">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">05 · Validation &amp; Business</div>
+          <div class="slide-meta"><span>25 / 29</span></div>
+        </div>
+        <h1>长期可防御性假设</h1>
+        <div class="design-question"><p>不再是一次查完命理就离开的产品，而是从第一次使用起建立信任、沉淀数据，持续发展长期用户关系；以下仍是 <strong>Defensibility Hypothesis</strong>，而非已经成立的“护城河”。</p></div>
+        <div class="slide-body">
+    <div class="defense-list">
+      <div><span>01</span><h3>Long-term User Context</h3><p>持续使用后形成的结构化 Context、事件与现实问题。</p></div>
+      <div><span>02</span><h3>Vertical Eval Dataset</h3><p>事实错误、高风险回答、Trust Boundary Case、回归测试集。</p></div>
+      <div><span>03</span><h3>Stable Persona + Trust System</h3><p>人格、事实边界、推断边界、决策边界、Memory 边界。</p></div>
+      <div><span>04</span><h3>Relationship / Brand</h3><p>形成“遇到这类问题，我会回来找 KnowMe”的心智。</p></div>
+      <div><span>05</span><h3>Vertical AI Workflow</h3><p>Deterministic Facts → Knowledge Governance → Context → Memory → Dynamic Follow-up → Trust → Eval</p></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="5" data-index="26">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">05 · Validation &amp; Business</div>
+          <div class="slide-meta"><span>26 / 29</span></div>
+        </div>
+        <h1>下一阶段真正需要验证的商业 Funnel</h1>
+        <div class="slide-body">
+    <div class="funnel">
+      <div><b>Acquisition</b><span>谁最愿意来？</span><small>哪一类需求具有更强使用动机，以及如何获取这类用户</small></div>
+      <div><b>Activation</b><span>什么算真正激活？</span><small>生成报告 / 完整阅读 / 第一次追问，哪一步代表真正激活，以及如何推动用户完成激活</small></div>
+      <div><b>Aha</b><span>什么时候第一次觉得“它懂我”？</span><small>长期关系成立前最关键的体验时刻</small></div>
+      <div><b>Retention</b><span>为什么第 7 天还回来？</span><small>动态追问 / Context / Memory / 时间节点提醒</small></div>
+      <div><b>Monetization</b><span>用户最终为什么付钱？</span><small>深度追问 / 长期 Memory / 报告 / 主动提醒 / 持续陪伴</small></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="6" data-index="27">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">06 · Reflection</div>
+          <div class="slide-meta"><span>27 / 29</span></div>
+        </div>
+        <h1>现阶段我不做什么</h1>
+        <div class="slide-body">
+    <div class="statement">AI 产品设计不是“有什么 AI 技术就用什么”，而是先<strong>判断什么问题根本不需要 AI</strong>。现阶段与其继续扩功能，更重要的是<strong>验证核心产品假设</strong>。</div>
+    <div class="grid grid-3 no-grid">
+      <div class="card"><span>01</span><h3>大规模 Vector RAG</h3></div>
+      <div class="card"><span>02</span><h3>复杂 Multi-Agent</h3></div>
+      <div class="card"><span>03</span><h3>社交关系</h3></div>
+      <div class="card"><span>04</span><h3>大量新命理体系</h3></div>
+      <div class="card"><span>05</span><h3>无限长期对话历史</h3></div>
+      <div class="card"><span>06</span><h3>为了“AI 感”加入复杂功能</h3></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="6" data-index="28">
+      <div class="slide-shell">
+        <div class="slide-top">
+          <div class="kicker">06 · Reflection</div>
+          <div class="slide-meta"><span>28 / 29</span></div>
+        </div>
+        <h1>这个项目让我形成的 AI 产品原则</h1>
+        <div class="slide-body">
+    <div class="principles">
+      <div><span>01</span><h3>能算的都不留给模型</h3><p>确定性事实交给程序；LLM 更适合解释、推理、表达、对话。</p></div>
+      <div><span>02</span><h3>静态在前，动态在后</h3><p>Prompt 顺序也是成本参数，提高前缀缓存利用率。</p></div>
+      <div><span>03</span><h3>分层隔离优于巨型 Prompt</h3><p>人格、规则、Intent、安全、结构分别修改和测试。</p></div>
+      <div><span>04</span><h3>装配优于分支</h3><p>根据当前 Intent 只装配需要的规则；无关内容不进入 Prompt，避免让模型在互相冲突的要求中自行选择。</p></div>
+      <div><span>05</span><h3>约束要有单一信源</h3><p>很多冲突不是模型不听话，而是系统自己给了不同要求。</p></div>
+      <div><span>06</span><h3>能用代码验证的，不只依赖模型自觉</h3><p>结构靠 Prompt；长度靠代码；事实靠 Validator；失败靠 Fallback；安全靠 Trust Boundary；评估器也需要独立 Eval。</p></div>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+    <section class="slide" data-stage="6" data-index="29">
+      <div class="slide-shell">
+        <div class="final-title-card">
+          <h1>最终，我希望 KnowMe 证明的<strong>不是</strong>“我会做一个 AI 命理产品”</h1>
+          <span class="final-title-arrow" aria-hidden="true">↓</span>
+        </div>
+        <div class="slide-body">
+    <div class="final-hero">
+      <div class="final-proof">
+        <span class="final-label">WHAT I PROVED</span>
+        <p class="final-lead">而是：</p>
+        <h2>把模糊需求，转化为可被真实用户持续使用的 AI 产品。</h2>
+        <div class="final-path"><span>找到真正问题</span><span>判断能力边界</span><span>设计稳定系统</span><span>验证持续使用</span></div>
+      </div>
+    </div>
+    <div class="final-connector"><span></span><b>落到产品价值</b><span></span></div>
+    <div class="final-value">
+        <span class="final-label">KNOWME'S VALUE</span>
+        <p>KnowMe 最重要的产品价值也不是预测未来。</p>
+        <h3>当一个人面对不确定时，帮助她更清楚地理解自己正在经历什么，提供看待问题的新视角，并找到下一步可以采取的行动。</h3>
+    </div>
+    </div>
+      </div>
+    </section>
+    
+</div>
+<div class="stagebar" id="stagebar"><div class="stage-item" data-stage-item="1"><span>1</span><b>Product Discovery</b></div><div class="stage-item" data-stage-item="2"><span>2</span><b>Product Strategy</b></div><div class="stage-item" data-stage-item="3"><span>3</span><b>AI System Design</b></div><div class="stage-item" data-stage-item="4"><span>4</span><b>Iteration & Eval</b></div><div class="stage-item" data-stage-item="5"><span>5</span><b>Validation & Business</b></div><div class="stage-item" data-stage-item="6"><span>6</span><b>Reflection</b></div></div>
+<button class="fullscreen-btn" id="fullscreenBtn" title="全屏">⛶</button>
+<script>
+const dynamicFollowupSlide=document.querySelector('[data-slide-topic="dynamic-followup"]');
+const productEvalSlide=document.querySelector('[data-slide-topic="eval-product"]');
+const evaluatorEvalSlide=document.querySelector('[data-slide-topic="eval-evaluator"]');
+dynamicFollowupSlide?.before(productEvalSlide,evaluatorEvalSlide);
+const slides=[...document.querySelectorAll('.slide')];
+const stageItems=[...document.querySelectorAll('.stage-item')];
+const progressFill=document.getElementById('progressFill');
+slides.forEach((slide,i)=>{slide.id='slide-'+(i+1)});
+function updateReadingProgress(){
+  const current=slides.reduce((last,slide)=>slide.getBoundingClientRect().top<=innerHeight*.35?slide:last,slides[0]);
+  const stage=current.dataset.stage;
+  stageItems.forEach(x=>x.classList.toggle('active',x.dataset.stageItem===stage));
+  const max=document.documentElement.scrollHeight-innerHeight;
+  progressFill.style.width=(max>0?Math.min(100,Math.max(0,scrollY/max*100)):100)+'%';
+}
+let scheduled=false;
+window.addEventListener('scroll',()=>{
+  if(scheduled)return;
+  scheduled=true;
+  requestAnimationFrame(()=>{updateReadingProgress();scheduled=false});
+},{passive:true});
+window.addEventListener('resize',updateReadingProgress);
+stageItems.forEach(item=>item.addEventListener('click',()=>{
+  const target=slides.find(s=>s.dataset.stage===item.dataset.stageItem);
+  if(target){target.scrollIntoView({block:'start'});history.replaceState(null,'','#'+target.id)}
+}));
+document.getElementById('fullscreenBtn').onclick=()=>{
+  if(!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+  else document.exitFullscreen?.();
+};
+const hashMatch=location.hash.match(/^#slide-(\d+)$/);
+if(hashMatch)document.getElementById('slide-'+hashMatch[1])?.scrollIntoView({behavior:'instant'});
+updateReadingProgress();
+</script>
+</body>
+</html>

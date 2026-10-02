@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="讯飞 SRE Multi-Agent AI 产品经理作品集案例">
+  <title>讯飞 SRE Multi-Agent · AI 产品案例</title>
+  <script>
+    document.documentElement.classList.toggle("is-embedded", new URLSearchParams(location.search).has("embed"));
+  </script>
+  <link rel="stylesheet" href="./styles.css">
+  <style id="pdf-print-visibility-fix">
+    .is-embedded .portfolio-project-bar {
+      display: none !important;
+    }
+
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      html,
+      body,
+      main {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+      }
+
+      .reveal,
+      .reveal.visible,
+      .reveal.is-visible,
+      [class*="reveal"] {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        filter: none !important;
+      }
+
+      a[href]::after {
+        content: "" !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="portfolio-project-bar">
+    <a class="portfolio-back" href="../../" aria-label="返回全部项目">← 全部项目</a>
+    <div><span>SRE Multi-Agent</span><a href="../knowme/">KnowMe</a></div>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="返回顶部"><b>SRE</b><span>Multi-Agent Case</span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">章节</button>
+    <nav id="site-nav" aria-label="案例章节导航">
+      <a href="#overview">01 概览</a>
+      <a href="#problem">02 问题</a>
+      <a href="#hypothesis">03 判断</a>
+      <a href="#planning">04 设计</a>
+      <a href="#scenario">05 验证</a>
+      <a href="#outcome">06 结果</a>
+    </nav>
+  </header>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <main id="top">
+    <section class="hero section-shell" id="overview">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">AI Agent / AIOps / B2B</p>
+        <h1>讯飞 SRE Multi-Agent</h1>
+        <p class="hero-subtitle">从传统运维流程到可信、可控的 AI 运维协作</p>
+        <div class="hero-thesis-grid" aria-label="首屏核心判断">
+          <article>
+            <small>问题</small>
+            <p>传统运维排障信息分散、耗时，并依赖专家经验。</p>
+          </article>
+          <article>
+            <small>我的判断</small>
+            <p>运维需要的不是一个新的问答入口，而是能够跨系统取证、推进任务，同时保留人工控制的 Agent。</p>
+          </article>
+          <article>
+            <small>我的贡献</small>
+            <p>定义 Agent 能力边界，设计任务流、证据链、异常兜底与人工确认机制，并推动原型和研发交付。</p>
+          </article>
+        </div>
+        <div class="scope-tags reveal" aria-label="业务范围">
+          <span>智能诊断</span><span>知识问答</span><span>智能巡检</span><span>告警治理</span>
+        </div>
+      </div>
+      <figure class="product-shot reveal">
+        <img src="./assets/sre-home.jpg" alt="SRE Agent 产品首页，包含产品名称、输入区域和核心能力卡片" width="1280" height="754" fetchpriority="high">
+        <figcaption>真实产品首页截图</figcaption>
+      </figure>
+    </section>
+
+    <section class="section-shell light overview-detail">
+      <div class="section-heading reveal">
+        <span>01</span>
+        <div>
+          <p class="eyebrow">项目概览</p>
+          <h2>我解决了什么问题</h2>
+          <p>把依赖专家经验的复杂运维流程，转化为初级运维人员也能理解、验证和接管的 Agent 协作过程。</p>
+        </div>
+      </div>
+      <div class="overview-summary-grid">
+        <article class="reveal"><small>项目</small><h3>面向运维场景的 SRE Multi-Agent</h3></article>
+        <article class="reveal"><small>角色</small><h3>需求分析、产品方案、PRD、交互原型、Prompt 策略</h3></article>
+        <article class="reveal"><small>范围</small><h3>智能诊断、知识问答、智能巡检、告警治理</h3></article>
+        <article class="reveal"><small>结果摘要</small><h3>推动核心场景从方案设计进入原型验证与研发交付</h3></article>
+      </div>
+    </section>
+
+    <section class="section-shell" id="problem">
+      <div class="section-heading reveal">
+        <span>02</span>
+        <div>
+          <p class="eyebrow">问题定义</p>
+          <h2>为什么传统排障效率低</h2>
+          <p>本章只回答一个问题：用户为什么在排障中花了大量时间，却仍难以快速形成可靠判断。</p>
+        </div>
+      </div>
+
+      <section class="problem-card reveal">
+        <p class="eyebrow">CURRENT SITUATION / 传统排障</p>
+        <h3>用户时间主要消耗在跨系统补齐上下文</h3>
+        <p class="lead">收到异常告警后，用户需要在多个系统中分别查询指标、日志、链路、变更记录和历史案例，再对齐资源对象、环境与时间范围，逐步判断故障影响范围与可能根因。</p>
+        <div class="compact-flow manual-flow" aria-label="传统人工排障流程">
+          <ol>
+            <li><span>01</span>收到异常告警</li>
+            <li><span>02</span>确认对象与影响范围</li>
+            <li><span>03</span>查询指标与日志</li>
+            <li><span>04</span>检查链路与变更</li>
+            <li><span>05</span>比对历史案例</li>
+            <li><span>06</span>推测可能根因</li>
+            <li><span>07</span>决定处理方式</li>
+          </ol>
+        </div>
+        <h3 class="pain-points-title">三类核心阻力</h3>
+        <div class="pain-points">
+          <article>
+            <span>01</span>
+            <h4>信息分散</h4>
+            <p>指标、日志、链路、告警、变更记录和历史案例分散在多个系统，用户需要频繁切换页面和查询工具。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h4>排查耗时</h4>
+            <p>用户需要手动对齐资源对象、时间范围和异常现象，大量时间消耗在信息检索与比对。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h4>依赖专家经验</h4>
+            <p>故障范围与根因判断依赖对业务、服务拓扑和历史问题的经验，经验不足的用户难以快速建立完整排查路径。</p>
+          </article>
+        </div>
+        <blockquote class="problem-conclusion">核心问题不是缺少查询工具，而是用户必须在多个系统之间手动补齐上下文、建立证据关系并完成判断。</blockquote>
+      </section>
+
+      <section class="supporting-proof reveal">
+        <p class="eyebrow">辅助论证 / Agent 趋势</p>
+        <h3>AI 正在从回答问题转向执行任务</h3>
+        <p>相比一次性问答，Agent 更强调围绕一个目标持续推进：理解任务意图，拆解执行步骤，调用工具获取信息，并根据中间结果继续判断下一步。</p>
+        <div class="agent-execution-flow">
+          <span>理解目标</span><span>拆解步骤</span><span>调用工具</span><span>补齐上下文</span><span>推进任务</span>
+        </div>
+        <div class="table-wrap">
+          <table class="evidence-table compact-table">
+            <thead><tr><th>领域</th><th>Agent 承担的任务</th><th>主要价值</th><th>依据</th></tr></thead>
+            <tbody>
+              <tr><td data-label="领域">客服</td><td data-label="Agent 承担的任务">查询、判断、工单流转</td><td data-label="主要价值">缩短处理链路</td><td data-label="依据">流程标准、信息可查、结果可追踪</td></tr>
+              <tr><td data-label="领域">销售</td><td data-label="Agent 承担的任务">信息收集、客户研究、跟进建议</td><td data-label="主要价值">减少重复工作</td><td data-label="依据">任务高频、信息分散、建议可审核</td></tr>
+              <tr><td data-label="领域">研发</td><td data-label="Agent 承担的任务">代码理解、生成、测试</td><td data-label="主要价值">提高研发效率</td><td data-label="依据">目标可拆解、工具可调用、结果可验证</td></tr>
+              <tr class="highlight-row"><td data-label="领域">运维</td><td data-label="Agent 承担的任务">监测、取证、诊断、方案生成</td><td data-label="主要价值">缩短故障处理时间</td><td data-label="依据">多步骤、多工具、多数据源、高上下文依赖</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section class="section-shell light" id="hypothesis">
+      <div class="section-heading reveal">
+        <span>03</span>
+        <div>
+          <p class="eyebrow">产品判断</p>
+          <h2>为什么用 Agent，以及它不该做什么</h2>
+          <p>关键不是把聊天框放进运维平台，而是判断哪些任务适合 Agent 推进，哪些必须保留人工控制。</p>
+        </div>
+      </div>
+
+      <div class="table-wrap reveal">
+        <table class="comparison-table">
+          <thead><tr><th>维度</th><th>通用聊天</th><th>SRE Agent</th></tr></thead>
+          <tbody>
+            <tr><td data-label="维度">任务理解</td><td data-label="通用聊天">依赖单轮文本判断</td><td data-label="SRE Agent">意图识别、参数补全、用户审核</td></tr>
+            <tr><td data-label="维度">数据来源</td><td data-label="通用聊天">通用知识或用户输入</td><td data-label="SRE Agent">指标、日志、告警、链路、变更记录</td></tr>
+            <tr><td data-label="维度">执行过程</td><td data-label="通用聊天">过程难以感知</td><td data-label="SRE Agent">展示任务状态、工具调用与证据来源</td></tr>
+            <tr><td data-label="维度">输出结果</td><td data-label="通用聊天">文字回答为主</td><td data-label="SRE Agent">事实、推断、建议与不确定性分层</td></tr>
+            <tr><td data-label="维度">风险控制</td><td data-label="通用聊天">用户自行判断</td><td data-label="SRE Agent">高风险操作保留人工确认和接管</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="agent-fit-reasons reveal">
+        <h3>Agent 适配运维的三个原因</h3>
+        <article><span>01</span><h4>任务可以拆解</h4><p>排障目标可以拆成告警确认、数据查询、证据比对、根因判断和处理建议。</p></article>
+        <article><span>02</span><h4>需要多工具与多数据源</h4><p>诊断过程天然依赖指标、日志、链路、变更记录、告警规则和历史案例。</p></article>
+        <article><span>03</span><h4>结果可以验证</h4><p>中间证据和最终判断都能被用户基于监控数据、历史案例和人工经验复核。</p></article>
+      </div>
+
+      <section class="boundary-module reveal">
+        <h3>Agent 能力边界</h3>
+        <p>以传统运维流程为基础，结合任务特征、执行风险和结果可验证性，判断 Agent 在不同环节中的介入程度。</p>
+        <div class="table-wrap">
+          <table class="boundary-table">
+            <thead><tr><th>运维环节</th><th>任务特征</th><th>Agent 适配度</th><th>产品决策</th><th>人工介入方式</th></tr></thead>
+            <tbody>
+              <tr><td data-label="运维环节">环境与采集配置</td><td data-label="任务特征">配置相对明确，但错误成本高</td><td data-label="Agent 适配度"><span class="badge mid">中</span></td><td data-label="产品决策">采用规则化辅助</td><td data-label="人工介入方式">用户确认配置、权限和采集范围后生效</td></tr>
+              <tr><td data-label="运维环节">指标与日志监控</td><td data-label="任务特征">持续、稳定、自动执行</td><td data-label="Agent 适配度"><span class="badge low">低</span></td><td data-label="产品决策">保留传统系统</td><td data-label="人工介入方式">日常监控无需人工介入，异常时由用户判断</td></tr>
+              <tr><td data-label="运维环节">告警发现</td><td data-label="任务特征">规则驱动，对实时性要求高</td><td data-label="Agent 适配度"><span class="badge low">低</span></td><td data-label="产品决策">保留传统能力</td><td data-label="人工介入方式">用户负责配置、审核和调整告警规则</td></tr>
+              <tr><td data-label="运维环节">告警诊断</td><td data-label="任务特征">多数据源取证，高度依赖经验</td><td data-label="Agent 适配度"><span class="badge high">高</span></td><td data-label="产品决策">作为核心 Agent 场景</td><td data-label="人工介入方式">Agent 完成取证与分析，用户验证关键判断</td></tr>
+              <tr><td data-label="运维环节">治愈方案生成</td><td data-label="任务特征">需要结合上下文进行推理</td><td data-label="Agent 适配度"><span class="badge high">高</span></td><td data-label="产品决策">Agent 生成，人工确认</td><td data-label="人工介入方式">用户审核、修改并决定是否采纳方案</td></tr>
+              <tr><td data-label="运维环节">自动执行修复</td><td data-label="任务特征">操作风险与权限要求高</td><td data-label="Agent 适配度"><span class="badge mid">中</span></td><td data-label="产品决策">暂不自动执行</td><td data-label="人工介入方式">必须由用户确认并执行，必要时终止或回滚</td></tr>
+              <tr><td data-label="运维环节">巡检异常分析</td><td data-label="任务特征">重复、批量，分析过程可标准化</td><td data-label="Agent 适配度"><span class="badge high">高</span></td><td data-label="产品决策">作为 Agent 重点场景</td><td data-label="人工介入方式">Agent 批量分析，用户复核异常与处理建议</td></tr>
+              <tr><td data-label="运维环节">经验沉淀</td><td data-label="任务特征">信息分散，需要持续整理与复用</td><td data-label="Agent 适配度"><span class="badge high">高</span></td><td data-label="产品决策">Agent 辅助生成</td><td data-label="人工介入方式">用户审核内容后再发布或写入知识库</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <blockquote class="judgement-conclusion reveal">Agent 负责跨系统检索、证据关联、初步分析和任务推进；用户负责验证关键判断，并保留高风险操作的控制权。</blockquote>
+    </section>
+
+    <section class="section-shell" id="planning">
+      <div class="section-heading reveal">
+        <span>04</span>
+        <div>
+          <p class="eyebrow">关键设计</p>
+          <h2>如何让 Agent 可信、可控、可接管</h2>
+          <p>这一章只保留三个关键设计决策，直接说明我如何把抽象的 AI 能力转成可交付的产品机制。</p>
+        </div>
+      </div>
+
+      <div class="design-decision-stack">
+        <article class="decision-card reveal">
+          <small>决策一</small>
+          <h3>让用户进入正确的任务</h3>
+          <dl>
+            <dt>问题</dt><dd>开放式聊天让用户难以理解 Agent 能做什么；模糊意图或缺失上下文可能导致系统进入错误工作流。</dd>
+            <dt>我的判断</dt><dd>先识别并找到用户的高频任务，再进入对应工作流。任务不明确时不应启动工具调用。</dd>
+            <dt>设计机制</dt><dd><ul><li>高频任务引导与展示</li><li>意图识别是否正确</li><li>用户审核任务理解并进行修改和调整</li><li>信息不足时补齐资源对象、环境和时间范围</li><li>意图不明确、信息缺失或信息错误时进入兜底，不启动工具调用</li></ul></dd>
+            <dt>带来的价值</dt><dd>降低任务启动和试探成本，防止错误意图进入后续执行流程。</dd>
+          </dl>
+        </article>
+
+        <article class="decision-card reveal">
+          <small>决策二</small>
+          <h3>让结论可以验证</h3>
+          <dl>
+            <dt>问题</dt><dd>用户无法确认 Agent 是否调用了真实数据，也难以理解结论如何形成；证据不足时，单一答案容易制造不可靠的确定感。</dd>
+            <dt>我的判断</dt><dd>诊断结果必须把数据来源、工具调用、事实、推断和建议分层展示，让用户能够基于证据验证或修正结论。</dd>
+            <dt>设计机制</dt><dd><ul><li>展示数据来源与工具调用状态</li><li>区分事实、推断、根因假设与修复建议</li><li>证据不足时降低确定性，说明缺失信息</li><li>避免无依据输出，减少 AI 幻觉</li></ul></dd>
+            <dt>带来的价值</dt><dd>让用户理解 Agent 为什么得出当前判断，并能够基于证据验证或修正结论，减少 AI 幻觉带来的误判风险。</dd>
+          </dl>
+        </article>
+
+        <article class="decision-card reveal">
+          <small>决策三</small>
+          <h3>让高风险操作可以接管</h3>
+          <dl>
+            <dt>问题</dt><dd>运维操作可能直接影响生产环境。即使 Agent 能够生成修复方案，也不能忽略权限、影响范围和回滚风险。</dd>
+            <dt>我的判断</dt><dd>需要区分低风险分析与高风险执行后果：Agent 可以缩短分析路径，但关键执行权必须保留给用户。</dd>
+            <dt>设计机制</dt><dd><ul><li>查询、汇总和分析允许 Agent 自动推进</li><li>修复方案和脚本由 Agent 生成，用户查看和修改</li><li>脚本执行、配置变更和服务重启必须经过人工确认</li><li>失败或中断时保留已有结果，支持重试、替代路径或人工接管</li></ul></dd>
+            <dt>带来的价值</dt><dd>Agent 负责缩短分析路径，用户负责验证关键判断并决定是否执行。</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell light" id="scenario">
+      <div class="section-heading reveal">
+        <span>05</span>
+        <div>
+          <p class="eyebrow">场景验证</p>
+          <h2>Agent 如何在真实任务中工作</h2>
+          <p>用诊断任务和巡检任务验证同一套机制：任务理解、证据展示、异常兜底和人工控制能否跨场景复用。</p>
+        </div>
+      </div>
+
+      <div class="table-wrap reveal">
+        <table class="audience-table">
+          <thead><tr><th>用户</th><th>主要需求</th><th>Agent 价值</th></tr></thead>
+          <tbody>
+            <tr><td data-label="用户">初级运维</td><td data-label="主要需求">不知道从哪里开始排查</td><td data-label="Agent 价值">提供诊断路径和操作建议</td></tr>
+            <tr><td data-label="用户">高级运维</td><td data-label="主要需求">需要快速聚合证据</td><td data-label="Agent 价值">减少跨系统查询与重复分析</td></tr>
+            <tr><td data-label="用户">运维负责人</td><td data-label="主要需求">需要标准化流程和知识沉淀</td><td data-label="Agent 价值">提高团队诊断一致性</td></tr>
+            <tr><td data-label="用户">平台管理员</td><td data-label="主要需求">关注权限、数据接入和系统稳定性</td><td data-label="Agent 价值">管理 Agent 能力边界</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <section class="scenario-task-module diagnosis-task reveal">
+        <p class="eyebrow">05.1 / 诊断任务</p>
+        <h3>从一次诊断任务看人机如何协作</h3>
+        <p>在主诊断与治愈场景中，Agent 并不替代全部传统系统，而是介入最需要数据关联和经验判断的环节。</p>
+        <div class="scenario-main-chain" aria-label="诊断任务上下游">
+          <article><strong>告警配置</strong><span>传统</span></article>
+          <article><strong>告警发现</strong><span>传统系统＋智能聚合</span></article>
+          <article class="active"><strong>告警诊断</strong><span>Agent</span></article>
+          <article class="risk"><strong>治愈闭环</strong><span>Agent＋用户判断</span></article>
+          <article><strong>文档沉淀</strong><span>Agent 辅助</span></article>
+        </div>
+        <div class="supporting-conditions">
+          <article>
+            <small>上游条件</small>
+            <h4>告警配置与告警发现先完成数据准备</h4>
+            <p>进入告警诊断前，需要确认监控数据、资源关系、访问权限和诊断范围已经准备完整，并把分散告警整理成可进入诊断的异常事件。</p>
+          </article>
+          <article>
+            <small>下游承接</small>
+            <h4>治愈闭环与文档沉淀保留人工判断</h4>
+            <p>Agent 可以生成处理方向和知识初稿，但方案采纳、执行操作和知识发布仍由用户审核与确认。</p>
+          </article>
+        </div>
+        <div class="task-flow diagnosis-flow" aria-label="六步诊断流程">
+          <article><span>01</span><h4>发起任务</h4><p><b>用户</b>从告警详情或首页任务入口发起诊断</p><p><b>产出</b>诊断任务</p></article>
+          <article><span>02</span><h4>确认范围</h4><p><b>Agent</b>识别任务意图，确认资源对象、环境和时间范围</p><p><b>用户</b>审核和调整</p></article>
+          <article><span>03</span><h4>采集证据</h4><p><b>Agent</b>调用指标、日志、链路、告警和变更记录</p><p><b>产出</b>证据链</p></article>
+          <article><span>04</span><h4>展示过程</h4><p><b>Agent</b>持续展示任务状态、工具调用结果与证据来源</p><p><b>用户</b>查看过程</p></article>
+          <article><span>05</span><h4>形成判断</h4><p><b>Agent</b>输出可能根因、可信度与修复方向</p><p><b>产出</b>可验证判断</p></article>
+          <article><span>06</span><h4>用户决策</h4><p><b>用户</b>确认、修改或终止治愈方案</p><p><b>产出</b>处理决策</p></article>
+        </div>
+      </section>
+
+      <section class="scenario-task-module inspection-task reveal">
+        <p class="eyebrow">05.2 / 巡检任务</p>
+        <h3>巡检任务：从巡检计划到异常处置</h3>
+        <p>巡检任务验证同一套机制能否复用到批量、重复、可标准化的运维场景：Agent 降低配置与分析成本，传统系统负责稳定执行，用户保留确认与处置权。</p>
+        <div class="task-flow inspection-flow" aria-label="巡检任务流程">
+          <article><span>01</span><h4>创建计划</h4><p><b>用户</b>选择定时巡检或立即执行</p><p><b>产出</b>巡检计划</p></article>
+          <article><span>02</span><h4>配置对象</h4><p><b>Agent</b>辅助匹配资源对象、脚本和阈值</p><p><b>用户</b>确认范围</p></article>
+          <article><span>03</span><h4>执行任务</h4><p><b>传统系统</b>按计划执行采集</p><p><b>Agent</b>监控任务状态</p></article>
+          <article><span>04</span><h4>发现异常</h4><p><b>Agent</b>识别异常趋势和风险项</p><p><b>产出</b>异常列表</p></article>
+          <article><span>05</span><h4>分析问题</h4><p><b>Agent</b>关联上下文并生成说明</p><p><b>用户</b>复核判断</p></article>
+          <article><span>06</span><h4>用户处置</h4><p><b>用户</b>确认建议、忽略或转入诊断</p><p><b>产出</b>处理结果</p></article>
+        </div>
+      </section>
+    </section>
+
+    <section class="section-shell" id="outcome">
+      <div class="section-heading reveal">
+        <span>06</span>
+        <div>
+          <p class="eyebrow">结果与反思</p>
+          <h2>我最终交付了什么</h2>
+          <p>把跨团队推进和项目结果合并呈现，直接说明产出物、产品结果和仍需验证的部分。</p>
+        </div>
+      </div>
+
+      <section class="outcome-combo reveal">
+        <h3>最终交付与产品结果</h3>
+        <div class="table-wrap">
+          <table class="outcome-table">
+            <thead><tr><th>工作侧</th><th>产出</th></tr></thead>
+            <tbody>
+              <tr><td data-label="工作侧">业务侧</td><td data-label="产出">与运维专家梳理诊断流程、判断依据和风险边界</td></tr>
+              <tr><td data-label="工作侧">产品侧</td><td data-label="产出">定义任务输入、路由规则、执行状态、上下文和异常分支</td></tr>
+              <tr><td data-label="工作侧">交互侧</td><td data-label="产出">通过原型验证证据展示、任务状态和人工确认节点</td></tr>
+              <tr><td data-label="工作侧">Prompt 侧</td><td data-label="产出">形成 Prompt 策略，约束输出结构、证据引用与不确定性表达</td></tr>
+              <tr><td data-label="工作侧">研发协同</td><td data-label="产出">明确工具调用、数据链和上下文传递规则，推动需求进入研发交付</td></tr>
+              <tr><td data-label="工作侧">产品结果</td><td data-label="产出">完成诊断、巡检和知识问答等核心场景的 Multi-Agent 产品规划，建立任务路由、证据展示、人工确认和异常兜底机制</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="result-grid reveal">
+        <article>
+          <h3>待验证的业务指标</h3>
+          <div class="metric-tags verify">
+            <span>诊断任务完成率</span>
+            <span>平均故障定位时间</span>
+            <span>根因判断采纳率</span>
+            <span>修复建议采纳率</span>
+            <span>人工接管率</span>
+            <span>工具调用失败率</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="reflection reveal">
+        <h3>产品反思</h3>
+        <p>第一阶段没有直接开放自动治愈，并不是 Agent 无法生成方案，而是执行权限、影响范围和回滚能力尚未达到可靠自动化的条件。对于高风险运维任务，自动化程度并非越高越好，关键是让用户理解依据、验证判断并保有最终控制权。</p>
+        <p>当前尚缺少长期真实用户行为数据，因此待验证指标仍需在实际业务中持续验证。现阶段产品验证更多来自内部业务需求与专家反馈；下一阶段需要进一步验证不同角色对证据深度、自动化程度和人工确认节点的差异化需求，并根据实际任务完成率、人工接管率和建议采纳率持续调整人机分工。</p>
+      </section>
+
+      <blockquote class="final-quote reveal">这个项目的关键不是把 AI 放进运维平台，而是把不透明的 AI 回答，转化为用户能够理解、验证和接管的任务协作过程。</blockquote>
+    </section>
+  </main>
+
+  <a class="portfolio-next-project" href="../knowme/">
+    <small>下一个项目</small>
+    <span>KnowMe</span>
+    <b>↗</b>
+  </a>
+
+  <script src="./script.js"></script>
+</body>
+</html>

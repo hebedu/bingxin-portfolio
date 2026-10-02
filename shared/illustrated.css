@@ -1,0 +1,66 @@
+:root{--paper:#f6efe2;--ink:#252729;--line:#78856830}
+body{background:var(--paper);font-family:"Songti SC","STSong",serif}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23837657' filter='url(%23n)' opacity='.5' d='M0 0h160v160H0z'/%3E%3C/svg%3E");opacity:.12;mix-blend-mode:multiply;z-index:60}
+.illustrated-site{width:100%;max-width:none;padding:0;margin:0;overflow:hidden}
+.landing-hero{position:relative;width:100%;padding-top:clamp(66px,7vw,118px)}
+.hero-art{display:block;width:100%;height:auto}
+.hero-nav{position:absolute;top:clamp(18px,2.1vw,34px);left:7.2%;right:5.3%;display:flex;align-items:center;justify-content:flex-start;gap:20px;font:500 clamp(10px,1vw,13px)/1.3 ui-monospace,monospace;letter-spacing:.06em}
+.hero-nav a{padding:9px 0}.hero-nav .contact-pill{background:#252c2d;color:#fffaf0;border-radius:30px;padding:13px 27px;margin-left:auto}
+.hero-nav button.contact-pill{border:0;font:inherit;white-space:nowrap;opacity:1}
+.hero-nav a{position:relative;transition:color .2s ease}
+.hero-nav a::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:1px;background:#357672;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.hero-nav a:hover::after,.hero-nav a:focus-visible::after{transform:scaleX(1)}
+.hero-nav a:hover{color:#357672}
+.section-label{font:600 clamp(13px,1.5vw,20px)/1.3 ui-monospace,monospace;letter-spacing:.12em;margin:0}
+.section-dash{display:block;margin:12px 0 18px}
+.about-section{padding:12px 7.2% 65px;display:grid;grid-template-columns:1.12fr 1fr;gap:35px;align-items:center}
+.about-copy .section-label{position:relative;min-height:85px;padding-top:20px}
+.signature{position:absolute;left:23%;top:0;font:italic 90px/.9 "Snell Roundhand","Brush Script MT",cursive;font-weight:400;letter-spacing:-.04em}.signature span{color:#6da08c}
+.about-copy h1{font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(23px,2.7vw,36px);font-weight:500;line-height:1.55;margin:22px 0}
+.about-copy>p:last-child{font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(13px,1.3vw,17px);line-height:1.85;margin:0}
+.about-art{display:block;width:100%;height:auto;aspect-ratio:1363/1154;object-fit:contain;mix-blend-mode:normal;transform:scaleX(-1)}
+.works-section{position:relative;background:var(--paper);padding:64px 7.2% 60px;border-radius:45% 55% 0 0 / 5% 8% 0 0}
+.works-heading{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+.works-year{display:inline-block;font-size:1.45em;line-height:1.15;letter-spacing:.08em}
+.works-heading p{font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(13px,1.5vw,20px);line-height:1.5;margin:0;white-space:nowrap}
+.works-heading>a{font:10px/1.5 ui-monospace,monospace;text-decoration:underline;text-underline-offset:3px;padding-top:16px}.works-heading>a span{font-size:23px;margin-left:14px}
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.work-card{position:relative;min-height:310px;display:flex;flex-direction:column;justify-content:flex-end;padding:30px;overflow:hidden;border-radius:50px 28px 30px 30px / 30px 20px 25px 22px;transition:transform .3s,box-shadow .3s}
+.work-sre{background:linear-gradient(135deg,#d8f5ff 0%,#bcecf9 100%)}
+.work-robot{position:absolute;right:18px;top:18px;z-index:0;width:38%;max-width:160px;height:auto;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 13px 13px rgba(24,128,180,.18));transition:transform .3s ease}
+.work-knowme{background:linear-gradient(135deg,#fff0a3 0%,#ffe27a 100%)}
+.work-art{position:absolute;right:10px;top:9px;width:44%;max-height:190px;object-fit:contain;mix-blend-mode:multiply}
+.work-art{mask-image:linear-gradient(to right,transparent,#000 8%,#000 96%,transparent),linear-gradient(to bottom,#000 85%,transparent);mask-composite:intersect}
+.work-knowme .work-app-icon{mask-image:none;mix-blend-mode:normal;object-fit:contain;width:38%;height:auto;aspect-ratio:1;max-height:160px;top:18px;right:18px;transform:scaleX(-1)!important;transform-origin:center;transition:transform 220ms cubic-bezier(.23,1,.32,1),filter 220ms ease}
+@media(hover:hover) and (pointer:fine){.work-sre:hover .work-robot{transform:translateY(-5px) rotate(2deg)}.work-knowme:hover .work-app-icon{transform:translateY(-5px) scaleX(-1) scale(1.055) rotate(-2deg)!important;filter:drop-shadow(0 13px 14px rgba(226,139,48,.2))}}
+.work-copy{position:static;z-index:1;padding-top:0}.work-category{position:absolute;left:30px;top:30px;z-index:2;font:11px/1.5 ui-monospace,monospace;margin:0;max-width:55%}
+.work-copy h3{font:700 clamp(22px,2.3vw,30px)/1.25 "Helvetica Neue","PingFang SC",sans-serif;margin:0 0 12px}
+.work-copy>p:last-child{font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(13px,1.35vw,18px);line-height:1.65;margin:0}
+.work-link{border-top:1px solid #78856830;margin-top:36px;padding-top:14px;display:flex;justify-content:space-between;align-items:center;font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:13px}.work-link span{font:30px/.8 "Helvetica Neue",Arial,sans-serif}
+.work-card:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:0 12px 24px #4d624315}
+.journey-section{position:relative;aspect-ratio:1672/941;background:var(--paper)}
+.journey-art{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain}
+.journey-heading{position:absolute;left:5%;top:1%;width:clamp(440px,48vw,620px);display:grid;grid-template-columns:auto minmax(36px,1fr) auto;align-items:center;gap:18px;padding:22px 24px;background:#f6efe2;border-radius:20px;box-shadow:0 8px 18px -12px rgba(18,57,47,.28)}
+.journey-heading>.section-dash{margin:0;justify-self:center}
+.journey-heading p{font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(12px,1.4vw,18px);line-height:1.6;margin:0}
+.journey-stop{position:absolute;z-index:1}.journey-stop h3{display:inline-block;background:#efd179;border:1px solid #7c7855;border-radius:4px;padding:7px 10px;font:700 clamp(12px,1.5vw,20px)/1.3 ui-monospace,monospace;margin:0;transform:rotate(-9deg);box-shadow:2px 2px 0 #56745e30}
+.journey-stop p{font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(11px,1.3vw,17px);line-height:1.6;background:#f6efe2;padding:12px 14px;margin:7px 0 0;border-radius:8px;box-shadow:0 12px 18px -11px rgba(18,57,47,.82)}.journey-stop .journey-title{display:block;font-size:1em;font-weight:700;line-height:1.45}.journey-stop .journey-subtitle{display:block;margin-top:3px;font-size:.78em;font-weight:700;line-height:1.5}.journey-stop .journey-body{display:block;margin-top:7px;font-size:.78em;font-weight:400;line-height:1.55;color:#4f5753}
+.stop-minus{left:2%;top:26%;width:17%}.stop-zero{left:21.5%;top:26%;width:17%}.stop-one{left:41%;top:26%;width:17%}.stop-two{left:60.5%;top:26%;width:17%}.stop-three{left:80%;top:26%;width:17%}
+.contact-section{position:relative;display:block;max-width:none;min-height:1050px;padding:0;margin:0;border:0;letter-spacing:0;font-family:"Songti SC","STSong",serif;background:var(--paper)}
+.contact-card{position:absolute;left:50%;top:auto;bottom:120px;z-index:2;display:grid;grid-template-columns:minmax(150px,.8fr) minmax(280px,1.4fr);align-items:center;gap:clamp(36px,4.5vw,72px);width:min(960px,86%);padding:38px 50px;transform:translateX(-50%);background:rgba(247,241,230,.94);border:1px solid rgba(78,87,80,.13);border-radius:30px;box-shadow:0 16px 36px rgba(45,52,46,.14)}.contact-copy{position:static;width:auto}.contact-copy p{font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-size:clamp(14px,1.35vw,19px);line-height:1.65;margin:0}.contact-copy .section-dash{margin:10px 0 14px}
+.contact-section .about-section{position:absolute;left:7.2%;right:7.2%;top:17%;z-index:1;padding:0;grid-template-columns:minmax(0,1fr) minmax(230px,.85fr);gap:36px}
+.contact-section .about-art{max-width:380px;justify-self:end}
+.contact-channels{position:static;display:grid;gap:16px;padding:0;border:0}.contact-item{display:grid;grid-template-columns:50px minmax(0,1fr);gap:16px;align-items:center;color:#343c39;text-decoration:none}.contact-icon{display:grid;place-items:center;width:48px;height:48px;background:transparent;border:1px solid #555e59;border-radius:50%;font:bold 19px/1 Georgia,serif;color:#343c39;transition:background-color .2s ease,color .2s ease,transform .2s ease}.contact-item:first-child .contact-icon{font-size:25px}.contact-detail{font:clamp(12px,1.05vw,15px)/1.45 "Helvetica Neue","PingFang SC",sans-serif;overflow-wrap:anywhere}.contact-detail strong{font-weight:700}.contact-item:hover .contact-icon{background:#343c39;color:#e0e5d1;transform:translateY(-2px)}
+@media(min-width:1200px){.contact-card{width:min(1100px,80%);padding:50px 68px;grid-template-columns:minmax(230px,.8fr) minmax(460px,1.35fr);gap:80px;border-radius:36px}.contact-copy .section-label{font-size:22px}.contact-copy p{font-size:19px}.contact-channels{gap:20px}.contact-item{grid-template-columns:58px minmax(0,1fr);gap:20px}.contact-icon{width:56px;height:56px;font-size:22px}.contact-item:first-child .contact-icon{font-size:28px}.contact-detail{font-size:16px}.contact-section .about-section{left:50%;right:auto;width:min(1380px,86%);transform:translateX(-50%);grid-template-columns:minmax(520px,650px) minmax(340px,460px);justify-content:center;gap:clamp(60px,6vw,105px)}.contact-section .about-art{width:100%;max-width:430px;justify-self:center}}
+.footer-bottom{position:absolute;bottom:30px;left:7.2%;right:5%;display:flex;justify-content:space-between;font:10px/1.4 ui-monospace,monospace;background:var(--paper);border-radius:5px;box-shadow:0 0 15px 10px var(--paper)}.footer-bottom nav{display:flex;gap:24px}
+a:focus-visible,summary:focus-visible{outline:2px solid #357672;outline-offset:5px}
+.project-modal[aria-hidden="true"]{visibility:hidden}.project-modal__panel{font-family:"Helvetica Neue","PingFang SC",sans-serif}
+@media(max-width:600px){
+ .landing-hero{padding-top:66px}.hero-nav{left:7%;right:4%;gap:9px;font-size:9px;top:18px}.hero-nav .contact-pill{padding:8px 12px}
+ .about-section{padding:25px 7% 40px;gap:18px;grid-template-columns:1fr}.about-copy{max-width:100%}.about-copy h1{font-size:26px}.about-copy>p:last-child{font-size:14px}.about-art{width:58%;justify-self:end;margin-top:-10px}.signature{font-size:86px;left:95px}
+ .works-section{padding:45px 6% 35px}.work-grid{grid-template-columns:1fr;gap:22px}.work-card{min-height:285px;padding:26px}.work-art{width:42%;max-height:170px}.work-robot,.work-knowme .work-app-icon{right:18px;top:18px;width:38%;max-width:160px}.work-copy{padding-top:0}.work-copy h3{font-size:27px}.work-copy>p:last-child{font-size:15px}.work-category{left:26px;top:26px;font-size:10px}
+ .journey-section{aspect-ratio:auto;min-height:760px;padding:38px 7% 30px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start;background:var(--paper)}.journey-art{position:absolute;inset:auto 0 0;height:auto;min-height:290px;object-fit:cover;object-position:center bottom}
+ .journey-stop{position:relative;left:auto;top:auto;width:auto}.journey-stop h3{font-size:14px}.journey-stop p{font-size:13px;box-shadow:0 10px 16px -11px rgba(18,57,47,.82);background:#f6efe2eb}.stop-minus{grid-column:1;grid-row:1}.stop-zero{grid-column:2;grid-row:1}.stop-one{grid-column:1;grid-row:2}.stop-two{grid-column:2;grid-row:2}.stop-three{grid-column:1/-1;grid-row:3}
+ .contact-section{min-height:1180px;background:var(--paper)}.contact-card{left:7%;right:7%;top:760px;bottom:auto;width:auto;padding:24px;transform:none;grid-template-columns:1fr;gap:22px;border-radius:22px}.contact-copy p{font-size:14px}.contact-section .about-section{left:7%;right:7%;top:90px;grid-template-columns:1fr;gap:12px}.contact-section .about-art{width:58%;max-width:240px;justify-self:end;margin-top:-8px}.contact-channels{gap:10px}.contact-item{grid-template-columns:38px minmax(0,1fr);gap:9px}.contact-icon{width:36px;height:36px;font-size:14px}.contact-item:first-child .contact-icon{font-size:19px}.contact-detail{font-size:10px}.footer-bottom{bottom:15px;font-size:8px;gap:12px}.footer-bottom nav{gap:12px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
