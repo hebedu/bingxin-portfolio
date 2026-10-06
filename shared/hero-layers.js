@@ -3,7 +3,6 @@
   const stage = hero?.querySelector('.hero-stage');
   if (!stage) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const imgs = [...stage.querySelectorAll('img')];
   let visible = false;
 
   const sync = () => {
@@ -15,16 +14,21 @@
   reduced.addEventListener('change', sync);
   new MutationObserver(sync).observe(document.body, {attributes: true, attributeFilter: ['class']});
 
-  // Intro waits for every layer to decode so pieces never pop in out of order.
+  // Start once the background is ready, with a short ceiling for slow connections.
+  // Other layers can enter as they load instead of holding the whole hero back.
   if (!reduced.matches) {
     hero.classList.add('hero-pending');
-    Promise.all(imgs.map(img => img.decode().catch(() => {}))).then(() => {
+    const terrain = stage.querySelector('.hl-terrain img');
+    Promise.race([
+      terrain.decode().catch(() => {}),
+      new Promise(resolve => setTimeout(resolve, 450))
+    ]).then(() => {
       hero.classList.remove('hero-pending');
       hero.classList.add('hero-enter');
       setTimeout(() => {
         hero.classList.remove('hero-enter');
         hero.classList.add('hero-ready');
-      }, 3400);
+      }, 1800);
     });
   }
 

@@ -47,17 +47,17 @@
 
 /* Entrance: layers start hidden only once JS confirms it will run the intro. */
 .hero-pending .hl:not(.hl-terrain){opacity:0}
-.hero-enter .hl{animation:hl-rise .9s cubic-bezier(.2,.8,.2,1) both}
-.hero-enter .hl-city{animation-delay:.1s}
-.hero-enter .hl-leaves{animation-name:hl-from-left;animation-delay:.15s}
-.hero-enter .hl-girl{animation-delay:.3s}
-.hero-enter .hl-books{animation-name:hl-pop;animation-delay:.5s}
-.hero-enter .hl-sun{animation-name:hl-pop;animation-delay:.45s}
+.hero-enter .hl{animation:hl-rise .7s cubic-bezier(.2,.8,.2,1) both}
+.hero-enter .hl-city{animation-delay:.08s}
+.hero-enter .hl-leaves{animation-name:hl-from-left;animation-delay:.12s}
+.hero-enter .hl-girl{animation-delay:.22s}
+.hero-enter .hl-books{animation-name:hl-pop;animation-delay:.35s}
+.hero-enter .hl-sun{animation-name:hl-pop;animation-delay:.3s}
 .hero-enter .hl-title{animation:none}
-.hero-enter .hl-title img{clip-path:inset(0 100% 0 0);animation:hl-write 2.2s cubic-bezier(.45,.05,.35,1) .7s forwards}
-.hero-enter .hl-note-ideas{animation-name:hl-fade-rot;animation-delay:1.8s}
-.hero-enter .hl-note-designer{animation-name:hl-fade-rot;animation-delay:2.1s}
-.hero-enter .hl-terrain{animation-name:hl-fade;animation-duration:.6s}
+.hero-enter .hl-title img{clip-path:inset(0 100% 0 0);animation:hl-write 1.15s cubic-bezier(.45,.05,.35,1) .28s forwards}
+.hero-enter .hl-note-ideas{animation-name:hl-fade-rot;animation-delay:.62s}
+.hero-enter .hl-note-designer{animation-name:hl-fade-rot;animation-delay:.8s}
+.hero-enter .hl-terrain{animation-name:hl-fade;animation-duration:.45s}
 
 @keyframes hl-rise{from{opacity:0;translate:0 6%}to{opacity:1;translate:0 0}}
 @keyframes hl-from-left{from{opacity:0;translate:-8% 4%;rotate:-4deg}to{opacity:1;translate:0 0;rotate:0deg}}

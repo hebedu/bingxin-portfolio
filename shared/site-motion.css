@@ -74,7 +74,6 @@
   .work-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s ease;
     background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.55),transparent 45%)}
   .work-card:hover::after{opacity:1}
-  .work-card .work-robot,.work-card .work-app-icon{translate:calc(var(--ry)*-1.6) calc(var(--rx)*1.6)}
   .work-link span{display:inline-block;transition:translate .35s var(--ease-out,ease)}
   .work-card:hover .work-link span{translate:8px 0}
 
@@ -91,7 +90,7 @@
 /* Mascots bob gently. */
 .motion-on .work-robot{animation:sm-bob 4.8s ease-in-out infinite}
 .motion-on .work-app-icon{animation:sm-bob 5.6s ease-in-out .6s infinite}
-@keyframes sm-bob{50%{margin-top:-8px}}
+@keyframes sm-bob{50%{translate:0 -8px}}
 
 /* Scroll progress bar along the top edge. */
 .scroll-progress{position:fixed;left:0;top:0;z-index:50;height:3px;width:100%;transform-origin:left;scale:var(--sp-page,0) 1;background:linear-gradient(90deg,#357672,#efd179,#ff9b6a);pointer-events:none}
