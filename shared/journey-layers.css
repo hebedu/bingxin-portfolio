@@ -1,0 +1,29 @@
+/* Layered journey illustration. Layers are positioned in % of the 1672×941 artboard.
+   The stage keeps the .journey-art class so existing layout rules (and scroll/pointer motion
+   on the whole picture) still apply; per-layer motion lives on the .jl children.
+   JS sets --jp on the stage: 0 when the section enters at the bottom, 1 when it leaves at the top. */
+.journey-stage{position:relative;overflow:hidden;aspect-ratio:1672/941;min-height:0!important;--jp:.5}
+.jl{position:absolute;display:block;pointer-events:none;will-change:transform}
+.jl img{display:block;width:100%;height:auto}
+.jl-bg{inset:0}
+
+/* Depth: background drifts slowly, foreground leaves move fastest. */
+.jl-bg{transform:translate3d(0,calc((var(--jp) - .5)*-24px),0) scale(1.04)}
+.jl-leaves{inset:0;transform:translate3d(0,calc((var(--jp) - .5)*-90px),0) scale(1.06)}
+
+/* The girl and cat walk up the path as the section scrolls past. */
+.jl-girl{transform:translate3d(calc((var(--jp) - .35)*95%),calc((var(--jp) - .35)*-22%),0) scale(calc(1 - (var(--jp) - .35)*.12))}
+.journey-in .jl-girl img{transform-origin:50% 100%;animation:jl-step .55s ease-in-out infinite alternate}
+.journey-in.is-still .jl-girl img{animation-play-state:paused}
+@keyframes jl-step{from{transform:translateY(0) rotate(-1deg)}to{transform:translateY(-3%) rotate(1deg)}}
+
+.journey-in .jl-leaves img{transform-origin:50% 100%;animation:jl-sway 6.5s ease-in-out infinite}
+@keyframes jl-sway{0%,100%{transform:skewX(-.8deg)}50%{transform:skewX(.9deg)}}
+
+/* Handwriting writes on with scroll, left first, then "Next Chapter…". */
+.jl-text-left img{clip-path:inset(0 calc((1 - clamp(0,(var(--jp) - .2)/.25,1))*100%) 0 0)}
+.jl-text-right img{clip-path:inset(0 calc((1 - clamp(0,(var(--jp) - .38)/.18,1))*100%) 0 0)}
+
+@media(prefers-reduced-motion:reduce){
+  .jl,.jl img{transform:none!important;animation:none!important;clip-path:none!important}
+}

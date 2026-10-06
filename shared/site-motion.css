@@ -1,0 +1,99 @@
+/* Scroll-scrubbed motion for sections below the hero, same idea as the hero layers.
+   JS sets on each [data-reveal] element:
+     --k   0 → 1 as it scrolls into view, back to 0 as it scrolls out (smoothed)
+     --dir 1 while it sits in the lower half of the viewport, -1 in the upper half,
+           so things rise in from below and drift up and away on exit.
+   Only the individual translate/scale/rotate properties are used, never `transform`,
+   so existing transforms (contact card centering, tag tilt, hover lifts) keep working. */
+.motion-on [data-reveal]{
+  --k:0;--dir:1;--ik:calc(1 - var(--k));
+  opacity:var(--k);
+  translate:0 calc(var(--ik)*56px*var(--dir));
+  will-change:opacity,translate;
+}
+
+/* Works heading: rises, dash draws out after it. */
+.motion-on .works-heading .section-dash{display:inline-block;transform-origin:left;scale:clamp(0,calc((var(--k) - .35)/.5),1) 1}
+
+/* Work cards: rise, tilt outward, scale up; neighbours swing from opposite sides. */
+.motion-on [data-reveal="card"]{
+  translate:calc(var(--ik)*var(--side,1)*60px) calc(var(--ik)*90px*var(--dir));
+  rotate:calc(var(--ik)*var(--side,1)*4deg);
+  scale:calc(.9 + var(--k)*.1);
+}
+.motion-on [data-reveal="card"] .work-category,
+.motion-on [data-reveal="card"] .work-copy{--l:clamp(0,calc((var(--k) - .4)/.45),1);opacity:var(--l);translate:0 calc((1 - var(--l))*18px)}
+
+/* Journey illustration: settles from a zoom, colour comes up as it centres. */
+.motion-on [data-reveal="zoom"]{
+  opacity:calc(.25 + var(--k)*.75);
+  translate:0 calc(var(--ik)*70px*var(--dir));
+  scale:calc(1.1 - var(--k)*.1);
+  filter:saturate(calc(.4 + var(--k)*.6));
+}
+
+/* Journey stops: drop in, tag stamps down a beat later. */
+.motion-on [data-reveal="stop"]{translate:0 calc(var(--ik)*80px*var(--dir));rotate:calc(var(--ik)*var(--side,1)*3deg)}
+.motion-on [data-reveal="stop"] h3{--l:clamp(0,calc((var(--k) - .25)/.5),1);opacity:var(--l);scale:calc(1.7 - var(--l)*.7)}
+
+/* About copy: slides from the left; signature writes, heading pops per character, lines unblur. */
+.motion-on [data-reveal="left"]{opacity:min(1,calc(var(--k)*2.5));translate:calc(var(--ik)*-80px) calc(var(--ik)*30px*var(--dir))}
+.motion-on .signature{--l:clamp(0,calc((var(--k) - .05)/.55),1);clip-path:inset(0 calc((1 - var(--l))*100%) -20% 0)}
+.motion-on .about-copy .section-dash{display:inline-block;transform-origin:left;scale:clamp(0,calc((var(--k) - .3)/.4),1) 1}
+.motion-on .about-copy h2 .ch{
+  --l:clamp(0,calc((var(--k) - .15 - var(--c)*.022)/.35),1);
+  display:inline-block;opacity:var(--l);
+  translate:0 calc((1 - var(--l))*.7em*var(--dir));rotate:calc((1 - var(--l))*10deg);
+}
+.motion-on .about-copy > p:last-child .ln{
+  --l:clamp(0,calc((var(--k) - .45 - var(--c)*.12)/.3),1);
+  display:inline-block;opacity:var(--l);
+  translate:0 calc((1 - var(--l))*16px*var(--dir));filter:blur(calc((1 - var(--l))*5px));
+}
+
+/* About portrait: swings in from the lower right. */
+.motion-on [data-reveal="swing"]{
+  translate:calc(var(--ik)*140px) calc(var(--ik)*90px*var(--dir));
+  rotate:calc(var(--ik)*-10deg);
+  scale:calc(.8 + var(--k)*.2);
+}
+
+/* Contact card: rises and un-tilts; icons pop and details slide in one after another. */
+.motion-on [data-reveal="contact"]{translate:0 calc(var(--ik)*90px*var(--dir));rotate:calc(var(--ik)*3deg*var(--dir));scale:calc(.94 + var(--k)*.06)}
+.motion-on .contact-copy .section-dash{display:inline-block;transform-origin:left;scale:clamp(0,calc((var(--k) - .3)/.4),1) 1}
+.motion-on .contact-item{--l:clamp(0,calc((var(--k) - .3 - var(--c)*.12)/.3),1)}
+.motion-on .contact-icon{scale:var(--l)}
+.motion-on .contact-detail{opacity:var(--l);translate:calc((1 - var(--l))*40px) 0}
+
+/* Work card interactions: pointer tilt + spotlight + mascot parallax. JS sets --rx/--ry and --mx/--my. */
+.work-card{transform-style:preserve-3d;--rx:0deg;--ry:0deg;--lift:0px}
+@media(hover:hover) and (pointer:fine){
+  .work-card{transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift));transition:transform .5s var(--ease-out,ease),box-shadow .4s ease}
+  .work-card.is-tilting{transition:transform .12s linear,box-shadow .4s ease}
+  .work-card:hover{--lift:-6px;transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift));box-shadow:0 22px 40px -14px #4d624340}
+  .work-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s ease;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.55),transparent 45%)}
+  .work-card:hover::after{opacity:1}
+  .work-card .work-robot,.work-card .work-app-icon{translate:calc(var(--ry)*-1.6) calc(var(--rx)*1.6)}
+  .work-link span{display:inline-block;transition:translate .35s var(--ease-out,ease)}
+  .work-card:hover .work-link span{translate:8px 0}
+
+  .journey-stop p{transition:box-shadow .35s ease,transform .35s var(--ease-out,ease)}
+  .journey-stop:hover p{transform:translateY(-6px);box-shadow:0 22px 26px -14px rgba(18,57,47,.7)}
+  .journey-stop h3{transition:rotate .3s ease}
+  .journey-stop:hover h3{rotate:6deg}
+
+  .contact-icon{transition:background-color .2s ease,color .2s ease,transform .4s cubic-bezier(.3,1.6,.5,1)}
+  .contact-item:hover .contact-icon{background:#343c39;color:#e0e5d1;transform:scale(1.12) rotate(-10deg)}
+  .contact-detail{transition:transform .3s var(--ease-out,ease)}
+  .contact-item:hover .contact-detail{transform:translateX(4px)}
+}
+/* Mascots bob gently. */
+.motion-on .work-robot{animation:sm-bob 4.8s ease-in-out infinite}
+.motion-on .work-app-icon{animation:sm-bob 5.6s ease-in-out .6s infinite}
+@keyframes sm-bob{50%{margin-top:-8px}}
+
+/* Scroll progress bar along the top edge. */
+.scroll-progress{position:fixed;left:0;top:0;z-index:50;height:3px;width:100%;transform-origin:left;scale:var(--sp-page,0) 1;background:linear-gradient(90deg,#357672,#efd179,#ff9b6a);pointer-events:none}
+
+@media(prefers-reduced-motion:reduce){.scroll-progress{display:none}}

@@ -106,13 +106,35 @@ b,strong{font-weight:800}
 .persona .tag{display:inline-block;background:var(--accent-soft);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800}
 .validation-row{align-items:center;margin-top:18px;padding:14px 16px;border-radius:14px;background:#fff;border:1px solid var(--line)}
 .validation-row em{margin-left:auto;color:var(--blue);font-style:normal;font-weight:800}
-.journey-card blockquote{margin:12px 0;font-size:17px;line-height:1.55;color:#3f4755}
 .journey-icon{font-size:30px;color:var(--accent)}
 .capability{margin-top:16px;font-size:13px;font-weight:800;color:var(--blue)}
+.positioning-statement{display:flex;align-items:baseline;gap:22px;padding:21px 25px;border:1px solid var(--accent-border);border-radius:20px;background:var(--accent-soft)}
+.positioning-statement span{flex-shrink:0;color:var(--accent-ink);font-size:12px;font-weight:900;letter-spacing:.1em}
+.positioning-statement strong{font-size:27px;line-height:1.35;letter-spacing:-.025em}
+.positioning-section{display:grid;grid-template-columns:180px minmax(0,1fr);gap:28px;padding:24px 0;border-bottom:1px solid var(--line)}
+.positioning-section:last-child{border-bottom:0;padding-bottom:0}
+.positioning-section-title span{display:block;margin-bottom:8px;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.12em}
+.positioning-section-title h2{font-size:21px;line-height:1.4}
+.positioning-section-content{min-width:0}
+.positioning-goals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.positioning-goals .card{padding:16px 18px;box-shadow:none}
+.positioning-goals h3{margin:0 0 7px;font-size:17px}
+.positioning-goals p{margin:0;color:#4b5563;font-size:13px;line-height:1.55}
+.positioning-contrast{display:grid;grid-template-columns:1fr 1.2fr;gap:12px}
+.positioning-contrast>div{padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.positioning-contrast>div:last-child{border-color:var(--accent-border);background:#fff9f6}
+.positioning-contrast b{display:block;margin-bottom:7px;font-size:14px}
+.positioning-contrast p{margin:0;font-size:14px;line-height:1.55}
+.positioning-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.positioning-steps>div{padding:0 14px;border-left:2px solid var(--accent-border)}
+.positioning-steps b{display:block;font-size:15px;line-height:1.45}
+.positioning-steps p{margin:5px 0 0;color:#4b5563;font-size:13px;line-height:1.5}
+.positioning-footnote{margin:14px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
 .comparison,.memory-table,.eval-table{display:grid;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
 .comparison>div,.memory-table>div,.eval-table>div{display:grid;grid-template-columns:1fr 1.2fr 1.35fr;border-top:1px solid var(--line)}
 .comparison>div:first-child,.memory-table>div:first-child,.eval-table>div:first-child{border-top:0}
 .comparison span,.comparison b,.memory-table span,.memory-table b,.eval-table span,.eval-table b{padding:13px 16px;font-size:14px}
+.comparison span,.comparison b{overflow-wrap:anywhere}
 .comparison-head,.memory-head,.eval-head{background:#f8f2ee;font-weight:900}
 .accent-text{color:var(--accent)}
 .bottom-points{margin-top:18px}
@@ -130,6 +152,7 @@ b,strong{font-weight:800}
 .mvp-num{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:13px;white-space:nowrap;font-weight:900}
 .mvp-item h3{margin:0 0 6px}
 .mvp-item p{margin:0;font-size:15px}
+.mvp-rationale{margin:0 0 22px;padding:16px 20px;border-left:3px solid var(--accent);border-radius:0 14px 14px 0;background:#fff2ed;color:#4b5563;font-size:16px;line-height:1.7}
 .design-question{margin:0 0 24px;font-size:14px;line-height:1.6}
 .design-question>b{color:var(--muted);font-weight:500}
 .design-question p{font-size:14px;color:var(--muted);margin:6px 0 0}
@@ -290,7 +313,7 @@ b,strong{font-weight:800}
 .defense-list span{grid-row:1/3;color:var(--accent);font-weight:900}
 .defense-list h3,.defense-list p{margin:0}
 .defense-list p{font-size:14px;color:var(--muted)}
-.slide[data-index="26"] .slide-shell{width:min(1700px,100%);padding-left:40px;padding-right:40px}
+.slide[data-index="24"] .slide-shell{width:min(1700px,100%);padding-left:40px;padding-right:40px}
 .funnel{display:flex;align-items:stretch;justify-content:center;gap:6px;padding-right:54px}
 .funnel>div{position:relative;isolation:isolate;flex:1;padding:36px 22px 22px 26px;background:var(--line);border:0;clip-path:polygon(0 0,94% 0,100% 50%,94% 100%,0 100%,6% 50%);display:flex;flex-direction:column;justify-content:flex-start;min-height:260px}
 .funnel>div::before{content:"";position:absolute;z-index:-1;inset:1px;background:#fff;clip-path:inherit}
@@ -374,7 +397,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
   .flow,.funnel,.hypothesis,.wide-card{flex-direction:column;align-items:stretch}
   .flow-arrow{align-self:center;transform:rotate(90deg)}
   .funnel{padding-right:42px}
-  .slide[data-index="26"] .slide-shell{width:100%;padding:40px 20px}
+  .slide[data-index="24"] .slide-shell{width:100%;padding:40px 20px}
   .funnel>div,.funnel>div:first-child{clip-path:none;min-height:0;border:1px solid var(--line);border-radius:18px;background:#fff}
   .funnel>div::before{display:none}
   .stagebar{left:50%;right:auto;top:10px;transform:translateX(-50%);padding:6px;border-radius:16px;gap:4px}
@@ -382,6 +405,17 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
   .fullscreen-btn{left:auto;right:12px;bottom:88px}
   .slide-top{flex-wrap:wrap;gap:10px}
   h1{font-size:30px;overflow-wrap:anywhere}
+  .positioning-statement{display:block;padding:18px 20px}
+  .positioning-statement strong{display:block;margin-top:7px;font-size:23px}
+  .positioning-section{grid-template-columns:1fr;gap:14px;padding:22px 0}
+  .positioning-section-title h2{font-size:20px}
+  .positioning-goals,.positioning-steps{grid-template-columns:1fr}
+  .positioning-contrast{grid-template-columns:1fr}
+  .positioning-steps{gap:18px}
+  .mvp-rationale{font-size:14px}
+  .trust-flow{flex-direction:column;align-items:stretch}
+  .trust-flow>div:not(:nth-child(even)){width:100%}
+  .trust-flow>div:nth-child(even){align-self:center;transform:rotate(90deg)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .product-hero{min-height:100svh;padding:0 36px;overflow:hidden}
@@ -472,7 +506,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>01 / 29</span></div>
+          <div class="slide-meta"><span>01 / 27</span></div>
         </div>
         <h1>Product Discovery 总流程</h1>
         <div class="slide-body">
@@ -499,7 +533,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
     <section class="slide" data-stage="1" data-index="2">
       <div class="slide-shell">
         <div class="slide-top">
-          <div class="slide-meta" style="margin-left:auto"><span>02 / 29</span></div>
+          <div class="slide-meta" style="margin-left:auto"><span>02 / 27</span></div>
         </div>
         <h1>在这个项目中，我创造的价值</h1>
         <div class="slide-body">
@@ -518,7 +552,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>03 / 29</span></div>
+          <div class="slide-meta"><span>03 / 27</span></div>
         </div>
         <h1>为什么做 KnowMe，而不是一个 AI 算命产品</h1>
         <div class="slide-body">
@@ -539,7 +573,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>04 / 29</span></div>
+          <div class="slide-meta"><span>04 / 27</span></div>
         </div>
         <h1>真实用户修正了最初假设</h1>
         <div class="slide-body">
@@ -581,7 +615,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>05 / 29</span></div>
+          <div class="slide-meta"><span>05 / 27</span></div>
         </div>
         <h1>三类核心需求假设</h1>
         <div class="slide-body">
@@ -597,19 +631,45 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="1" data-index="6">
+    <section class="slide" data-stage="2" data-index="6">
       <div class="slide-shell">
         <div class="slide-top">
-          <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>06 / 29</span></div>
+          <div class="kicker">02 · Product Positioning</div>
+          <div class="slide-meta"><span>06 / 27</span></div>
         </div>
-      <h1>从一次解读，到持续对话</h1>
+      <h1>产品定位</h1>
         <div class="slide-body">
-    <p style="margin:0 0 24px">因此，产品需要从“一次性交付解读”延伸到“承接后续问题”。以下是围绕持续解释、情绪支持与上下文延续提出的体验方向，是否能形成长期陪伴，仍需进一步验证。</p>
-    <div class="grid grid-3">
-      <div class="card journey-card"><div class="journey-icon">◷</div><h3>人生节点的陪伴顾问</h3><blockquote>“大运换柱了、流年到了，它会提醒我。”</blockquote><blockquote>“站在人生的岔路口，它会陪我理清选择，找到适合自己的方向。”</blockquote><div class="capability">时间线感知 + 主动触达</div></div>
-      <div class="card journey-card"><div class="journey-icon">♡</div><h3>有命理视角的情绪出口</h3><blockquote>“我焦虑的时候有个地方可以说。”</blockquote><div class="capability">稳定人格 + 安全边界 + 随时可达</div></div>
-      <div class="card journey-card"><div class="journey-icon">☰</div><h3>有记忆的长期对话伙伴</h3><blockquote>“它记得我是谁，也记得我上次说什么。”</blockquote><div class="capability">恒定身份 Context + 连续对话 + 状态更新</div></div>
+    <div class="positioning-statement"><span>定位主张</span><strong>KnowMe：人生节点的陪伴顾问</strong></div>
+    <div class="positioning-section">
+      <div class="positioning-section-title"><span>01 / EXPERIENCE</span><h2>体验目标</h2></div>
+      <div class="positioning-section-content">
+        <div class="positioning-goals">
+          <div class="card"><h3>关键选择</h3><p>结合个人背景和当下处境，陪用户理清下一步。</p></div>
+          <div class="card"><h3>情绪支持</h3><p>温和回应焦虑，保持边界，回到可行动的问题。</p></div>
+          <div class="card"><h3>持续对话</h3><p>让新经历接续旧问题，逐步积累对同一个人的理解。</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="positioning-section">
+      <div class="positioning-section-title"><span>02 / DIFFERENCE</span><h2>与通用陪伴 AI 的区分</h2></div>
+      <div class="positioning-section-content">
+        <div class="positioning-contrast">
+          <div><b>通用陪伴 AI</b><p>主要从用户主动讲述和后续对话中逐步建立理解。</p></div>
+          <div><b>KnowMe</b><p>以出生资料建立个人起点，用可复核的命盘事实支撑解释，再结合现实问题校准。</p></div>
+        </div>
+        <p class="positioning-footnote">出生资料只提供初始线索，用户的真实经历决定解释是否贴近本人。</p>
+      </div>
+    </div>
+    <div class="positioning-section">
+      <div class="positioning-section-title"><span>03 / STRATEGY</span><h2>落地策略</h2></div>
+      <div class="positioning-section-content">
+        <div class="positioning-steps">
+          <div><b>首次理解</b><p>用个人背景降低冷启动成本。</p></div>
+          <div><b>准确可信</b><p>事实可复核，解释有边界。</p></div>
+          <div><b>关系延续</b><p>从报告走向现实追问与回访。</p></div>
+        </div>
+        <p class="positioning-footnote">这三条策略对应下一页的 MVP 验证顺序；主动提醒和长期记忆属于后续方向。</p>
+      </div>
     </div>
     </div>
       </div>
@@ -618,25 +678,18 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
     <section class="slide" data-stage="2" data-index="7">
       <div class="slide-shell">
         <div class="slide-top">
-          <div class="kicker">02 · Product Strategy</div>
-          <div class="slide-meta"><span>07 / 29</span></div>
+          <div class="kicker">02 · MVP Validation / 验证顺序</div>
+          <div class="slide-meta"><span>07 / 27</span></div>
         </div>
-        <h1>如何承接持续对话：KnowMe 的定位探索</h1>
+        <h1>MVP：按三个阶段验证产品定位</h1>
         <div class="slide-body">
-    <div class="bottom-points" style="margin:0 0 24px">
-      <span>稳定、结构化、具有个人相关性的命理视角</span>
-      <span>第一次使用就能产生连接感</span>
-      <span>天然时间线带来再次回来的理由</span>
-      <span>建议中肯、可执行 → 可能持续追问</span>
+    <p class="mvp-rationale">第一次使用决定用户是否愿意开口；准确性决定这份理解是否值得信任；报告之后的追问与回访，才检验长期关系有没有可能。</p>
+    <div class="mvp-list">
+      <div class="mvp-item"><div class="mvp-num">01</div><div><h3>首次理解：第一次使用，它能否快速与我建立连接？</h3><p>用出生信息建立结构化起点，再结合用户主动提供的经历校准；观察她是否觉得解读与自己相关，并愿意继续提问。</p></div></div>
+      <div class="mvp-item"><div class="mvp-num">02</div><div><h3>准确可信：它说的话有依据、能复核吗？</h3><p>先保证命盘等基础事实计算正确，再区分事实、推测和建议；避免“说得像真的”却引用错误事实。</p></div></div>
+      <div class="mvp-item"><div class="mvp-num">03</div><div><h3>关系延续：看完报告后，用户还有理由回来吗？</h3><p>把报告结论连接到眼前的问题和下一次可追问的情境，观察后续提问与回访，而非只看报告完成率。</p></div></div>
     </div>
-    <div class="comparison">
-      <div class="comparison-head"><span>维度</span><span>通用陪伴 AI</span><span class="accent-text">KnowMe</span></div>
-      <div><b>冷启动 Context</b><span>主要依赖用户主动表达</span><span>首次即可获得结构化个人 Context</span></div>
-      <div><b>稳定身份层</b><span>场景变化，依赖对话逐步建立</span><span>出生资料形成稳定 Context Anchor</span></div>
-      <div><b>现实状态层</b><span>从历史对话中推断</span><span>结合当前问题持续更新</span></div>
-      <div><b>基础事实</b><span>依赖上下文生成</span><span>确定性计算，可重复生成</span></div>
-      <div><b>个性化成本</b><span>随对话逐渐积累</span><span>首次交互即可启动个性化</span></div>
-    </div>
+    <div class="not-now"><b>暂不优先：</b>长期 Memory · 主动提醒 · 更多命理体系 · 大规模知识库 · 主动 Agent。后文涉及这些能力时，展示的是设计边界与后续方向，不代表已在 MVP 中验证。</div>
     </div>
       </div>
     </section>
@@ -644,49 +697,8 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
     <section class="slide" data-stage="2" data-index="8">
       <div class="slide-shell">
         <div class="slide-top">
-          <div class="kicker">02 · Product Strategy</div>
-          <div class="slide-meta"><span>08 / 29</span></div>
-        </div>
-        <h1>核心产品定位：从一次解读到长期陪伴</h1>
-        <div class="slide-body">
-    <div class="transition positioning-transition">
-      <div><small>旧产品</small><b>一次解读 → 结束</b></div>
-      <div class="big-arrow" aria-hidden="true">→</div>
-      <div><small>KnowMe</small><b>第一次理解 → 现实追问 → Context 累积 → 再次回来 → 长期关系</b></div>
-    </div>
-    <h2 class="eyebrow" style="margin:0 0 16px">支撑长期陪伴的三项策略</h2>
-    <div class="grid grid-3 reasons">
-      <div class="card"><div class="num">01</div><h3>避免内容同质化</h3><p>同类一次性命理解读产品较多，内容生成容易同质化。</p></div>
-      <div class="card"><div class="num">02</div><h3>不只比拼报告生成能力</h3><p>基础模型能力持续提升，单纯依赖“生成一份更好的报告”难以形成长期差异。</p></div>
-      <div class="card"><div class="num">03</div><h3>持续积累对用户的理解</h3><p>用户第一次愿意输入出生信息、现实困境并有效对话，本身已形成稀缺 Context。</p></div>
-    </div>
-    </div>
-      </div>
-    </section>
-    
-    <section class="slide" data-stage="2" data-index="9">
-      <div class="slide-shell">
-        <div class="slide-top">
-          <div class="kicker">02 · Product Strategy</div>
-          <div class="slide-meta"><span>09 / 29</span></div>
-        </div>
-        <h1>MVP 阶段：只优先验证三个问题</h1>
-        <div class="slide-body">
-    <div class="mvp-list">
-      <div class="mvp-item"><div class="mvp-num">问题1</div><div><h3>第一次使用时，它能不能快速“理解我”？</h3><p>出生信息 → 稳定结构化 Context → 确定性命盘事实作为第一层用户信息 → 降低冷启动“自我介绍成本”。</p></div></div>
-      <div class="mvp-item"><div class="mvp-num">问题2</div><div><h3>它说的话能不能可信？</h3><p>命理 + LLM 容易产生“高可信幻觉”，因此模型引用的事实必须真实存在。</p></div></div>
-      <div class="mvp-item"><div class="mvp-num">问题3</div><div><h3>用户看完报告后，为什么还要继续留下？</h3><p>关键是把报告里的抽象结论继续转化成现实生活中的问题，推动动态追问与长期 Context。</p></div></div>
-    </div>
-    <div class="not-now"><b>暂不优先：</b>长期 Memory · 主动提醒 · 更多命理体系 · 大规模知识库 · 主动 Agent。后文涉及这些能力时，展示的是设计边界与后续方向，不代表已在 MVP 中验证。</div>
-    </div>
-      </div>
-    </section>
-    
-    <section class="slide" data-stage="2" data-index="10">
-      <div class="slide-shell">
-        <div class="slide-top">
-          <div class="kicker">02 · Product Strategy</div>
-          <div class="slide-meta"><span>10 / 29</span></div>
+          <div class="kicker">02 · MVP Validation / 设计回应</div>
+          <div class="slide-meta"><span>08 / 27</span></div>
         </div>
         <h1>六项关键设计，回应三个 MVP 问题</h1>
         <div class="design-question"><b>从问题进入设计：每项策略都有明确目标，并在后续页面逐项展开。</b></div>
@@ -703,11 +715,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
 
-    <section class="slide" data-stage="3" data-index="11">
+    <section class="slide" data-stage="3" data-index="9">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>11 / 29</span></div>
+          <div class="slide-meta"><span>09 / 27</span></div>
         </div>
         <h1>关键设计一：把“确定性事实”和“模型解释”拆开</h1>
         <div class="design-question"><b>对应问题2：提高回答的可信度与精准度</b></div>
@@ -748,11 +760,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="12">
+    <section class="slide" data-stage="3" data-index="10">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>12 / 29</span></div>
+          <div class="slide-meta"><span>10 / 27</span></div>
         </div>
         <h1>关键设计二：建立「恒定层 + 易变层」</h1>
         <div class="design-question"><b>对应问题1 · 快速理解我 ／ 问题3 · 持续留下</b></div>
@@ -775,11 +787,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="13">
+    <section class="slide" data-stage="3" data-index="11">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>13 / 29</span></div>
+          <div class="slide-meta"><span>11 / 27</span></div>
         </div>
         <h1>关键设计三：AI 行为设计——Prompt 不是“提示词”</h1>
         <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
@@ -799,11 +811,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="14">
+    <section class="slide" data-stage="3" data-index="12">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>14 / 29</span></div>
+          <div class="slide-meta"><span>12 / 27</span></div>
         </div>
         <h1>3.1 Prompt 规则系统：分层维护，而不是堆成一条提示词</h1>
         <div class="design-question"><b>对应问题1 · 快速理解我 ／ 问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
@@ -841,11 +853,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="15">
+    <section class="slide" data-stage="3" data-index="13">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>15 / 29</span></div>
+          <div class="slide-meta"><span>13 / 27</span></div>
         </div>
         <h1>3.2 Memory：按生命周期管理，而不是全部记住</h1>
         <div class="design-question"><b>对应问题3 · 持续留下（后续设计）／ 问题2 · 回答可信</b></div>
@@ -865,11 +877,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="16">
+    <section class="slide" data-stage="3" data-index="14">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>16 / 29</span></div>
+          <div class="slide-meta"><span>14 / 27</span></div>
         </div>
         <h1>3.3 Structured Rules：为什么当前优先结构化规则</h1>
         <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
@@ -892,11 +904,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="17">
+    <section class="slide" data-stage="3" data-index="15">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>17 / 29</span></div>
+          <div class="slide-meta"><span>15 / 27</span></div>
         </div>
         <h1>如何建立 Structured Rules 并生成链路</h1>
         <div class="quote-box" style="margin:0 0 24px">规则表的生成，是把古籍与领域资料提炼为包含<strong>知识含义、适用条件和使用边界</strong>的结构化规则，再接入生成链路。</div>
@@ -919,11 +931,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="18">
+    <section class="slide" data-stage="3" data-index="16">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>18 / 29</span></div>
+          <div class="slide-meta"><span>16 / 27</span></div>
         </div>
         <h1>3.4 可控表达：调整沟通风格，不改变事实确定性</h1>
         <div class="design-question"><b>对应问题2 · 回答可信</b></div>
@@ -956,11 +968,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="19">
+    <section class="slide" data-stage="3" data-index="17">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>19 / 29</span></div>
+          <div class="slide-meta"><span>17 / 27</span></div>
         </div>
         <h1>关键设计四：Trust Boundary——信任越深，产品越不能替用户做决定</h1>
         <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b><p>为持续陪伴设置事实、推测与决策边界，同时避免用关系依赖换取留存：不强化“只有我懂你”，不鼓励 AI 替代现实关系；危机类内容进入独立安全流程。</p></div>
@@ -979,11 +991,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="4" data-index="22" data-slide-topic="dynamic-followup">
+    <section class="slide" data-stage="4" data-index="20" data-slide-topic="dynamic-followup">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">04 · Iteration &amp; Eval</div>
-          <div class="slide-meta"><span>22 / 29</span></div>
+          <div class="slide-meta"><span>20 / 27</span></div>
         </div>
         <h1>关键设计六：从固定问题到动态追问</h1>
         <div class="design-question"><b>对应问题3 · 持续留下（待验证迭代）</b><p>把报告结论映射到现实问题；是否能提升追问与复访，仍需验证。</p></div>
@@ -1024,11 +1036,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="4" data-index="20" data-slide-topic="eval-product">
+    <section class="slide" data-stage="4" data-index="18" data-slide-topic="eval-product">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">04 · Iteration &amp; Eval</div>
-          <div class="slide-meta"><span>20 / 29</span></div>
+          <div class="slide-meta"><span>18 / 27</span></div>
         </div>
         <h1>关键设计五：Eval——不先评价“好不好听”，而是“有没有说错事实”</h1>
         <div class="design-question"><b>对应问题2 · 回答可信（验证）</b></div>
@@ -1052,11 +1064,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="4" data-index="21" data-slide-topic="eval-evaluator">
+    <section class="slide" data-stage="4" data-index="19" data-slide-topic="eval-evaluator">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">04 · Iteration &amp; Eval</div>
-          <div class="slide-meta"><span>21 / 29</span></div>
+          <div class="slide-meta"><span>19 / 27</span></div>
         </div>
         <h1>关键设计五：Eval——检测器本身也必须被验证</h1>
         <div class="design-question"><b>对应问题2 · 回答可信（验证）</b></div>
@@ -1080,11 +1092,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="5" data-index="23">
+    <section class="slide" data-stage="5" data-index="21">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">05 · Validation &amp; Business</div>
-          <div class="slide-meta"><span>23 / 29</span></div>
+          <div class="slide-meta"><span>21 / 27</span></div>
         </div>
         <h1>目前证明了什么，又还没有证明什么</h1>
         <div class="slide-body">
@@ -1100,11 +1112,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="5" data-index="24">
+    <section class="slide" data-stage="5" data-index="22">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">05 · Validation &amp; Business</div>
-          <div class="slide-meta"><span>24 / 29</span></div>
+          <div class="slide-meta"><span>22 / 27</span></div>
         </div>
         <h1>商业化：先证明价值，再要求身份与付费</h1>
         <div class="slide-body">
@@ -1127,11 +1139,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="5" data-index="25">
+    <section class="slide" data-stage="5" data-index="23">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">05 · Validation &amp; Business</div>
-          <div class="slide-meta"><span>25 / 29</span></div>
+          <div class="slide-meta"><span>23 / 27</span></div>
         </div>
         <h1>长期可防御性假设</h1>
         <div class="design-question"><p>不再是一次查完命理就离开的产品，而是从第一次使用起建立信任、沉淀数据，持续发展长期用户关系；以下仍是 <strong>Defensibility Hypothesis</strong>，而非已经成立的“护城河”。</p></div>
@@ -1147,11 +1159,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="5" data-index="26">
+    <section class="slide" data-stage="5" data-index="24">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">05 · Validation &amp; Business</div>
-          <div class="slide-meta"><span>26 / 29</span></div>
+          <div class="slide-meta"><span>24 / 27</span></div>
         </div>
         <h1>下一阶段真正需要验证的商业 Funnel</h1>
         <div class="slide-body">
@@ -1166,11 +1178,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="6" data-index="27">
+    <section class="slide" data-stage="6" data-index="25">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">06 · Reflection</div>
-          <div class="slide-meta"><span>27 / 29</span></div>
+          <div class="slide-meta"><span>25 / 27</span></div>
         </div>
         <h1>现阶段我不做什么</h1>
         <div class="slide-body">
@@ -1187,11 +1199,11 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="6" data-index="28">
+    <section class="slide" data-stage="6" data-index="26">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">06 · Reflection</div>
-          <div class="slide-meta"><span>28 / 29</span></div>
+          <div class="slide-meta"><span>26 / 27</span></div>
         </div>
         <h1>这个项目让我形成的 AI 产品原则</h1>
         <div class="slide-body">
@@ -1207,7 +1219,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
       </div>
     </section>
     
-    <section class="slide" data-stage="6" data-index="29">
+    <section class="slide" data-stage="6" data-index="27">
       <div class="slide-shell">
         <div class="final-title-card">
           <h1>最终，我希望 KnowMe 证明的<strong>不是</strong>“我会做一个 AI 命理产品”</h1>
@@ -1233,7 +1245,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
     </section>
     
 </div>
-<div class="stagebar" id="stagebar"><div class="stage-item" data-stage-item="1"><span>1</span><b>Product Discovery</b></div><div class="stage-item" data-stage-item="2"><span>2</span><b>Product Strategy</b></div><div class="stage-item" data-stage-item="3"><span>3</span><b>AI System Design</b></div><div class="stage-item" data-stage-item="4"><span>4</span><b>Iteration & Eval</b></div><div class="stage-item" data-stage-item="5"><span>5</span><b>Validation & Business</b></div><div class="stage-item" data-stage-item="6"><span>6</span><b>Reflection</b></div></div>
+<div class="stagebar" id="stagebar"><div class="stage-item" data-stage-item="1"><span>1</span><b>Product Discovery</b></div><div class="stage-item" data-stage-item="2"><span>2</span><b>Positioning & MVP</b></div><div class="stage-item" data-stage-item="3"><span>3</span><b>AI System Design</b></div><div class="stage-item" data-stage-item="4"><span>4</span><b>Iteration & Eval</b></div><div class="stage-item" data-stage-item="5"><span>5</span><b>Validation & Business</b></div><div class="stage-item" data-stage-item="6"><span>6</span><b>Reflection</b></div></div>
 <button class="fullscreen-btn" id="fullscreenBtn" title="全屏">⛶</button>
 <script>
 const dynamicFollowupSlide=document.querySelector('[data-slide-topic="dynamic-followup"]');

@@ -1,0 +1,57 @@
+/* Pointer effects (fine pointers only; JS adds .pfx-on to <html>).
+   Uses `transform` on elements whose scroll motion uses the individual translate/scale/rotate
+   properties, so the two stack instead of overwriting each other. */
+
+/* Cursor follower: a soft ring that trails the native cursor and grows over interactive things. */
+.pfx-ring{position:fixed;left:0;top:0;z-index:70;width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid #357672;border-radius:50%;pointer-events:none;
+  translate:var(--cx,-100px) var(--cy,-100px);scale:var(--cs,1);opacity:0;
+  transition:scale .35s cubic-bezier(.3,1.5,.5,1),opacity .3s ease,background-color .3s ease,border-color .3s ease}
+.pfx-ring.is-on{opacity:.55}
+.pfx-ring.is-link{--cs:1.8;background:rgba(53,118,114,.1);border-color:transparent}
+.pfx-ring.is-down{--cs:.7}
+.pfx-ring.is-text{--cs:.45;background:#357672}
+
+/* Magnetic targets follow the cursor a little. JS sets --tx/--ty. */
+.pfx-on .pfx-mag{translate:var(--tx,0) var(--ty,0);transition:translate .45s cubic-bezier(.2,.8,.2,1)}
+.pfx-on .pfx-mag.is-pulling{transition:translate .12s linear}
+
+/* Journey illustration and about portrait lean toward the cursor. JS sets --px/--py in [-1,1]. */
+.pfx-on .journey-art{transform:translate3d(calc(var(--px,0)*-14px),calc(var(--py,0)*-10px),0);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.pfx-on .journey-stop{transform:translate3d(calc(var(--px,0)*8px),calc(var(--py,0)*6px),0);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+/* about-art is mirrored in illustrated.css, so keep scaleX(-1) in the chain. */
+.pfx-on .about-art{transform:perspective(900px) rotateY(calc(var(--px,0)*10deg)) rotateX(calc(var(--py,0)*-8deg)) scaleX(-1);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.pfx-on .about-copy h2 .ch{transition:color .3s ease}
+.pfx-on .about-copy h2 .ch:hover{color:#357672}
+
+/* Signature re-inks on hover. */
+.pfx-on .signature > span{display:inline-block;transition:rotate .5s cubic-bezier(.3,1.6,.5,1),color .3s ease}
+.pfx-on .about-copy .section-label:hover .signature > span{rotate:360deg;color:#efa24f}
+
+/* Click burst: little leaves/dots spray from the click point. */
+.pfx-bit{position:fixed;left:0;top:0;z-index:71;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;pointer-events:none;border-radius:60% 0 60% 0;
+  animation:pfx-burst .75s cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes pfx-burst{
+  from{translate:var(--x0) var(--y0);scale:1;opacity:1;rotate:0deg}
+  to{translate:calc(var(--x0) + var(--dx)) calc(var(--y0) + var(--dy));scale:.2;opacity:0;rotate:var(--r)}
+}
+
+@media(prefers-reduced-motion:reduce){.pfx-ring,.pfx-bit{display:none}}
+
+/* Window portrait toys (see pointer-fx.js). */
+.pfx-on .about-art{cursor:pointer}
+.pfx-on .about-art.is-cat{filter:drop-shadow(0 6px 14px rgba(255,155,106,.35))}
+.pfx-on .about-art.is-hop{animation:pfx-hop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pfx-hop{0%,100%{translate:0 0}40%{translate:0 -10px}}
+.pfx-pop{position:absolute;z-index:72;pointer-events:none;translate:-50% -50%;font-weight:700;line-height:1;animation:pfx-float 1.1s cubic-bezier(.2,.7,.3,1) forwards}
+.pfx-heart{font-size:18px}
+.pfx-spark{font-size:14px;color:#efd179}
+.pfx-leaf{width:12px;height:12px;background:#357672;border-radius:70% 0 70% 0;animation-name:pfx-fall;animation-duration:1.4s}
+.pfx-meow{font-size:15px;color:#2d4b48;background:#fff;padding:6px 10px;border-radius:14px 14px 14px 2px;box-shadow:0 4px 12px rgba(0,0,0,.12);animation-name:pfx-bubble;animation-duration:1.3s}
+@keyframes pfx-float{from{transform:translate(0,0) scale(.4);opacity:0}20%{opacity:1;transform:translate(0,-8px) scale(1)}to{transform:translate(var(--dx),-60px) scale(.8) rotate(var(--r));opacity:0}}
+@keyframes pfx-fall{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(calc(var(--dx)*2),50px) rotate(calc(var(--r)*8));opacity:0}}
+@keyframes pfx-bubble{from{transform:translateY(6px) scale(.5);opacity:0}20%,75%{transform:translateY(-14px) scale(1);opacity:1}to{transform:translateY(-24px) scale(.9);opacity:0}}
+
+/* Site-wide cursor trail. */
+.pfx-trail{position:absolute;z-index:69;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;pointer-events:none;animation:pfx-trail .8s ease-out forwards}
+.pfx-trail.is-leaf{width:9px;height:9px;border-radius:70% 0 70% 0}
+@keyframes pfx-trail{from{transform:translate(0,0) scale(1) rotate(0);opacity:.85}to{transform:translate(var(--dx),18px) scale(.2) rotate(var(--r));opacity:0}}

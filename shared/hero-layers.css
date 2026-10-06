@@ -1,0 +1,73 @@
+/* Layered hero: each .hl is positioned in % of the 2079×756 artboard. */
+.hero-stage{position:relative;width:100%;aspect-ratio:2079/756;overflow:hidden}
+.hl{position:absolute;display:block;pointer-events:none;will-change:transform}
+.hl img{display:block;width:100%;height:auto}
+.hl-terrain{inset:0}
+
+/* Motion vars set by JS each frame (already smoothed):
+   --px/--py pointer in [-1,1], --sp scroll progress 0 (top) → 1 (hero scrolled away).
+   Per layer: --d pointer depth, --sy px of lift per unit scroll (relative to hero height via --hh),
+   --sx sideways, --ss extra scale, --sr rotation. */
+.hl{
+  --d:0;--sy:0;--sx:0;--ss:0;--sr:0;
+  transform:
+    translate3d(calc(var(--px,0)*var(--d)*1px + var(--sp,0)*var(--sx)*var(--hw,1px)),
+                calc(var(--py,0)*var(--d)*1px + var(--sp,0)*var(--sy)*var(--hh,1px)),0)
+    scale(calc(1 + var(--sp,0)*var(--ss)))
+    rotate(calc(var(--sp,0)*var(--sr)*1deg));
+}
+.hl-terrain{--d:-4;--sy:.12;--ss:.06}
+.hl-city{--d:-7;--sy:.22;--ss:.18;--sx:-.02}
+.hl-sun{--d:-10;--sy:.55;--ss:.5}
+.hl-leaves{--d:10;--sy:-.18;--sx:-.22;--sr:-14;--ss:.15}
+.hl-girl{--d:5;--sy:-.04;--ss:.08}
+.hl-books{--d:12;--sy:-.35;--sx:-.06;--sr:-18}
+.hl-title{--d:3;--sy:-.45;--sx:.05;--sr:-4}
+.hl-note-ideas{--d:-6;--sy:-.6;--sx:.06;--sr:12}
+.hl-note-designer{--d:6;--sy:-.5;--sx:.1;--sr:-10}
+/* Title and notes dissolve as they fly off; sun warms as it sets. */
+.hero-ready .hl-title,.hero-ready .hl-note-ideas,.hero-ready .hl-note-designer{opacity:calc(1 - var(--sp,0)*1.6);filter:blur(calc(var(--sp,0)*6px))}
+.hero-ready .hl-sun{filter:saturate(calc(1 + var(--sp,0)*.8)) hue-rotate(calc(var(--sp,0)*-22deg)) drop-shadow(0 0 calc(var(--sp,0)*40px) rgba(255,180,60,.75))}
+.hero-ready .hl-terrain{filter:brightness(calc(1 - var(--sp,0)*.12))}
+
+/* Idle loops, on the inner img so they compose with parallax. */
+.hero-in-view .hl-sun img{animation:hl-float 7s ease-in-out infinite}
+.hero-in-view .hl-leaves img{transform-origin:40% 100%;animation:hl-sway 6s ease-in-out infinite}
+.hero-in-view .hl-girl img{transform-origin:50% 100%;animation:hl-breathe 5s ease-in-out infinite}
+.hero-in-view .hl-city img{animation:hl-drift 14s ease-in-out infinite}
+.hero-in-view .hl-note-ideas img{transform-origin:50% 0;animation:hl-swing 8s ease-in-out infinite}
+.hero-in-view .hl-sun img,.hero-in-view .hl-leaves img,.hero-in-view .hl-girl img,.hero-in-view .hl-city img,.hero-in-view .hl-note-ideas img{animation-play-state:running}
+.landing-hero:not(.hero-in-view) .hl img{animation-play-state:paused}
+
+@keyframes hl-float{50%{transform:translateY(-6%)}}
+@keyframes hl-sway{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.4deg) skewX(-.6deg)}}
+@keyframes hl-breathe{50%{transform:scaleY(1.012)}}
+@keyframes hl-drift{50%{transform:translateX(-1.2%)}}
+@keyframes hl-swing{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+
+/* Entrance: layers start hidden only once JS confirms it will run the intro. */
+.hero-pending .hl:not(.hl-terrain){opacity:0}
+.hero-enter .hl{animation:hl-rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero-enter .hl-city{animation-delay:.1s}
+.hero-enter .hl-leaves{animation-name:hl-from-left;animation-delay:.15s}
+.hero-enter .hl-girl{animation-delay:.3s}
+.hero-enter .hl-books{animation-name:hl-pop;animation-delay:.5s}
+.hero-enter .hl-sun{animation-name:hl-pop;animation-delay:.45s}
+.hero-enter .hl-title{animation:none}
+.hero-enter .hl-title img{clip-path:inset(0 100% 0 0);animation:hl-write 2.2s cubic-bezier(.45,.05,.35,1) .7s forwards}
+.hero-enter .hl-note-ideas{animation-name:hl-fade-rot;animation-delay:1.8s}
+.hero-enter .hl-note-designer{animation-name:hl-fade-rot;animation-delay:2.1s}
+.hero-enter .hl-terrain{animation-name:hl-fade;animation-duration:.6s}
+
+@keyframes hl-rise{from{opacity:0;translate:0 6%}to{opacity:1;translate:0 0}}
+@keyframes hl-from-left{from{opacity:0;translate:-8% 4%;rotate:-4deg}to{opacity:1;translate:0 0;rotate:0deg}}
+@keyframes hl-pop{0%{opacity:0;scale:.6}70%{opacity:1;scale:1.06}100%{opacity:1;scale:1}}
+@keyframes hl-fade-rot{from{opacity:0;rotate:-6deg;translate:0 8%}to{opacity:1;rotate:0deg;translate:0 0}}
+@keyframes hl-fade{from{opacity:0}to{opacity:1}}
+/* Title strokes run diagonally top-left → bottom-right, so a sweeping wipe reads as writing. */
+@keyframes hl-write{to{clip-path:inset(0 0 0 0)}}
+
+@media (prefers-reduced-motion:reduce){
+  .hl,.hl img{animation:none!important;transition:none!important;transform:none!important}
+  .hero-pending .hl{opacity:1}
+}
