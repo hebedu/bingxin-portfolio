@@ -136,7 +136,9 @@
       modal.dataset.tone = card.classList.contains("work-knowme") ? "knowme" : "sre";
       modalTitle.textContent = card.dataset.projectTitle || "Project Preview";
       frame.title = `${modalTitle.textContent} 案例预览`;
-      projectFullLink.href = card.href;
+      const fullCaseUrl = new URL(card.href);
+      fullCaseUrl.searchParams.set("from", "preview");
+      projectFullLink.href = fullCaseUrl.href;
       frame.src = projectUrl.href;
       updateProjectNavigation();
     }
@@ -148,6 +150,19 @@
         transform: `translate(${cardRect.left - panelRect.left}px, ${cardRect.top - panelRect.top}px) scale(${cardRect.width / panelRect.width}, ${cardRect.height / panelRect.height})`,
         borderRadius: getComputedStyle(card).borderRadius
       };
+    }
+
+    function restoreProjectPreview(index) {
+      const card = openers[index];
+      if (!card) return;
+      card.scrollIntoView({ behavior: "instant", block: "center" });
+      loadProject(index);
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("project-modal-open");
+      pageContent.inert = true;
+      modal.classList.remove("is-opening", "is-closing");
+      modal.classList.add("is-revealing");
+      modalBackButton.focus({ preventScroll: true });
     }
 
     async function openProject(event) {
@@ -353,6 +368,15 @@
       if (event.key === "ArrowLeft" && !prevButton.disabled) switchProject(currentProjectIndex - 1);
       if (event.key === "ArrowRight" && !nextButton.disabled) switchProject(currentProjectIndex + 1);
     });
+
+    const previewSlug = new URLSearchParams(location.search).get("preview");
+    const previewIndex = previewSlug === "sre-agent" ? 0 : previewSlug === "knowme" ? 1 : undefined;
+    if (previewIndex !== undefined) {
+      const cleanUrl = new URL(location.href);
+      cleanUrl.searchParams.delete("preview");
+      history.replaceState(null, "", cleanUrl);
+      restoreProjectPreview(previewIndex);
+    }
   </script>
   <script src="./shared/hero-layers.js?v=3" defer></script>
   <script src="./shared/site-motion.js?v=4" defer></script>

@@ -479,6 +479,14 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
 <body>
 
 <a class="portfolio-back" href="../../" aria-label="返回首页">← 返回首页</a>
+<script>
+if(new URLSearchParams(location.search).get("from")==="preview"){
+  const back=document.querySelector(".portfolio-back");
+  back.href="../../?preview=knowme#works";
+  back.textContent="← 返回项目预览";
+  back.setAttribute("aria-label","返回项目预览");
+}
+</script>
 
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
   <defs>
