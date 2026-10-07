@@ -21,7 +21,6 @@
   rotate:calc(var(--ik)*var(--side,1)*4deg);
   scale:calc(.9 + var(--k)*.1);
 }
-.motion-on [data-reveal="card"] .work-category,
 .motion-on [data-reveal="card"] .work-copy{--l:clamp(0,calc((var(--k) - .4)/.45),1);opacity:var(--l);translate:0 calc((1 - var(--l))*18px)}
 
 /* Journey illustration: settles from a zoom, colour comes up as it centres. */
