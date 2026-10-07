@@ -445,8 +445,8 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
 .is-embedded .portfolio-back{display:none!important}
 @media(max-width:700px){.portfolio-back{top:12px;left:12px;min-height:38px;padding:0 10px;font-size:11px}.stagebar{left:auto;right:12px;transform:none}}
 @media(max-width:350px){.stagebar{top:60px;left:50%;right:auto;transform:translateX(-50%)}.product-hero-inner{padding-top:150px}.slide-shell{padding-top:112px}}
-.usage-evidence{padding:52px 36px 30px;scroll-margin-top:84px}
-.usage-evidence-shell{width:min(1372px,100%);margin:0 auto;padding:42px 48px 30px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,#fffdfb 0%,#fff8f3 100%);box-shadow:var(--shadow)}
+.usage-evidence{margin:0 0 24px;scroll-margin-top:84px}
+.usage-evidence-shell{width:100%;padding:32px 36px 26px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,#fffdfb 0%,#fff8f3 100%)}
 .usage-evidence-top{display:flex;justify-content:space-between;gap:20px;align-items:center;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.1em}
 .usage-evidence-top time{color:var(--muted);font-size:12px;font-weight:650;letter-spacing:0}
 .usage-evidence-intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin:14px 0 30px}
@@ -466,7 +466,14 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
 .usage-evidence-takeaway{display:flex;align-items:flex-start;gap:18px;margin-top:18px;padding:18px 22px;border-radius:18px;background:#24313d;color:#fff}.usage-evidence-takeaway b{flex:0 0 auto;color:#ffbca7;font-size:12px;letter-spacing:.08em}.usage-evidence-takeaway p{margin:0;color:#f2f3f1;font-size:14px;line-height:1.65}
 .usage-evidence-method{margin:16px 2px 0;color:var(--muted);font-size:11px;line-height:1.6}
 @media(max-width:900px){.usage-evidence-grid{grid-template-columns:1fr}.usage-metrics>p{padding-top:20px}}
-@media(max-width:700px){.usage-evidence{padding:34px 10px 22px}.usage-evidence-shell{padding:28px 20px 22px;border-radius:22px}.usage-evidence-top{align-items:flex-start}.usage-evidence-top time{text-align:right;font-size:10px}.usage-evidence-intro{display:block;margin:16px 0 22px}.usage-evidence-intro h2{font-size:28px}.usage-evidence-intro p{font-size:13px}.usage-evidence-source{display:inline-block;margin-top:14px}.usage-metrics,.usage-topics{padding:20px}.usage-metrics-lead{align-items:end}.usage-metrics-lead strong{font-size:70px}.usage-metrics-lead span{padding-bottom:8px;font-size:13px}.usage-metrics-sub{margin-top:22px}.usage-evidence-takeaway{display:block;padding:18px}.usage-evidence-takeaway p{margin-top:7px;font-size:13px}}
+@media(max-width:700px){.usage-evidence-shell{padding:24px 18px;border-radius:20px}.usage-evidence-top{align-items:flex-start}.usage-evidence-top time{text-align:right;font-size:10px}.usage-evidence-intro{display:block;margin:16px 0 22px}.usage-evidence-intro h2{font-size:28px}.usage-evidence-intro p{font-size:13px}.usage-evidence-source{display:inline-block;margin-top:14px}.usage-metrics,.usage-topics{padding:20px}.usage-metrics-lead{align-items:end}.usage-metrics-lead strong{font-size:70px}.usage-metrics-lead span{padding-bottom:8px;font-size:13px}.usage-metrics-sub{margin-top:22px}.usage-evidence-takeaway{display:block;padding:18px}.usage-evidence-takeaway p{margin-top:7px;font-size:13px}}
+.slide[data-index="4"] .definition{padding:28px 30px}
+.slide[data-index="4"] .definition h2{margin:4px 0 18px;font-size:26px}
+.slide[data-index="4"] .redefinition-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:0}
+.slide[data-index="4"] .redefinition-steps li{padding:18px 18px 18px 58px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.slide[data-index="4"] .redefinition-steps li:before{top:18px;left:18px}
+.slide[data-index="4"] .redefinition-steps li:after{display:none}
+@media(max-width:700px){.slide[data-index="4"] .definition{padding:20px}.slide[data-index="4"] .definition h2{font-size:21px}.slide[data-index="4"] .redefinition-steps{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -523,32 +530,6 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
     </figure>
   </div>
 </header>
-<section class="usage-evidence" id="usage-evidence" aria-labelledby="usage-evidence-title">
-  <div class="usage-evidence-shell">
-    <div class="usage-evidence-top"><span>00 / RECENT USER EVIDENCE</span><time datetime="2026-10-07">近 60 天 · 截至 2026.10.07</time></div>
-    <div class="usage-evidence-intro">
-      <div><h2 id="usage-evidence-title">真实提问，指向哪些现实问题？</h2><p>用近期使用数据回看 KnowMe 的产品方向：从已记录的提问正文中，观察用户把对话带向哪里。</p></div>
-      <span class="usage-evidence-source">UMAMI / ASK_SUBMIT</span>
-    </div>
-    <div class="usage-evidence-grid">
-      <div class="usage-metrics">
-        <div class="usage-metrics-lead"><strong>368</strong><span>次提问／追问提交事件</span></div>
-        <div class="usage-metrics-sub"><div><strong>307</strong><span>次记录到问题正文</span></div><div><strong>294</strong><span>条去重问题文本</span></div></div>
-        <p>这是事件与文本量，不代表独立用户数或留存人数。</p>
-      </div>
-      <div class="usage-topics" aria-label="含正文提问的高频主题">
-        <h3>部分高频主题</h3><p>按 307 次含正文提交计算；同一提问可属于多个主题。</p>
-        <div class="usage-topic"><div class="usage-topic-label"><span>事业、求职与创业</span><strong>92 次 <small>30.0%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:30%"></i></span></div>
-        <div class="usage-topic"><div class="usage-topic-label"><span>具体决策与方案比较</span><strong>86 次 <small>28.0%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:28%"></i></span></div>
-        <div class="usage-topic"><div class="usage-topic-label"><span>自我认知、情绪与成长</span><strong>80 次 <small>26.1%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:26.1%"></i></span></div>
-        <div class="usage-topic"><div class="usage-topic-label"><span>命理概念与结果校验</span><strong>66 次 <small>21.5%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:21.5%"></i></span></div>
-        <div class="usage-topic"><div class="usage-topic-label"><span>感情、伴侣与人际关系</span><strong>63 次 <small>20.5%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:20.5%"></i></span></div>
-      </div>
-    </div>
-    <div class="usage-evidence-takeaway"><b>产品启示</b><p>职业选择、方案比较与自我理解反复出现在问题中；结果校验也占有明显比重。这为“结合个人背景讨论现实选择”的定位提供了后续行为证据，也提醒产品把解释依据与不确定性说清楚。</p></div>
-    <p class="usage-evidence-method">来源：Umami 只读 API 的 ask_submit 事件及 question 属性；主题由关键词进行多标签归类，比例不可相加。部分长文本可能在接口返回时截断。此处仅公开汇总，不展示原始私人提问；该时间段的事件数据不能单独证明复访或长期关系。</p>
-  </div>
-</section>
 <div class="deck" id="deck">
 
     <section class="slide" data-stage="1" data-index="1">
@@ -626,37 +607,45 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
         </div>
         <h1>真实用户修正了最初假设</h1>
         <div class="slide-body">
-    <div class="insight-card" style="margin-bottom:24px">
-      <div class="eyebrow">Product Insight</div>
-      <h3>这些提问提示：用户不仅关心预测，也在寻求当下的选择确认与支持。</h3>
-      <div class="pill-row"><span>选择确认</span><span>情绪支持</span><span>现实决策</span></div>
-    </div>
-    <div class="grid grid-2 split evidence-to-definition">
-      <div>
-        <div class="eyebrow">真实主题 · 匿名化归纳</div>
-        <div class="question-stack">
-          <div class="question-group"><small>职业与现实选择</small><div class="question-bubble"><p>围绕求职、离职、创业和城市选择比较路径，希望看清风险与下一步。</p></div></div>
-          <div class="question-group"><small>自我理解</small><div class="question-bubble"><p>结合工作状态、情绪与过往经历，理解自己的行为模式和可调整之处。</p></div></div>
-          <div class="question-group"><small>结果校验</small><div class="question-bubble"><p>对命理概念与解释差异继续提问，要求说明判断依据与前后变化。</p></div></div>
-          <div class="question-group"><small>关系与人生节点</small><div class="question-bubble"><p>将伴侣、人际边界与未来节点放进现实处境中讨论。</p></div></div>
+          <section class="usage-evidence" id="usage-evidence" aria-labelledby="usage-evidence-title">
+            <div class="usage-evidence-shell">
+              <div class="usage-evidence-top"><span>RECENT USER EVIDENCE</span><time datetime="2026-10-07">近 60 天 · 截至 2026.10.07</time></div>
+              <div class="usage-evidence-intro">
+                <div><h2 id="usage-evidence-title">真实提问，指向哪些现实问题？</h2><p>用近期使用数据回看 KnowMe 的产品方向：从已记录的提问正文中，观察用户把对话带向哪里。</p></div>
+                <span class="usage-evidence-source">UMAMI / ASK_SUBMIT</span>
+              </div>
+              <div class="usage-evidence-grid">
+                <div class="usage-metrics">
+                  <div class="usage-metrics-lead"><strong>368</strong><span>次提问／追问提交事件</span></div>
+                  <div class="usage-metrics-sub"><div><strong>307</strong><span>次记录到问题正文</span></div><div><strong>294</strong><span>条去重问题文本</span></div></div>
+                  <p>这是事件与文本量，不代表独立用户数或留存人数。</p>
+                </div>
+                <div class="usage-topics" aria-label="含正文提问的高频主题">
+                  <h3>部分高频主题</h3><p>按 307 次含正文提交计算；同一提问可属于多个主题。</p>
+                  <div class="usage-topic"><div class="usage-topic-label"><span>事业、求职与创业</span><strong>92 次 <small>30.0%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:30%"></i></span></div>
+                  <div class="usage-topic"><div class="usage-topic-label"><span>具体决策与方案比较</span><strong>86 次 <small>28.0%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:28%"></i></span></div>
+                  <div class="usage-topic"><div class="usage-topic-label"><span>自我认知、情绪与成长</span><strong>80 次 <small>26.1%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:26.1%"></i></span></div>
+                  <div class="usage-topic"><div class="usage-topic-label"><span>命理概念与结果校验</span><strong>66 次 <small>21.5%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:21.5%"></i></span></div>
+                  <div class="usage-topic"><div class="usage-topic-label"><span>感情、伴侣与人际关系</span><strong>63 次 <small>20.5%</small></strong></div><span class="usage-topic-track" aria-hidden="true"><i style="--pct:20.5%"></i></span></div>
+                </div>
+              </div>
+              <div class="usage-evidence-takeaway"><b>产品启示</b><p>职业选择、方案比较与自我理解反复出现在问题中；结果校验也占有明显比重。这为“结合个人背景讨论现实选择”的定位提供了后续行为证据，也提醒产品把解释依据与不确定性说清楚。</p></div>
+              <p class="usage-evidence-method">来源：Umami 只读 API 的 ask_submit 事件及 question 属性；主题由关键词进行多标签归类，比例不可相加。部分长文本可能在接口返回时截断。此处仅公开汇总，不展示原始私人提问；该时间段的事件数据不能单独证明复访或长期关系。</p>
+            </div>
+          </section>
+          <div class="definition">
+            <div class="eyebrow">FROM EVIDENCE TO POSITIONING</div>
+            <h2>为什么重新定义 KnowMe</h2>
+            <ol class="redefinition-steps">
+              <li><h3>初始产品假设</h3><p>命理天然具有自我探索属性，而 AI 可以降低个性化解读成本。</p></li>
+              <li><h3>真实用户修正假设</h3><p>用户不只想获得解读，还会围绕就业、城市选择、自我困惑和人生意义继续提问。</p></li>
+              <li><h3>Product Insight</h3><p>用户表面在问命理，实际是在不确定状态下寻找确定感、自我解释和下一步行动。</p></li>
+              <li><h3>重新定义 KnowMe</h3><p>不是替用户预测未来，而是通过稳定、个性化的解释框架，帮助用户理解自己，并把自我认知转化为现实中的判断与行动。</p></li>
+            </ol>
+            <p class="redefinition-note">不是一开始就知道正确答案，而是带着假设进入市场，再通过真实用户反馈修正产品方向。</p>
+            <strong class="redefinition-result">最懂你的命理人生陪伴者</strong>
+          </div>
         </div>
-      </div>
-      <div class="evidence-arrow" aria-hidden="true">→</div>
-      <div>
-        <div class="definition">
-          <b>为什么重新定义 KnowMe</b>
-          <ol class="redefinition-steps">
-            <li><h3>初始产品假设</h3><p>命理天然具有自我探索属性，而 AI 可以降低个性化解读成本。</p></li>
-            <li><h3>真实用户修正假设</h3><p>用户不只想获得解读，还会围绕就业、城市选择、自我困惑和人生意义继续提问。</p></li>
-            <li><h3>Product Insight</h3><p>用户表面在问命理，实际是在不确定状态下寻找确定感、自我解释和下一步行动。</p></li>
-            <li><h3>重新定义 KnowMe</h3><p>不是替用户预测未来，而是通过稳定、个性化的解释框架，帮助用户理解自己，并把自我认知转化为现实中的判断与行动。</p></li>
-          </ol>
-          <p class="redefinition-note">不是一开始就知道正确答案，而是带着假设进入市场，再通过真实用户反馈修正产品方向。</p>
-          <strong class="redefinition-result">最懂你的命理人生陪伴者</strong>
-        </div>
-      </div>
-    </div>
-    </div>
       </div>
     </section>
     
@@ -1320,7 +1309,7 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 window.addEventListener('resize',updateReadingProgress);
 stageItems.forEach(item=>item.addEventListener('click',()=>{
-  const target=item.dataset.stageItem==='1'?document.getElementById('usage-evidence'):slides.find(s=>s.dataset.stage===item.dataset.stageItem);
+  const target=slides.find(s=>s.dataset.stage===item.dataset.stageItem);
   if(target){target.scrollIntoView({block:'start'});history.replaceState(null,'','#'+target.id)}
 }));
 document.getElementById('fullscreenBtn').onclick=()=>{
