@@ -8,7 +8,7 @@
   <title>Bingxin Du · 产品设计作品集</title>
   <link rel="icon" href="./shared/assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" as="image" href="./shared/assets/hero-layers/final/05-background-terrain.webp" fetchpriority="high">
-  <link rel="stylesheet" href="./shared/portfolio.css?v=20260916-2">
+  <link rel="stylesheet" href="./shared/portfolio.css?v=20260916-3">
   <link rel="stylesheet" href="./shared/illustrated.css?v=53">
   <link rel="stylesheet" href="./shared/polish.css?v=1">
   <link rel="stylesheet" href="./shared/hero-layers.css?v=4">
@@ -91,7 +91,6 @@
     <div class="project-modal__backdrop" data-project-close></div>
     <section class="project-modal__panel" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
       <div class="project-modal__bar">
-        <button class="project-modal__back" type="button" data-project-close aria-label="返回首页">← 返回首页</button>
         <p id="projectModalTitle">Project Preview</p>
         <a class="project-modal__full" id="projectFullLink" href="./projects/sre-agent/">打开完整案例 ↗</a>
         <button class="project-modal__close" type="button" data-project-close aria-label="关闭项目预览">×</button>
@@ -110,7 +109,6 @@
     const projectFullLink = document.getElementById("projectFullLink");
     const pageContent = document.querySelector(".illustrated-site");
     const closeButton = modal.querySelector(".project-modal__close");
-    const modalBackButton = modal.querySelector(".project-modal__back");
     const prevButton = modal.querySelector("[data-project-prev]");
     const nextButton = modal.querySelector("[data-project-next]");
     const openers = Array.from(document.querySelectorAll("[data-project-open]"));
@@ -129,15 +127,17 @@
       if (index < 0 || index >= openers.length) return;
       currentProjectIndex = index;
       const card = openers[currentProjectIndex];
+      const contentVersion = Date.now().toString(36);
       const projectUrl = new URL(card.href);
       projectUrl.searchParams.set("embed", "1");
-      projectUrl.searchParams.set("v", "20260916-1");
+      projectUrl.searchParams.set("v", contentVersion);
       lastFocusedProject = card;
       modal.dataset.tone = card.classList.contains("work-knowme") ? "knowme" : "sre";
       modalTitle.textContent = card.dataset.projectTitle || "Project Preview";
       frame.title = `${modalTitle.textContent} 案例预览`;
       const fullCaseUrl = new URL(card.href);
       fullCaseUrl.searchParams.set("from", "preview");
+      fullCaseUrl.searchParams.set("v", contentVersion);
       projectFullLink.href = fullCaseUrl.href;
       frame.src = projectUrl.href;
       updateProjectNavigation();
@@ -162,7 +162,7 @@
       pageContent.inert = true;
       modal.classList.remove("is-opening", "is-closing");
       modal.classList.add("is-revealing");
-      modalBackButton.focus({ preventScroll: true });
+      closeButton.focus({ preventScroll: true });
     }
 
     async function openProject(event) {
@@ -192,7 +192,7 @@
       window.clearTimeout(revealTimer);
       modal.classList.add("is-revealing");
       modal.classList.remove("is-opening");
-      modalBackButton.focus();
+      closeButton.focus();
     }
 
     async function closeProject() {
@@ -360,7 +360,7 @@
     document.addEventListener("keydown", (event) => {
       if (modal.getAttribute("aria-hidden") === "true") return;
       if (event.key === "Tab") {
-        const focusable = [modalBackButton, projectFullLink, closeButton, prevButton, nextButton, frame].filter((element) => !element.disabled);
+        const focusable = [projectFullLink, closeButton, prevButton, nextButton, frame].filter((element) => !element.disabled);
         if (event.shiftKey && document.activeElement === focusable[0]) { event.preventDefault(); focusable.at(-1).focus(); }
         else if (!event.shiftKey && document.activeElement === focusable.at(-1)) { event.preventDefault(); focusable[0].focus(); }
       }
