@@ -8,7 +8,7 @@
   <script>
     document.documentElement.classList.toggle("is-embedded", new URLSearchParams(location.search).has("embed"));
   </script>
-  <link rel="stylesheet" href="./styles.css?v=2">
+  <link rel="stylesheet" href="./styles.css?v=3">
   <style id="pdf-print-visibility-fix">
     .is-embedded .site-header .portfolio-back {
       display: none !important;
@@ -242,41 +242,41 @@
         <div>
           <p class="eyebrow">关键设计</p>
           <h2>如何让 Agent 可信、可控、可接管</h2>
-          <p>这一章只保留三个关键设计决策，直接说明我如何把抽象的 AI 能力转成可交付的产品机制。</p>
+          <p>把可信与可控落到三项产品机制：正确进入任务、基于证据判断、关键操作由人接管。</p>
         </div>
       </div>
 
       <div class="design-decision-stack">
         <article class="decision-card reveal">
-          <small>决策一</small>
+          <small>决策一</small><span class="decision-number" aria-hidden="true">01</span>
           <h3>让用户进入正确的任务</h3>
           <dl>
-            <dt>问题</dt><dd>开放式聊天让用户难以理解 Agent 能做什么；模糊意图或缺失上下文可能导致系统进入错误工作流。</dd>
-            <dt>我的判断</dt><dd>先识别并找到用户的高频任务，再进入对应工作流。任务不明确时不应启动工具调用。</dd>
-            <dt>设计机制</dt><dd><ul><li>高频任务引导与展示</li><li>意图识别是否正确</li><li>用户审核任务理解并进行修改和调整</li><li>信息不足时补齐资源对象、环境和时间范围</li><li>意图不明确、信息缺失或信息错误时进入兜底，不启动工具调用</li></ul></dd>
-            <dt>带来的价值</dt><dd>降低任务启动和试探成本，防止错误意图进入后续执行流程。</dd>
+            <dt>问题</dt><dd>开放式聊天容易误解意图，缺失上下文时可能进入错误工作流。</dd>
+            <dt>我的判断</dt><dd>先确认任务与对象，再调用工具；信息不足时先澄清。</dd>
+            <dt>设计机制</dt><dd><ul><li>展示高频任务，识别意图后由用户确认</li><li>补齐资源对象、环境与时间范围</li><li>意图或信息不明确时兜底，暂停工具调用</li></ul></dd>
+            <dt>带来的价值</dt><dd>减少试探和误启动，避免错误任务继续执行。</dd>
           </dl>
         </article>
 
         <article class="decision-card reveal">
-          <small>决策二</small>
+          <small>决策二</small><span class="decision-number" aria-hidden="true">02</span>
           <h3>让结论可以验证</h3>
           <dl>
-            <dt>问题</dt><dd>用户无法确认 Agent 是否调用了真实数据，也难以理解结论如何形成；证据不足时，单一答案容易制造不可靠的确定感。</dd>
-            <dt>我的判断</dt><dd>诊断结果必须把数据来源、工具调用、事实、推断和建议分层展示，让用户能够基于证据验证或修正结论。</dd>
-            <dt>设计机制</dt><dd><ul><li>展示数据来源与工具调用状态</li><li>区分事实、推断、根因假设与修复建议</li><li>证据不足时降低确定性，说明缺失信息</li><li>避免无依据输出，减少 AI 幻觉</li></ul></dd>
-            <dt>带来的价值</dt><dd>让用户理解 Agent 为什么得出当前判断，并能够基于证据验证或修正结论，减少 AI 幻觉带来的误判风险。</dd>
+            <dt>问题</dt><dd>用户看不到数据来源和推理过程，结论难以验证。</dd>
+            <dt>我的判断</dt><dd>将事实、推断与建议分层；证据不足时明确说明。</dd>
+            <dt>设计机制</dt><dd><ul><li>展示工具调用与数据来源</li><li>区分事实、根因假设和修复建议</li><li>标出缺失信息与不确定性</li></ul></dd>
+            <dt>带来的价值</dt><dd>用户能核对并修正判断，降低无依据结论的风险。</dd>
           </dl>
         </article>
 
         <article class="decision-card reveal">
-          <small>决策三</small>
+          <small>决策三</small><span class="decision-number" aria-hidden="true">03</span>
           <h3>让高风险操作可以接管</h3>
           <dl>
-            <dt>问题</dt><dd>运维操作可能直接影响生产环境。即使 Agent 能够生成修复方案，也不能忽略权限、影响范围和回滚风险。</dd>
-            <dt>我的判断</dt><dd>需要区分低风险分析与高风险执行后果：Agent 可以缩短分析路径，但关键执行权必须保留给用户。</dd>
-            <dt>设计机制</dt><dd><ul><li>查询、汇总和分析允许 Agent 自动推进</li><li>修复方案和脚本由 Agent 生成，用户查看和修改</li><li>脚本执行、配置变更和服务重启必须经过人工确认</li><li>失败或中断时保留已有结果，支持重试、替代路径或人工接管</li></ul></dd>
-            <dt>带来的价值</dt><dd>Agent 负责缩短分析路径，用户负责验证关键判断并决定是否执行。</dd>
+            <dt>问题</dt><dd>修复操作会影响生产环境，权限、影响范围和回滚风险不可忽略。</dd>
+            <dt>我的判断</dt><dd>Agent 可以推进分析，关键执行权交还用户。</dd>
+            <dt>设计机制</dt><dd><ul><li>自动完成查询、汇总与分析</li><li>方案和脚本供用户检查与修改</li><li>执行、变更和重启前人工确认；失败时可接管</li></ul></dd>
+            <dt>带来的价值</dt><dd>缩短分析路径，同时保留用户对高风险操作的控制权。</dd>
           </dl>
         </article>
       </div>
