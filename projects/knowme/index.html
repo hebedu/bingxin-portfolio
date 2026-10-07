@@ -104,6 +104,11 @@ b,strong{font-weight:800}
 }
 .persona{padding:22px;border:1px solid var(--line);border-radius:20px;background:#fff}
 .persona .tag{display:inline-block;background:var(--accent-soft);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800}
+.persona h3{margin:14px 0 15px;font-size:20px;line-height:1.4}
+.persona p{margin:0 0 12px;color:#4b5563;font-size:14px;line-height:1.65}
+.persona p b{color:var(--ink)}
+.persona p:last-child{margin-bottom:0}
+.persona-validation{margin-top:17px;padding-top:13px;border-top:1px solid var(--line);color:var(--accent-ink);font-size:13px;font-weight:800;line-height:1.5}
 .validation-row{align-items:center;margin-top:18px;padding:14px 16px;border-radius:14px;background:#fff;border:1px solid var(--line)}
 .validation-row em{margin-left:auto;color:var(--blue);font-style:normal;font-weight:800}
 .journey-icon{font-size:30px;color:var(--accent)}
@@ -125,10 +130,14 @@ b,strong{font-weight:800}
 .positioning-contrast>div:last-child{border-color:var(--accent-border);background:#fff9f6}
 .positioning-contrast b{display:block;margin-bottom:7px;font-size:14px}
 .positioning-contrast p{margin:0;font-size:14px;line-height:1.55}
-.positioning-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.positioning-steps>div{padding:0 14px;border-left:2px solid var(--accent-border)}
-.positioning-steps b{display:block;font-size:15px;line-height:1.45}
-.positioning-steps p{margin:5px 0 0;color:#4b5563;font-size:13px;line-height:1.5}
+.positioning-mvp-intro{margin:0 0 14px;color:#4b5563;font-size:14px;line-height:1.65}
+.positioning-mvp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.positioning-mvp-card{display:flex;flex-direction:column;min-width:0;padding:17px 18px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.positioning-mvp-card>span{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.08em}
+.positioning-mvp-card h3{margin:8px 0 7px;font-size:18px;line-height:1.4}
+.positioning-mvp-card>p{margin:0;color:#4b5563;font-size:13px;line-height:1.6}
+.positioning-mvp-check{margin-top:auto!important;padding-top:12px;border-top:1px solid var(--line)}
+.positioning-mvp-check b{display:block;margin-bottom:3px;color:var(--accent-ink);font-size:11px;letter-spacing:.04em}
 .positioning-footnote{margin:14px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
 .comparison,.memory-table,.eval-table{display:grid;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
 .comparison>div,.memory-table>div,.eval-table>div{display:grid;grid-template-columns:1fr 1.2fr 1.35fr;border-top:1px solid var(--line)}
@@ -147,12 +156,6 @@ b,strong{font-weight:800}
 .positioning-transition + .statement{margin:0 0 24px}
 @media(max-width:700px){.positioning-transition .big-arrow{justify-self:center;transform:rotate(90deg);line-height:1}}
 .big-arrow{font-size:32px;color:var(--accent)}
-.mvp-list{display:grid;gap:14px}
-.mvp-item{display:grid;grid-template-columns:58px 1fr;gap:18px;padding:18px 20px;border:1px solid var(--line);background:#fff;border-radius:18px}
-.mvp-num{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:13px;white-space:nowrap;font-weight:900}
-.mvp-item h3{margin:0 0 6px}
-.mvp-item p{margin:0;font-size:15px}
-.mvp-rationale{margin:0 0 22px;padding:16px 20px;border-left:3px solid var(--accent);border-radius:0 14px 14px 0;background:#fff2ed;color:#4b5563;font-size:16px;line-height:1.7}
 .design-question{margin:0 0 24px;font-size:14px;line-height:1.6}
 .design-question>b{color:var(--muted);font-weight:500}
 .design-question p{font-size:14px;color:var(--muted);margin:6px 0 0}
@@ -174,7 +177,6 @@ b,strong{font-weight:800}
 .strategy-index{margin:24px 0;font-size:14px;line-height:1.7}
 .strategy-index h3{font-size:16px;margin:0 0 12px}
 .strategy-index p{font-size:14px;margin:8px 0}
-.not-now{margin-top:16px;color:var(--muted);font-size:15px}
 .big-list{padding-left:20px;font-size:18px;line-height:1.7}
 .vertical-flow{display:flex;align-items:center;justify-content:flex-start;gap:9px;flex-wrap:wrap}
 .vertical-flow div{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fff;font-weight:700}
@@ -313,7 +315,7 @@ b,strong{font-weight:800}
 .defense-list span{grid-row:1/3;color:var(--accent);font-weight:900}
 .defense-list h3,.defense-list p{margin:0}
 .defense-list p{font-size:14px;color:var(--muted)}
-.slide[data-index="24"] .slide-shell{width:min(1700px,100%);padding-left:40px;padding-right:40px}
+.slide[data-index="23"] .slide-shell{width:min(1700px,100%);padding-left:40px;padding-right:40px}
 .funnel{display:flex;align-items:stretch;justify-content:center;gap:6px;padding-right:54px}
 .funnel>div{position:relative;isolation:isolate;flex:1;padding:36px 22px 22px 26px;background:var(--line);border:0;clip-path:polygon(0 0,94% 0,100% 50%,94% 100%,0 100%,6% 50%);display:flex;flex-direction:column;justify-content:flex-start;min-height:260px}
 .funnel>div::before{content:"";position:absolute;z-index:-1;inset:1px;background:#fff;clip-path:inherit}
@@ -397,7 +399,7 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
   .flow,.funnel,.hypothesis,.wide-card{flex-direction:column;align-items:stretch}
   .flow-arrow{align-self:center;transform:rotate(90deg)}
   .funnel{padding-right:42px}
-  .slide[data-index="24"] .slide-shell{width:100%;padding:40px 20px}
+  .slide[data-index="23"] .slide-shell{width:100%;padding:40px 20px}
   .funnel>div,.funnel>div:first-child{clip-path:none;min-height:0;border:1px solid var(--line);border-radius:18px;background:#fff}
   .funnel>div::before{display:none}
   .stagebar{left:50%;right:auto;top:10px;transform:translateX(-50%);padding:6px;border-radius:16px;gap:4px}
@@ -409,10 +411,10 @@ code{background:#f2ece8;padding:2px 6px;border-radius:6px}
   .positioning-statement strong{display:block;margin-top:7px;font-size:23px}
   .positioning-section{grid-template-columns:1fr;gap:14px;padding:22px 0}
   .positioning-section-title h2{font-size:20px}
-  .positioning-goals,.positioning-steps{grid-template-columns:1fr}
+  .positioning-goals,.positioning-mvp-grid{grid-template-columns:1fr}
   .positioning-contrast{grid-template-columns:1fr}
-  .positioning-steps{gap:18px}
-  .mvp-rationale{font-size:14px}
+  .positioning-mvp-grid{gap:10px}
+  .positioning-mvp-check{margin-top:12px!important}
   .trust-flow{flex-direction:column;align-items:stretch}
   .trust-flow>div:not(:nth-child(even)){width:100%}
   .trust-flow>div:nth-child(even){align-self:center;transform:rotate(90deg)}
@@ -544,7 +546,7 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>01 / 27</span></div>
+          <div class="slide-meta"><span>01 / 26</span></div>
         </div>
         <h1>Product Discovery 总流程</h1>
         <div class="slide-body">
@@ -571,7 +573,7 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
     <section class="slide" data-stage="1" data-index="2">
       <div class="slide-shell">
         <div class="slide-top">
-          <div class="slide-meta" style="margin-left:auto"><span>02 / 27</span></div>
+          <div class="slide-meta" style="margin-left:auto"><span>02 / 26</span></div>
         </div>
         <h1>在这个项目中，我创造的价值</h1>
         <div class="slide-body">
@@ -590,7 +592,7 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>03 / 27</span></div>
+          <div class="slide-meta"><span>03 / 26</span></div>
         </div>
         <h1>为什么做 KnowMe，而不是一个 AI 算命产品</h1>
         <div class="slide-body">
@@ -611,7 +613,7 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>04 / 27</span></div>
+          <div class="slide-meta"><span>04 / 26</span></div>
         </div>
         <h1>真实用户修正了最初假设</h1>
         <div class="slide-body">
@@ -661,18 +663,18 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">01 · Product Discovery</div>
-          <div class="slide-meta"><span>05 / 27</span></div>
+          <div class="slide-meta"><span>05 / 26</span></div>
         </div>
-        <h1>三类核心需求假设</h1>
+        <h1>从真实提问，推导三类需求假设</h1>
         <div class="slide-body">
-    <div class="notice" style="margin-bottom:24px">基于上述用户问答，我初步归纳出以下三类<strong>需求假设</strong>。由于用户样本量有限，它们尚不是经过充分验证的稳定用户画像。</div>
+    <div class="notice" style="margin-bottom:24px">上一页的主题分布说明用户在讨论什么；结合提问中补充处境、核对结论和继续追问的方式，才能进一步推断他们需要怎样的支持。以下是待验证的<strong>需求假设</strong>，不是已经证实的用户画像。</div>
     <div class="grid grid-3 persona-grid">
-      <div class="persona"><span class="tag">确定感</span><h3>在选择中寻求支持</h3><p><b>场景：</b>迷茫，不知道下一步怎么走</p><p><b>真正需要：</b>一个有分量的外部视角</p><p><b>报告之后：</b>仍需结合具体处境，讨论眼前的选择。</p></div>
-      <div class="persona"><span class="tag">自我理解</span><h3>自我反思转向者</h3><p><b>场景：</b>想理解自己为什么会这样</p><p><b>真正需要：</b>一面能照见行为模式的镜子</p><p><b>报告之后：</b>需要用真实经历检视解读，在追问中逐步理解自己。</p></div>
-      <div class="persona"><span class="tag">长期探索</span><h3>意义驱动探索者</h3><p><b>场景：</b>对人生与生命本身的探寻</p><p><b>真正需要：</b>一个能长期对话的伙伴</p><p><b>报告之后：</b>新的经历会带来新的问题，探索不会在一次解读后结束。</p></div>
+      <div class="persona"><span class="tag">确定感</span><h3>在选择中寻求支持</h3><p><b>提问信号：</b>职业与方案比较频繁，用户会带着收入、时间、城市等现实约束询问下一步。</p><p><b>需求推断：</b>需要一个理解个人处境、有依据且不替自己做决定的外部视角。</p><div class="persona-validation">对应验证：首次理解 → 准确可信</div></div>
+      <div class="persona"><span class="tag">自我理解</span><h3>自我反思转向者</h3><p><b>提问信号：</b>用户会把解读与自身经历对照，发现不符或前后矛盾时继续核对。</p><p><b>需求推断：</b>需要能用真实经历校准、并交代事实依据与解释边界的自我理解。</p><div class="persona-validation">对应验证：准确可信 → 首次理解校准</div></div>
+      <div class="persona"><span class="tag">持续探索</span><h3>意义驱动探索者</h3><p><b>提问信号：</b>自我、关系与人生意义问题常带有长段背景，不容易在一份静态报告里讲完。</p><p><b>需求推断：</b>需要把新经历带回对话，继续梳理问题；是否形成长期关系仍待验证。</p><div class="persona-validation">对应验证：关系延续</div></div>
     </div>
     <div aria-hidden="true" style="display:flex;justify-content:center;margin:20px 0;color:var(--accent);font-size:32px;line-height:1">↓</div>
-    <div class="notice" style="margin-top:0"><b>共同指向：需求不会随着报告交付而结束。</b><br>如果这些假设成立，报告只是理解自己的起点。用户还需要结合当下处境继续追问，并在经历变化后重新理解与调整——这正是一次静态报告难以承接的部分。</div>
+    <div class="notice" style="margin-top:0"><b>因此，产品要连续回答三个问题：</b>第一次能否理解这个人？解释是否准确、可信？报告之后，用户是否愿意带着现实问题回来？下一页的三阶段 MVP 就按这三个问题推进验证。</div>
     </div>
       </div>
     </section>
@@ -681,9 +683,9 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">02 · Product Positioning</div>
-          <div class="slide-meta"><span>06 / 27</span></div>
+          <div class="slide-meta"><span>06 / 26</span></div>
         </div>
-      <h1>产品定位</h1>
+      <h1>产品定位与 MVP 验证</h1>
         <div class="slide-body">
     <div class="positioning-statement"><span>定位主张</span><strong>KnowMe：人生节点的陪伴顾问</strong></div>
     <div class="positioning-section">
@@ -707,14 +709,15 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </div>
     <div class="positioning-section">
-      <div class="positioning-section-title"><span>03 / STRATEGY</span><h2>落地策略</h2></div>
+      <div class="positioning-section-title"><span>03 / MVP PATH</span><h2>落地策略与验证顺序</h2></div>
       <div class="positioning-section-content">
-        <div class="positioning-steps">
-          <div><b>首次理解</b><p>用个人背景降低冷启动成本。</p></div>
-          <div><b>准确可信</b><p>事实可复核，解释有边界。</p></div>
-          <div><b>关系延续</b><p>从报告走向现实追问与回访。</p></div>
+        <p class="positioning-mvp-intro">对应上一页的三类需求：先验证首次解读能否理解个人处境，再检验事实与解释是否可信，最后观察用户是否继续带着现实问题回来。准确性从第一阶段就是底线，阶段划分表示验证重点的推进。</p>
+        <div class="positioning-mvp-grid">
+          <article class="positioning-mvp-card"><span>阶段 01 · 回应选择支持</span><h3>首次理解</h3><p>用出生资料建立个人起点，结合用户的经历与现实约束校准解读，让建议真正回应眼前选择。</p><p class="positioning-mvp-check"><b>验证信号</b>首次相关性感知与主动追问</p></article>
+          <article class="positioning-mvp-card"><span>阶段 02 · 回应结果检视</span><h3>准确可信</h3><p>保证命盘事实可复核；面对用户指出的不符和矛盾，区分事实、推测与建议，说明解释边界。</p><p class="positioning-mvp-check"><b>验证信号</b>事实引用错误与风险表达</p></article>
+          <article class="positioning-mvp-card"><span>阶段 03 · 回应持续探索</span><h3>关系延续</h3><p>把报告结论带回新的现实问题，接续用户主动提供的经历，验证一次解读之后是否还值得回来。</p><p class="positioning-mvp-check"><b>验证信号</b>主动追问与 7 日复访</p></article>
         </div>
-        <p class="positioning-footnote">这三条策略对应下一页的 MVP 验证顺序；主动提醒和长期记忆属于后续方向。</p>
+        <p class="positioning-footnote">暂不优先长期 Memory、主动提醒、更多命理体系、大规模知识库和主动 Agent；这些是后续方向，不代表已经在 MVP 中验证。</p>
       </div>
     </div>
     </div>
@@ -724,27 +727,8 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
     <section class="slide" data-stage="2" data-index="7">
       <div class="slide-shell">
         <div class="slide-top">
-          <div class="kicker">02 · MVP Validation / 验证顺序</div>
-          <div class="slide-meta"><span>07 / 27</span></div>
-        </div>
-        <h1>MVP：按三个阶段验证产品定位</h1>
-        <div class="slide-body">
-    <p class="mvp-rationale">第一次使用决定用户是否愿意开口；准确性决定这份理解是否值得信任；报告之后的追问与回访，才检验长期关系有没有可能。</p>
-    <div class="mvp-list">
-      <div class="mvp-item"><div class="mvp-num">01</div><div><h3>首次理解：第一次使用，它能否快速与我建立连接？</h3><p>用出生信息建立结构化起点，再结合用户主动提供的经历校准；观察她是否觉得解读与自己相关，并愿意继续提问。</p></div></div>
-      <div class="mvp-item"><div class="mvp-num">02</div><div><h3>准确可信：它说的话有依据、能复核吗？</h3><p>先保证命盘等基础事实计算正确，再区分事实、推测和建议；避免“说得像真的”却引用错误事实。</p></div></div>
-      <div class="mvp-item"><div class="mvp-num">03</div><div><h3>关系延续：看完报告后，用户还有理由回来吗？</h3><p>把报告结论连接到眼前的问题和下一次可追问的情境，观察后续提问与回访，而非只看报告完成率。</p></div></div>
-    </div>
-    <div class="not-now"><b>暂不优先：</b>长期 Memory · 主动提醒 · 更多命理体系 · 大规模知识库 · 主动 Agent。后文涉及这些能力时，展示的是设计边界与后续方向，不代表已在 MVP 中验证。</div>
-    </div>
-      </div>
-    </section>
-    
-    <section class="slide" data-stage="2" data-index="8">
-      <div class="slide-shell">
-        <div class="slide-top">
           <div class="kicker">02 · MVP Validation / 设计回应</div>
-          <div class="slide-meta"><span>08 / 27</span></div>
+          <div class="slide-meta"><span>07 / 26</span></div>
         </div>
         <h1>六项关键设计，回应三个 MVP 问题</h1>
         <div class="design-question"><b>从问题进入设计：每项策略都有明确目标，并在后续页面逐项展开。</b></div>
@@ -761,11 +745,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
 
-    <section class="slide" data-stage="3" data-index="9">
+    <section class="slide" data-stage="3" data-index="8">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>09 / 27</span></div>
+          <div class="slide-meta"><span>08 / 26</span></div>
         </div>
         <h1>关键设计一：把“确定性事实”和“模型解释”拆开</h1>
         <div class="design-question"><b>对应问题2：提高回答的可信度与精准度</b></div>
@@ -806,11 +790,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="10">
+    <section class="slide" data-stage="3" data-index="9">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>10 / 27</span></div>
+          <div class="slide-meta"><span>09 / 26</span></div>
         </div>
         <h1>关键设计二：建立「恒定层 + 易变层」</h1>
         <div class="design-question"><b>对应问题1 · 快速理解我 ／ 问题3 · 持续留下</b></div>
@@ -833,11 +817,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="11">
+    <section class="slide" data-stage="3" data-index="10">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>11 / 27</span></div>
+          <div class="slide-meta"><span>10 / 26</span></div>
         </div>
         <h1>关键设计三：AI 行为设计——Prompt 不是“提示词”</h1>
         <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
@@ -857,11 +841,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="12">
+    <section class="slide" data-stage="3" data-index="11">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>12 / 27</span></div>
+          <div class="slide-meta"><span>11 / 26</span></div>
         </div>
         <h1>3.1 Prompt 规则系统：分层维护，而不是堆成一条提示词</h1>
         <div class="design-question"><b>对应问题1 · 快速理解我 ／ 问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
@@ -899,11 +883,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="13">
+    <section class="slide" data-stage="3" data-index="12">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>13 / 27</span></div>
+          <div class="slide-meta"><span>12 / 26</span></div>
         </div>
         <h1>3.2 Memory：按生命周期管理，而不是全部记住</h1>
         <div class="design-question"><b>对应问题3 · 持续留下（后续设计）／ 问题2 · 回答可信</b></div>
@@ -923,11 +907,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="14">
+    <section class="slide" data-stage="3" data-index="13">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>14 / 27</span></div>
+          <div class="slide-meta"><span>13 / 26</span></div>
         </div>
         <h1>3.3 Structured Rules：为什么当前优先结构化规则</h1>
         <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b></div>
@@ -950,11 +934,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="15">
+    <section class="slide" data-stage="3" data-index="14">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>15 / 27</span></div>
+          <div class="slide-meta"><span>14 / 26</span></div>
         </div>
         <h1>如何建立 Structured Rules 并生成链路</h1>
         <div class="quote-box" style="margin:0 0 24px">规则表的生成，是把古籍与领域资料提炼为包含<strong>知识含义、适用条件和使用边界</strong>的结构化规则，再接入生成链路。</div>
@@ -977,11 +961,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="16">
+    <section class="slide" data-stage="3" data-index="15">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>16 / 27</span></div>
+          <div class="slide-meta"><span>15 / 26</span></div>
         </div>
         <h1>3.4 可控表达：调整沟通风格，不改变事实确定性</h1>
         <div class="design-question"><b>对应问题2 · 回答可信</b></div>
@@ -1014,11 +998,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="3" data-index="17">
+    <section class="slide" data-stage="3" data-index="16">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">03 · AI System Design</div>
-          <div class="slide-meta"><span>17 / 27</span></div>
+          <div class="slide-meta"><span>16 / 26</span></div>
         </div>
         <h1>关键设计四：Trust Boundary——信任越深，产品越不能替用户做决定</h1>
         <div class="design-question"><b>对应问题2 · 回答可信 ／ 问题3 · 持续留下</b><p>为持续陪伴设置事实、推测与决策边界，同时避免用关系依赖换取留存：不强化“只有我懂你”，不鼓励 AI 替代现实关系；危机类内容进入独立安全流程。</p></div>
@@ -1037,11 +1021,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="4" data-index="20" data-slide-topic="dynamic-followup">
+    <section class="slide" data-stage="4" data-index="19" data-slide-topic="dynamic-followup">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">04 · Iteration &amp; Eval</div>
-          <div class="slide-meta"><span>20 / 27</span></div>
+          <div class="slide-meta"><span>19 / 26</span></div>
         </div>
         <h1>关键设计六：从固定问题到动态追问</h1>
         <div class="design-question"><b>对应问题3 · 持续留下（待验证迭代）</b><p>把报告结论映射到现实问题；是否能提升追问与复访，仍需验证。</p></div>
@@ -1082,11 +1066,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="4" data-index="18" data-slide-topic="eval-product">
+    <section class="slide" data-stage="4" data-index="17" data-slide-topic="eval-product">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">04 · Iteration &amp; Eval</div>
-          <div class="slide-meta"><span>18 / 27</span></div>
+          <div class="slide-meta"><span>17 / 26</span></div>
         </div>
         <h1>关键设计五：Eval——不先评价“好不好听”，而是“有没有说错事实”</h1>
         <div class="design-question"><b>对应问题2 · 回答可信（验证）</b></div>
@@ -1110,11 +1094,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="4" data-index="19" data-slide-topic="eval-evaluator">
+    <section class="slide" data-stage="4" data-index="18" data-slide-topic="eval-evaluator">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">04 · Iteration &amp; Eval</div>
-          <div class="slide-meta"><span>19 / 27</span></div>
+          <div class="slide-meta"><span>18 / 26</span></div>
         </div>
         <h1>关键设计五：Eval——检测器本身也必须被验证</h1>
         <div class="design-question"><b>对应问题2 · 回答可信（验证）</b></div>
@@ -1138,11 +1122,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="5" data-index="21">
+    <section class="slide" data-stage="5" data-index="20">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">05 · Validation &amp; Business</div>
-          <div class="slide-meta"><span>21 / 27</span></div>
+          <div class="slide-meta"><span>20 / 26</span></div>
         </div>
         <h1>目前证明了什么，又还没有证明什么</h1>
         <div class="slide-body">
@@ -1158,11 +1142,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="5" data-index="22">
+    <section class="slide" data-stage="5" data-index="21">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">05 · Validation &amp; Business</div>
-          <div class="slide-meta"><span>22 / 27</span></div>
+          <div class="slide-meta"><span>21 / 26</span></div>
         </div>
         <h1>商业化：先证明价值，再要求身份与付费</h1>
         <div class="slide-body">
@@ -1185,11 +1169,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="5" data-index="23">
+    <section class="slide" data-stage="5" data-index="22">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">05 · Validation &amp; Business</div>
-          <div class="slide-meta"><span>23 / 27</span></div>
+          <div class="slide-meta"><span>22 / 26</span></div>
         </div>
         <h1>长期可防御性假设</h1>
         <div class="design-question"><p>不再是一次查完命理就离开的产品，而是从第一次使用起建立信任、沉淀数据，持续发展长期用户关系；以下仍是 <strong>Defensibility Hypothesis</strong>，而非已经成立的“护城河”。</p></div>
@@ -1205,11 +1189,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="5" data-index="24">
+    <section class="slide" data-stage="5" data-index="23">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">05 · Validation &amp; Business</div>
-          <div class="slide-meta"><span>24 / 27</span></div>
+          <div class="slide-meta"><span>23 / 26</span></div>
         </div>
         <h1>下一阶段真正需要验证的商业 Funnel</h1>
         <div class="slide-body">
@@ -1224,11 +1208,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="6" data-index="25">
+    <section class="slide" data-stage="6" data-index="24">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">06 · Reflection</div>
-          <div class="slide-meta"><span>25 / 27</span></div>
+          <div class="slide-meta"><span>24 / 26</span></div>
         </div>
         <h1>现阶段我不做什么</h1>
         <div class="slide-body">
@@ -1245,11 +1229,11 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="6" data-index="26">
+    <section class="slide" data-stage="6" data-index="25">
       <div class="slide-shell">
         <div class="slide-top">
           <div class="kicker">06 · Reflection</div>
-          <div class="slide-meta"><span>26 / 27</span></div>
+          <div class="slide-meta"><span>25 / 26</span></div>
         </div>
         <h1>这个项目让我形成的 AI 产品原则</h1>
         <div class="slide-body">
@@ -1265,7 +1249,7 @@ if(new URLSearchParams(location.search).get("from")==="preview"){
       </div>
     </section>
     
-    <section class="slide" data-stage="6" data-index="27">
+    <section class="slide" data-stage="6" data-index="26">
       <div class="slide-shell">
         <div class="final-title-card">
           <h1>最终，我希望 KnowMe 证明的<strong>不是</strong>“我会做一个 AI 命理产品”</h1>
