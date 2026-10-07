@@ -206,6 +206,19 @@ footer { border-top: 1px solid var(--line); border-bottom: 0; margin-top: 56px; 
   text-transform: uppercase;
   color: #484c4b;
 }
+.project-modal__back {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  font: 700 12px/1.2 "Helvetica Neue", "PingFang SC", sans-serif;
+}
+.project-modal__back:hover { background: #f4f7f4; }
+.project-modal__back:focus-visible { outline: 3px solid rgba(65, 105, 245, .24); outline-offset: 3px; }
 .project-modal__close {
   width: 36px;
   height: 36px;
@@ -289,6 +302,8 @@ footer { border-top: 1px solid var(--line); border-bottom: 0; margin-top: 56px; 
   .project-modal { padding: 0; }
   .project-modal__panel { width: 100vw; height: 100dvh; border: 0; border-radius: 0; }
   .project-modal__bar { height: 50px; padding-left: 16px; }
+  .project-modal__bar p { display: none; }
+  .project-modal__full { margin-left: auto; }
   .project-modal__nav { top: 50%; width: 38px; height: 54px; font-size: 32px; }
   .project-modal__nav--prev { left: 8px; }
   .project-modal__nav--next { right: 8px; }

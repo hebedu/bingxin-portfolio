@@ -8,9 +8,9 @@
   <script>
     document.documentElement.classList.toggle("is-embedded", new URLSearchParams(location.search).has("embed"));
   </script>
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=2">
   <style id="pdf-print-visibility-fix">
-    .is-embedded .portfolio-project-bar {
+    .is-embedded .site-header .portfolio-back {
       display: none !important;
     }
 
@@ -45,11 +45,8 @@
   </style>
 </head>
 <body>
-  <div class="portfolio-project-bar">
-    <a class="portfolio-back" href="../../" aria-label="返回全部项目">← 全部项目</a>
-    <div><span>SRE Multi-Agent</span><a href="../knowme/">KnowMe</a></div>
-  </div>
   <header class="site-header">
+    <a class="portfolio-back" href="../../" aria-label="返回作品集">← 返回作品集</a>
     <a class="brand" href="#top" aria-label="返回顶部"><b>SRE</b><span>Multi-Agent Case</span></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">章节</button>
     <nav id="site-nav" aria-label="案例章节导航">
