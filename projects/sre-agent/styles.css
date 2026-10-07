@@ -1597,6 +1597,27 @@ td::before { display: none; }
   padding: 26px;
 }
 
+.overview-summary-grid h3 {
+  margin-bottom: 14px;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.42;
+}
+
+.overview-summary-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+@media (max-width: 980px) {
+  .overview-detail .overview-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .overview-detail .overview-summary-grid { grid-template-columns: 1fr; }
+}
+
 .problem-card,
 .supporting-proof,
 .boundary-module,
